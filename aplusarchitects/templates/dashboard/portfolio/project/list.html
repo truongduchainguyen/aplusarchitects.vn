@@ -1,0 +1,108 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% load paginate %}
+
+{% block title %}
+    {% trans 'Projects' context 'Page title' %} - {{ block.super }}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block portfolio_class %}open active{% endblock %}
+{% block portfolio_project_class %}active{% endblock %}
+
+{% block page %}
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{% trans 'Projects' context 'Page title' %}</h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">{% trans 'Portfolio' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item active">{% trans 'Projects' context 'Breadcrumb item' %}</li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <form action="" method="get" class="form-inline" style="margin: 20px 0px; float: right;">
+                            {% bootstrap_field filter.form.id show_label=False %}
+                            {% bootstrap_field filter.form.name show_label=False %}
+                            {% bootstrap_field filter.form.category show_label=False %}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-outline">
+                                    {% trans 'Search' context 'Button text' %}
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <a href="{% url 'dashboard:portfolio:project-add' %}" class="btn btn-primary">
+                                    {% trans 'Add project' context 'Button text' %}
+                                </a>
+                            </div>
+                        </form>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-vertical-align">
+                                <thead class="bg-blue-grey-100">
+                                    <tr>
+                                        <th style="width: 100px;">{% trans 'ID' context 'Table header text' %}</th>
+                                        <th>{% trans 'Name' context 'Table header text' %}</th>
+                                        <th>{% trans 'Category' context 'Table header text' %}</th>
+                                        <th style="width: 100px;">{% trans 'Action' context 'Table header text' %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% if projects %}
+                                {% for project in projects %}
+                                <tr>
+                                    <td>{{ project.id }}</td>
+                                    <td>{{ project }}</td>
+                                    <td>{{ project.get_display_categories }}</td>
+                                    <td>
+                                        <a href="{% url 'dashboard:portfolio:project-change' pk=project.pk %}" class="btn btn-sm btn-icon btn-info">
+                                            <i class="icon wb-edit" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="#base-modal" data-href="{% url 'dashboard:portfolio:project-delete' pk=project.pk %}" class="btn btn-sm btn-icon btn-danger modal-trigger-custom">
+                                            <i class="icon wb-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr><td colspan="4" class="text-center">{% trans 'No data.' context 'Table no data' %}</td></tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="float:right;">
+                            {% paginate projects %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block plugin_css %}{% endblock %}
+{% block page_css %}
+    <style>
+        .form-control.is-valid,
+        .form-control.is-valid:focus { border-color: #e4eaec; }
+        .form-inline .form-group { margin-bottom: 5px; }
+        .form-inline .form-control { width: 180px; }
+    </style>
+{% endblock %}
+{% block plugin_js %}{% endblock %}
+{% block page_js %}{% endblock %}

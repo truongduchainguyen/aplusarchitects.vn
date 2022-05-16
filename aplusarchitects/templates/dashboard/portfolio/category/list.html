@@ -1,0 +1,90 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load paginate %}
+
+{% block title %}
+    {% trans 'Categories' context 'Page title' %} - {{ block.super }}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block portfolio_class %}open active{% endblock %}
+{% block portfolio_category_class %}active{% endblock %}
+
+{% block page %}
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{% trans 'Categories' context 'Page title' %}</h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">{% trans 'Portfolio' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item active">{% trans 'Categories' context 'Breadcrumb item' %}</li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <form action="" method="get" class="form-inline" style="margin: 20px 0px; float: right;">
+                            <div class="form-group">
+                                <a href="{% url 'dashboard:portfolio:category-add' %}" class="btn btn-primary">
+                                    {% trans 'Add category' context 'Button text' %}
+                                </a>
+                            </div>
+                        </form>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-vertical-align">
+                                <thead class="bg-blue-grey-100">
+                                    <tr>
+                                        <th style="width: 100px;">{% trans 'ID' context 'Table header text' %}</th>
+                                        <th>{% trans 'Name' context 'Table header text' %}</th>
+                                        <th style="width: 100px;">{% trans 'Action' context 'Table header text' %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% if categories %}
+                                {% for category in categories %}
+                                <tr>
+                                    <td>{{ category.id }}</td>
+                                    <td>{{ category }}</td>
+                                    <td>
+                                        <a href="{% url 'dashboard:portfolio:category-change' pk=category.pk %}" class="btn btn-sm btn-icon btn-info">
+                                            <i class="icon wb-edit" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="#base-modal" data-href="{% url 'dashboard:portfolio:category-delete' pk=category.pk %}" class="btn btn-sm btn-icon btn-danger modal-trigger-custom">
+                                            <i class="icon wb-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr><td colspan="3" class="text-center">{% trans 'No data.' context 'Table no data' %}</td></tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="float:right;">
+                            {% paginate categories %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block plugin_css %}{% endblock %}
+{% block page_css %}{% endblock %}
+{% block plugin_js %}{% endblock %}
+{% block page_js %}{% endblock %}

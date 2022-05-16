@@ -1,0 +1,24 @@
+{% extends "dashboard/base_modal.html" %}
+{% load i18n %}
+
+{% block form_class %}{% endblock %}
+
+{% block action_url %}{% url 'dashboard:blog:category-delete' pk=category.pk %}{% endblock %}
+
+{% block modal_title %}
+  {% blocktrans trimmed context "Modal remove group text" %}
+    Delete category <strong>{{ category }}</strong>
+  {% endblocktrans %}
+{% endblock %}
+
+{% block modal_body %}
+  <p>
+    {% blocktrans trimmed context "Modal remove group text" %}
+      Are you sure you want to delete category <strong>{{ category }}</strong>?
+    {% endblocktrans %}
+  </p>
+{% endblock %}
+
+{% block primary_action %}
+  {% trans "Delete" context "Button text" %}
+{% endblock %}

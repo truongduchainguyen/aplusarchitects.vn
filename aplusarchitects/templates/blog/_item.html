@@ -1,0 +1,26 @@
+{% load static %}
+{% load i18n %}
+{% if post %}
+<article>
+    <h2 class="section-title dec-title"><span>{{ post }}</span></h2>
+    <ul class="creat-list">
+        <li><a href="#">{{ post.created_at }}</a></li>
+        <li><a href="#">{{ post.author }}</a></li>
+    </ul>
+    <div class="blog-media">
+        <div class="box-item">
+            <a class="ajax" href="{{ post.get_absolute_url }}" >
+            <span class="overlay"></span>
+            <img src="{{ post.get_display_image }}"  alt="" class="respimg">
+            </a>
+        </div>
+    </div>
+    <div class="blog-text">
+        <h3><a class="ajax" href="{{ post.get_absolute_url }}">{{ post }}</a></h3>
+        <p>{{ post.description }}</p>
+        <a href="{{ post.get_absolute_url }}" class="btn">
+            <span>{% trans 'Read more' context 'Button text' %}</span> <i class="fa fa-long-arrow-right"></i>
+        </a>
+    </div>
+</article>
+{% endif %}

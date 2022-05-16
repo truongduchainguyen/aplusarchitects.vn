@@ -1,0 +1,94 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap4 %}
+
+{% block title %}
+    {% if project_image %}
+        {{ project_image }}
+    {% else %}
+        {% trans 'Add image' context 'Page title' %}
+    {% endif %}
+    - {{ block.super }}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block portfolio_class %}active open{% endblock %}
+{% block portfolio_project_class %}active{% endblock %}
+
+{% block page %}
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">
+            {% if project_image %}
+                {{ project_image }}
+            {% else %}
+                {% trans 'Add image' context 'Page title' %}
+            {% endif %}
+        </h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">{% trans 'Portfolio' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:portfolio:project-list' %}">{% trans 'Projects' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:portfolio:project-change' pk=project.pk %}">{{ project }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:portfolio:project-images-list' project_pk=project.pk %}">
+                        {% trans 'Images' context 'Breadcrumb item' %}
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {% if project_image %}
+                        {{ project_image }}
+                    {% else %}
+                        {% trans 'Add image' context 'Breadcrumb item' %}
+                    {% endif %}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="panel">
+                    <div class="panel-body">
+                        <form action="" method="POST" enctype="multipart/form-data" novalidate>{% csrf_token %}
+                            {% bootstrap_field form.project %}
+                            {% bootstrap_field form.image %}
+                            {% bootstrap_field form.alt %}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary float-right">
+                                    {% if project_image %}
+                                        {% trans 'Update' context 'Button text' %}
+                                    {% else %}
+                                        {% trans 'Add' context 'Button text' %}
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block page_css %}
+    <style>
+        .form-group.is-invalid .invalid-feedback{ display: block; }
+        .form-group.is-valid .form-control{ border-color: #e4eaec; }
+    </style>
+{% endblock %}
+
+{% block plugin_css %}{% endblock %}
+{% block plugin_js %}{% endblock %}
+{% block page_js %}{% endblock %}

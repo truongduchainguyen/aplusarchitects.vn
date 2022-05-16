@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% load paginator from paginator %}
+
+{% block title %}{% trans 'Blog' context 'Page title' %} - {{ block.super }}{% endblock %}
+{% block nav_blog_class %}act-link{% endblock %}
+
+{% block page %}
+<!-- Page title -->
+<div class="dynamic-title">{% trans 'Blog' context 'Page title' %}</div>
+<!-- Page title  end--> 
+
+<!-- content  -->
+<div class="content">
+    <section class="parallax-section">
+        <div class="parallax-inner">
+            <div class="bg" data-bg="{% static 'storefront/images/pages/blog/bg.jpg' %}" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><strong>{% trans 'Blog' context 'Page title' %}</strong></h2>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="creat-list">
+                            <li><a href="{% url 'core:index' %}">{% trans 'Home' context 'Breadcrumb item' %}</a></li>
+                            <li><a href="{% url 'blog:index' %}">{% trans 'Blog' context 'Breadcrumb item' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content end -->
+
+<!-- content  -->
+<div class="content">
+    <section>
+        <div class="container">
+            <div class="row">
+                <!-- Articels -->
+                <div class="col-md-8">
+                    {% if posts %}
+
+                    {% for post in posts %}
+                    {% include 'blog/_item.html' with post=post %}
+                    {% endfor %}
+
+                    {% paginator posts %}
+
+                    {% else %}
+                    <div class="alert alert-info">
+                        {% trans 'No posts found.' context 'No data' %}
+                    </div>
+                    {% endif %}
+                </div>
+                <!-- Articels end-->
+                <!-- sidebar -->
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        <!-- widget -->
+                        <div class="widget">
+                            <div class="searh-holder">
+                                <form action="" class="searh-inner" method="GET">
+                                    {{ filter.form.title|add_class:"search"|attr:"placeholder:Search..." }}
+                                    <button class="search-submit" id="submit_btn">
+                                        <i class="fa fa-search transition"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        {% if last_posts %}
+                        <div class="widget">
+                            <h3>{% trans 'Last posts' context 'Widget title' %}</h3>
+                            <ul class="widget-posts">
+                                {% for post in last_posts %}
+                                <li class="clearfix">
+                                    <a href="{{ post.get_absolute_url }}" class="widget-posts-img">
+                                        <img src="{{ post.get_display_image }}" class="respimg" alt="">
+                                    </a>
+                                    <div class="widget-posts-descr">
+                                        <a href="{{ post.get_absolute_url }}" title="{{ post }}" style="letter-spacing: normal;">{{ post }}</a>
+                                        <span class="widget-posts-date">{{ post.created_at }}</span> 
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        
+                        {% if tags %}
+                        <div class="widget">
+                            <h3>Tags</h3>
+                            <div class="clearfix"></div>
+                            <ul class="tagcloud">
+                                <li><a href='#' class="transition link">Portfolio</a></li>
+                                <li><a href='#' class="transition link">Tag</a></li>
+                                <li><a href='#' class="transition link">Demo</a></li>
+                                <li><a href='#' class="transition link">Blog</a></li>
+                                <li><a href='#' class="transition link">Photography</a></li>
+                                <li><a href='#' class="transition link">Web desighn</a></li>
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                        {% if categories %}
+                        <div class="widget">
+                            <h3>{% trans 'Categories' context 'Widget title' %}</h3>
+                            <div class="clearfix"></div>
+                            <ul>
+                                {% for cat in categories %}
+                                <li class="cat-item">
+                                    <a href="{{ cat.get_absolute_url }}">{{ cat }}</a> ({{ cat.get_num_post }})
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- sidebar end-->
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content end-->
+{% endblock %}
+
+{% block page_js %}{% endblock %}

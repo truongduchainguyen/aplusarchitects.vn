@@ -1,0 +1,82 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% load get_flag %}
+
+{% block title %}
+    {% if translate %}
+        {{ translate }}
+    {% else %}
+        {% trans 'Add translation' context 'Page title' %}
+    {% endif %}
+    - {{ block.super }}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block service_class %}active{% endblock %}
+
+{% block page %}
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">
+            {% if translate %}
+                {{ translate }}
+            {% else %}
+                {% trans 'Add translation' context 'Page title' %}
+            {% endif %}
+        </h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:service:service-list' %}">{% trans 'Services' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:service:service-change' pk=service.pk %}">{{ service }}</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {% if translate %}
+                        {{ translate }}
+                    {% else %}
+                        {% trans 'Add translation' context 'Breadcrumb item' %}
+                    {% endif %}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="panel">
+                    <div class="panel-body">
+                        <form action="" method="POST" novalidate>{% csrf_token %}
+                            {% bootstrap_form_errors form %}
+                            {% bootstrap_field form.service %}
+                            {% bootstrap_field form.language_code %}
+                            {% bootstrap_field form.name %}
+                            {% bootstrap_field form.description %}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary float-right">
+                                    {% if translate %}
+                                        {% trans 'Update' context 'Button text' %}
+                                    {% else %}
+                                        {% trans 'Add' context 'Button text' %}
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block plugin_css %}{% endblock %}
+{% block page_css %}{% endblock %}
+{% block plugin_js %}{% endblock %}
+{% block page_js %}{% endblock %}

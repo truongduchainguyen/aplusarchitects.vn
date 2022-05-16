@@ -1,0 +1,147 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% load get_flag %}
+
+{% block title %}
+    {% if service %}
+        {{ service }} - {{ block.super }}
+    {% else %}
+        {% trans 'Add service' context 'Page title' %} - {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block service_class %}active{% endblock %}
+
+{% block page %}
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">
+            {% if service %}
+                {{ service }}
+            {% else %}
+                {% trans 'Add service' context 'Page title' %}
+            {% endif %}
+        </h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:service:service-list' %}">{% trans 'Services' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {% if service %}
+                        {{ service }}
+                    {% else %}
+                        {% trans 'Add service' context 'Breadcrumb item' %}
+                    {% endif %}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-body">
+                        <form action="" method="POST" enctype="multipart/form-data" novalidate>{% csrf_token %}
+                            {% bootstrap_field form.name %}
+                            {% bootstrap_field form.description %}
+                            {% bootstrap_field form.percent %}
+                            {% bootstrap_field form.sort_order %}
+                            {% bootstrap_field form.background %}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary float-right">
+                                    {% if service %}
+                                        {% trans 'Update' context 'Button text' %}
+                                    {% else %}
+                                        {% trans 'Add' context 'Button text' %}
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% if service %}
+                <!-- Translations -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{% trans 'Translations' %}</h3>
+                        <div class="panel-actions">
+                            <div class="panel-action">
+                                <a href="{% url 'dashboard:service:service-translate-add' service_pk=service.pk %}" class="btn btn-success">
+                                    {% trans 'Add translation' context 'Button text' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-vertical-align">
+                                <thead class="bg-blue-grey-100">
+                                    <tr>
+                                        <th style="width: 100px;">{% trans '#' context 'Table header text' %}</th>
+                                        <th>{% trans 'Language' context 'Table header text' %}</th>
+                                        <th>{% trans 'Name' context 'Table header text' %}</th>
+                                        <th style="width: 100px;">{% trans 'Action' context 'Table header text' %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if service.get_translations %}
+                                    {% for trans in service.get_translations %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td><span class="flag-icon {% get_flag lang_code=trans.language_code %}"></span></td>
+                                        <td>{{ trans }}</td>
+                                        <td>
+                                            <a href="{% url 'dashboard:service:service-translate-change' service_pk=service.pk pk=trans.pk %}" class="btn btn-sm btn-icon btn-info">
+                                                <i class="icon wb-edit" aria-hidden="true"></i>
+                                            </a>
+                                            <a href="#base-modal" data-href="{% url 'dashboard:service:service-translate-delete' service_pk=service.pk pk=trans.pk %}" class="btn btn-sm btn-icon btn-danger modal-trigger-custom">
+                                                <i class="icon wb-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% else %}
+                                    <tr>
+                                        <td colspan="4" class="text-center">{% trans 'No data.' context 'Table no data' %}</td>
+                                    </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Translations -->
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block plugin_css %}
+    <link rel="stylesheet" href="{% static 'dashboard/global/vendor/summernote/summernote.css' %}">
+{% endblock %}
+{% block page_css %}
+    <style>
+        .modal-open .select2-container {z-index: auto;}
+    </style>
+{% endblock %}
+{% block plugin_js %}
+    <script src="{% static 'dashboard/global/vendor/summernote/summernote.js' %}"></script>
+{% endblock %}
+{% block page_js %}
+    <script>
+        $(document).ready(function() {
+            $('textarea').summernote();
+        });
+    </script>
+{% endblock %}

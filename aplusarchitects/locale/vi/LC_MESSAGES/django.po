@@ -1,0 +1,1686 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-29 00:34+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: app/account/models.py:45 app/dashboard/account/filters.py:13
+#: app/dashboard/account/filters.py:34 app/dashboard/forms.py:9
+#: app/sitesetting/models.py:13
+msgid "Email"
+msgstr ""
+
+#: app/account/models.py:46
+msgid "First name"
+msgstr "Họ và đệm"
+
+#: app/account/models.py:47
+msgid "Last name"
+msgstr "Tên"
+
+#: app/account/models.py:49 app/dashboard/account/forms.py:10
+#: app/dashboard/account/forms.py:36 app/dashboard/account/forms.py:63
+msgid "Date of birth"
+msgstr "Ngày sinh"
+
+#: app/account/models.py:50
+msgid "Active status"
+msgstr "Trạng thái kích hoạt"
+
+#: app/account/models.py:51
+msgid "Staff status"
+msgstr "Trạng thái nhân viên"
+
+#: app/account/models.py:60
+msgid "Manage customers."
+msgstr "Quản lý khách hàng."
+
+#: app/account/models.py:61
+msgid "Manage staffs."
+msgstr "Quản lý nhân viên."
+
+#: app/blog/filters.py:8 app/dashboard/blog/filters.py:10
+msgctxt "Post filter label"
+msgid "Title"
+msgstr "Tiêu đề"
+
+#: app/blog/models.py:14 app/blog/models.py:53 app/portfolio/models.py:13
+#: app/portfolio/models.py:47 app/service/models.py:10
+#: app/sitesetting/models.py:26
+msgid "Name"
+msgstr "Tên"
+
+#: app/blog/models.py:20
+msgid "Manage blog categories."
+msgstr "Quản lý danh mục."
+
+#: app/blog/models.py:59
+msgid "Manage blog tags."
+msgstr "Quản lý thẻ."
+
+#: app/blog/models.py:89 app/blog/models.py:130
+msgid "Title"
+msgstr "Tiêu đề"
+
+#: app/blog/models.py:90 app/portfolio/models.py:49 app/portfolio/models.py:99
+#: app/service/models.py:11 app/service/models.py:40
+#: app/sitesetting/models.py:10
+#: templates/dashboard/portfolio/project_image/list.html:46
+msgid "Description"
+msgstr "Mô tả"
+
+#: app/blog/models.py:91 app/blog/models.py:131
+msgid "Content"
+msgstr "Nội dung"
+
+#: app/blog/models.py:105
+msgid "Manage blog posts."
+msgstr "Quản lý bài viết."
+
+#: app/core/data.py:7
+msgid "Vu Hoang Kha"
+msgstr "Vũ Hoàng Kha"
+
+#: app/core/data.py:8
+msgid "Founder"
+msgstr "Người sáng lập"
+
+#: app/core/data.py:12
+msgid "Tu Phan Nguyen Truong"
+msgstr "Từ Phan Nguyên Trường"
+
+#: app/core/data.py:13
+msgid "Design Director"
+msgstr "Giám đốc thiết kế"
+
+#: app/core/data.py:17
+msgid "Tu Thanh Vien"
+msgstr "Từ Thanh Viên"
+
+#: app/core/data.py:18
+msgid "Construction Director"
+msgstr "Giám đốc thi công"
+
+#: app/core/data.py:22
+msgid "Nguyen Truc Quynh"
+msgstr "Nguyễn Trúc Quỳnh"
+
+#: app/core/data.py:23
+msgid "Personnel manager"
+msgstr "Quản lý nhân sự"
+
+#: app/core/data.py:27
+msgid "Nguyen Thi Hai"
+msgstr "Nguyễn Thị Hải"
+
+#: app/core/data.py:28
+msgid "Director Assistant"
+msgstr "Trợ lý giám đốc"
+
+#: app/core/data.py:32
+msgid "Nguyen Long An"
+msgstr "Nguyễn Long Ẩn"
+
+#: app/core/data.py:33
+msgid "Architectural Design Manager"
+msgstr "Trưởng phòng kiến trúc"
+
+#: app/core/data.py:37
+msgid "Nguyen Trong Huan"
+msgstr "Nguyễn Trọng Huân"
+
+#: app/core/data.py:38
+msgid "Interior Design Manager"
+msgstr "Truởng phòng nội thất"
+
+#: app/core/data.py:42
+msgid "Nguyen Long Huy"
+msgstr "Nguyễn Long Huy"
+
+#: app/core/data.py:43
+msgid "Construction Manager"
+msgstr "Trưởng phòng thi công"
+
+#: app/core/data.py:47
+msgid "Tran Thi Ly Na"
+msgstr "Trần Thị Ly Na"
+
+#: app/core/data.py:48
+msgid "Deputy Design Manager"
+msgstr "Phó phòng kiến trúc"
+
+#: app/core/data.py:52
+msgid "Luong Van Tau"
+msgstr "Lương Văn Tàu"
+
+#: app/core/data.py:53
+msgid "Leader of detailed design"
+msgstr "Truởng nhóm triển khai"
+
+#: app/core/data.py:57
+msgid "Kinga Tomalak"
+msgstr "Kinga Tomalak"
+
+#: app/core/data.py:58 app/core/data.py:63 app/core/data.py:68
+#: app/core/data.py:73
+msgid "Architect"
+msgstr "Kiến trúc sư"
+
+#: app/core/data.py:62
+msgid "Mayui Bhandari"
+msgstr "Mayui Bhandari"
+
+#: app/core/data.py:67
+msgid "Sweety Muttha"
+msgstr "Sweety Muttha"
+
+#: app/core/data.py:72
+msgid "Nguyen Thi Lan Anh"
+msgstr "Nguyễn Thị Lan Anh"
+
+#: app/core/data.py:77
+msgid "Le Anh Huy"
+msgstr "Lê Anh Huy"
+
+#: app/core/data.py:78
+msgid "3D Artist"
+msgstr "3D Artist"
+
+#: app/core/data.py:82
+msgid "Tran Gia Bao"
+msgstr "Trần Gia Bảo"
+
+#: app/core/data.py:83 app/core/data.py:88
+msgid "Interior Draftsman"
+msgstr "Họa viên nội thất"
+
+#: app/core/data.py:87
+msgid "Nguyen Thanh Tra"
+msgstr "Nguyễn Thanh Trà"
+
+#: app/core/data.py:92
+msgid "Le Ba Kiet"
+msgstr "Lê Bá Kiệt"
+
+#: app/core/data.py:93 app/core/data.py:98
+msgid "Draftsman"
+msgstr "Họa viên"
+
+#: app/core/data.py:97
+msgid "Hua Phi Hai"
+msgstr "Hứa Phi Hải"
+
+#: app/core/data.py:102
+msgid "Trinh Phuoc Cuong"
+msgstr "Trịnh Phước Cường"
+
+#: app/core/data.py:103
+msgid "Librarian"
+msgstr "Thư viện"
+
+#: app/core/data.py:107
+msgid "Dinh Xuan Hien"
+msgstr "Đinh Xuân Hiển"
+
+#: app/core/data.py:108
+msgid "Civil Engineer"
+msgstr "Kĩ sư xây dựng"
+
+#: app/dashboard/account/filters.py:9 app/dashboard/account/filters.py:30
+msgid "ID"
+msgstr "ID"
+
+#: app/dashboard/account/filters.py:11 app/dashboard/account/filters.py:32
+msgid "Full name"
+msgstr "Họ và tên"
+
+#: app/dashboard/account/forms.py:70
+msgid "Permissions"
+msgstr "Quyền"
+
+#: app/dashboard/account/views.py:19
+msgid "Updated your profile."
+msgstr "Đã cập nhật hồ sơ của bạn."
+
+#: app/dashboard/account/views.py:31
+msgid "Updated your password."
+msgstr "Đã cập nhật mật khẩu của bạn."
+
+#: app/dashboard/account/views.py:58 app/dashboard/account/views.py:117
+#: app/dashboard/blog/views.py:31 app/dashboard/blog/views.py:81
+#: app/dashboard/blog/views.py:138 app/dashboard/portfolio/views.py:41
+#: app/dashboard/portfolio/views.py:81 app/dashboard/portfolio/views.py:135
+#: app/dashboard/portfolio/views.py:175 app/dashboard/portfolio/views.py:226
+#: app/dashboard/service/views.py:30 app/dashboard/sitesetting/views.py:67
+msgid "Added successfully."
+msgstr "Đã thêm thành công."
+
+#: app/dashboard/account/views.py:71 app/dashboard/account/views.py:130
+#: app/dashboard/sitesetting/views.py:92
+#, python-format
+msgid "%s successfully removed."
+msgstr "%s đã xoá thành công."
+
+#: app/dashboard/account/views.py:85 app/dashboard/account/views.py:144
+#: app/dashboard/blog/views.py:44 app/dashboard/blog/views.py:94
+#: app/dashboard/blog/views.py:151 app/dashboard/portfolio/views.py:54
+#: app/dashboard/portfolio/views.py:95 app/dashboard/portfolio/views.py:148
+#: app/dashboard/portfolio/views.py:189 app/dashboard/portfolio/views.py:240
+#: app/dashboard/service/views.py:44 app/dashboard/sitesetting/views.py:80
+msgid "Updated successfully."
+msgstr "Đã cập nhật thành công."
+
+#: app/dashboard/blog/filters.py:8
+msgctxt "Post filter label"
+msgid "ID"
+msgstr "ID"
+
+#: app/dashboard/blog/forms.py:23 app/dashboard/portfolio/forms.py:31
+msgid "Category"
+msgstr "Danh mục"
+
+#: app/dashboard/blog/forms.py:24
+msgid "Tag"
+msgstr "Thẻ"
+
+#: app/dashboard/blog/forms.py:25 app/dashboard/portfolio/forms.py:60
+msgid "Image"
+msgstr "Hình ảnh"
+
+#: app/dashboard/blog/forms.py:28
+msgid "Image size 1240 × 800."
+msgstr "Kích thước ảnh 1240 × 800."
+
+#: app/dashboard/blog/forms.py:36 app/dashboard/portfolio/forms.py:39
+msgid "Select an option"
+msgstr "Chọn một tùy chọn"
+
+#: app/dashboard/blog/views.py:56 app/dashboard/blog/views.py:106
+#: app/dashboard/blog/views.py:163 app/dashboard/portfolio/views.py:66
+#: app/dashboard/portfolio/views.py:108 app/dashboard/portfolio/views.py:160
+#: app/dashboard/portfolio/views.py:202 app/dashboard/portfolio/views.py:253
+#: app/dashboard/service/views.py:56
+msgid "Removed successfully."
+msgstr "Đã xoá thành công."
+
+#: app/dashboard/portfolio/filters.py:8
+msgctxt "Project filter label"
+msgid "ID"
+msgstr "ID"
+
+#: app/dashboard/portfolio/filters.py:13
+msgctxt "Project filter label"
+msgid "Name"
+msgstr "Tên"
+
+#: app/dashboard/portfolio/filters.py:18
+msgctxt "Project filter label"
+msgid "Category"
+msgstr "Danh mục"
+
+#: app/dashboard/portfolio/filters.py:19
+msgctxt "Project filter label"
+msgid "Select a category"
+msgstr "Chọn danh mục"
+
+#: app/dashboard/portfolio/forms.py:61
+msgid "Alt"
+msgstr "Mô tả"
+
+#: app/dashboard/sitesetting/forms.py:12
+msgid "Domain"
+msgstr "Tên miền"
+
+#: app/dashboard/sitesetting/forms.py:13
+msgid "Site name"
+msgstr "Tên website"
+
+#: app/dashboard/sitesetting/views.py:38
+msgid "Updated site settings"
+msgstr "Đã cập nhật cài đặt"
+
+#: app/portfolio/models.py:19
+msgid "Manage portfolio categories."
+msgstr "Quản lý danh mục."
+
+#: app/portfolio/models.py:50
+msgid "Is Featured"
+msgstr "Là dự án nổi bậc"
+
+#: app/portfolio/models.py:56
+msgid "Manage portfolio projects."
+msgstr "Quản lý dự án."
+
+#: app/service/models.py:22
+msgid "Manage services."
+msgstr "Quản lý dịch vụ."
+
+#: app/settings.py:128
+msgid "Vietnamese"
+msgstr "Tiếng việt"
+
+#: app/settings.py:129
+msgid "English"
+msgstr "Tiếng anh"
+
+#: app/sitesetting/models.py:11
+msgid "Keywords"
+msgstr "Từ khoá"
+
+#: app/sitesetting/models.py:12
+msgid "Phone"
+msgstr "Số điện thoại"
+
+#: app/sitesetting/models.py:14
+msgid "Address"
+msgstr "Địa chỉ"
+
+#: app/sitesetting/models.py:18
+msgid "Manage site settings."
+msgstr "Quản lý cài đặt."
+
+#: app/sitesetting/models.py:27
+msgid "Icon"
+msgstr ""
+
+#: app/sitesetting/models.py:28
+msgid "Link"
+msgstr "Đường dẫn"
+
+#: templates/about.html:5 templates/about.html:11 templates/about.html:25
+msgctxt "Page title"
+msgid "About us"
+msgstr "Chúng tôi"
+
+#: templates/about.html:29 templates/blog/category.html:30
+#: templates/blog/index.html:30 templates/contact/index.html:28
+#: templates/portfolio/detail.html:28 templates/service/index.html:28
+msgctxt "Breadcrumb item"
+msgid "Home"
+msgstr "Trang chủ"
+
+#: templates/about.html:30
+msgctxt "Breadcrumb item"
+msgid "About us"
+msgstr "Chúng tôi"
+
+#: templates/about.html:47
+msgctxt "Section title"
+msgid "Introduce"
+msgstr "Giới thiệu"
+
+#: templates/about.html:48
+msgid ""
+"\n"
+"                    <p>A+ architects was establised with the goal bringing A"
+"+ scores of designs to the community and the world. With creative thinking "
+"constantly, we always find the best solution to solve the limitations and "
+"problems of each project. Therefore, we bring the great value to our clients "
+"not only the financially, operations, but also a successful brand through "
+"the identification of architecture.</p>\n"
+"                    <p>We are pursuing sustainable design mindset, "
+"localized, harmony with nature, blowing the soul for local material, "
+"friendly environment. Especially the spirit of “up_cycle”, giving old space "
+"materials a second life. And the responsibility of correcting the past from "
+"giving new life to old buildings has always been considered the mission of "
+"“A + architects”.</p>\n"
+"                    "
+msgstr ""
+"\n"
+"                    <p>A+ architects ra đời với mục tiêu đem những thiết kế "
+"đạt điểm A+ ra với cộng đồng và thế giới. Với tư duy sáng tạo không ngừng, "
+"chúng tôi luôn tìm được giải pháp tốt nhất để giải quyết những giới hạn và "
+"vấn đề của mỗi dự án. Từ đó đem lại những giá trị to lớn cho chủ đầu tư "
+"không chỉ về mặt tài chính đầu tư, vận hành,.. mà còn là một thương hiệu "
+"thành công qua việc nhận diện kiến trúc.</p>\n"
+"                    <p>Theo đuổi tư tuy thiết kế bền vững, mạnh mẽ tính địa "
+"phương, hòa mình vào thiên nhiên, thổi hồn cho vật liệu bản địa, thân thiện "
+"môi trường. Đặc biệt tinh thần “up_cycle”, cho vật liệu không gian cũ một "
+"cuộc sống thứ hai. Và trách nhiệm sửa sai quá khư từ việc đem lại cuộc sống "
+"mới cho các công trình cũ luôn được xem là sứ mệnh của “A+ architects”.</p>\n"
+"                    "
+
+#: templates/about.html:53
+msgid "What we do"
+msgstr "Chúng tôi làm gì"
+
+#: templates/about.html:85
+msgid "Our Skills"
+msgstr "Những kỹ năng"
+
+#: templates/about.html:88 templates/service/index.html:48
+msgid ""
+"\n"
+"                    <p>Our strength is in architectural design solutions. "
+"However, landscape planning is the founder's passion project, especially the "
+"resort and resort projects. Therefore,we design the interior based on "
+"logical spirit, most consistent with performance, with innovative solutions "
+"on materials has always been a part of our successful projects.</p>\n"
+"                    "
+msgstr ""
+"\n"
+"                    <p>Thế mạnh của chúng tôi là các giải pháp thiết kế kiến "
+"trúc. Tuy nhiên quy hoạch cảnh quan lại là dự án niềm đam mê của founder, "
+"đặc biệt các dự án nghỉ dưỡng, resort. Vì vậy nội thất theo tinh thần logic, "
+"hống nhất với công năng vận hành, với các giải pháp sáng tạo về vật liệu "
+"luôn là một phần không thể tách trời của các dự án thành công của chúng tôi."
+"</p>\n"
+"                    "
+
+#: templates/about.html:127
+msgctxt "Section title"
+msgid "Team members"
+msgstr "Thành viên"
+
+#: templates/base.html:55
+msgctxt "Header menu item"
+msgid "Home"
+msgstr "Trang chủ"
+
+#: templates/base.html:60
+msgctxt "Header menu item"
+msgid "About us"
+msgstr "Chúng tôi"
+
+#: templates/base.html:65
+msgctxt "Header menu item"
+msgid "Services"
+msgstr "Dịch vụ"
+
+#: templates/base.html:70
+msgctxt "Header menu item"
+msgid "Portfolio"
+msgstr ""
+
+#: templates/base.html:75
+msgctxt "Header menu item"
+msgid "Blog"
+msgstr "Tin tức"
+
+#: templates/base.html:80
+msgctxt "Header menu item"
+msgid "Contact"
+msgstr "Liên hệ"
+
+#: templates/base.html:91
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+#: templates/base.html:119
+msgctxt "Footer item"
+msgid "Hotline"
+msgstr "Điện thoại"
+
+#: templates/base.html:129
+msgctxt "Footer item"
+msgid "Email Address"
+msgstr "Địa chỉ email"
+
+#: templates/base.html:139
+msgctxt "Footer item"
+msgid "Office Address"
+msgstr "Địa chỉ văn phòng"
+
+#: templates/blog/_item.html:22 templates/blog/category.html:71
+#: templates/blog/category.html:95
+msgctxt "Button text"
+msgid "Read more"
+msgstr "Xem chi tiết"
+
+#: templates/blog/category.html:31 templates/blog/index.html:31
+#: templates/dashboard/blog/category/form.html:35
+#: templates/dashboard/blog/category/list.html:25
+#: templates/dashboard/blog/post/form.html:35
+#: templates/dashboard/blog/post/list.html:26
+#: templates/dashboard/blog/tag/form.html:35
+#: templates/dashboard/blog/tag/list.html:25
+msgctxt "Breadcrumb item"
+msgid "Blog"
+msgstr "Tin tức"
+
+#: templates/blog/category.html:34
+#, python-format
+msgid "Category: %(category)s"
+msgstr "Danh mục: %(category)s"
+
+#: templates/blog/category.html:111 templates/blog/index.html:58
+msgctxt "No data"
+msgid "No posts found."
+msgstr "Không tìm thấy bài viết nào."
+
+#: templates/blog/detail.html:46
+msgctxt "Widget title"
+msgid "Related posts"
+msgstr "Bài viết liên quan"
+
+#: templates/blog/detail.html:65 templates/blog/index.html:114
+msgctxt "Widget title"
+msgid "Categories"
+msgstr "Danh mục"
+
+#: templates/blog/index.html:7 templates/blog/index.html:12
+#: templates/blog/index.html:26
+msgctxt "Page title"
+msgid "Blog"
+msgstr "Tin tức"
+
+#: templates/blog/index.html:80
+msgctxt "Widget title"
+msgid "Last posts"
+msgstr "Bài viết gần đây"
+
+#: templates/contact/index.html:5 templates/contact/index.html:10
+#: templates/contact/index.html:24
+msgctxt "Page title"
+msgid "Contacts"
+msgstr "Liên hệ"
+
+#: templates/contact/index.html:29
+msgctxt "Breadcrumb item"
+msgid "Contact"
+msgstr "Liên hệ"
+
+#: templates/contact/index.html:48
+msgid "Contact  details:"
+msgstr "Chi tiết liên hệ:"
+
+#: templates/contact/index.html:51
+msgid "Office"
+msgstr "Văn phòng"
+
+#: templates/contact/index.html:59
+msgid "Find Us On:"
+msgstr "Tìm chúng tôi trên:"
+
+#: templates/dashboard/account/customer/form.html:10
+#: templates/dashboard/account/customer/form.html:26
+msgctxt "Page title"
+msgid "Add customer"
+msgstr "Thêm khách hàng"
+
+#: templates/dashboard/account/customer/form.html:32
+#: templates/dashboard/account/customer/list.html:23
+#: templates/dashboard/account/password_change.html:19
+#: templates/dashboard/account/profile.html:20
+#: templates/dashboard/account/staff/form.html:32
+#: templates/dashboard/account/staff/list.html:23
+#: templates/dashboard/blog/category/form.html:32
+#: templates/dashboard/blog/category/list.html:22
+#: templates/dashboard/blog/post/form.html:32
+#: templates/dashboard/blog/post/list.html:23
+#: templates/dashboard/blog/tag/form.html:32
+#: templates/dashboard/blog/tag/list.html:22
+#: templates/dashboard/portfolio/category/form.html:33
+#: templates/dashboard/portfolio/category/list.html:22
+#: templates/dashboard/portfolio/category_translate/form.html:33
+#: templates/dashboard/portfolio/project/form.html:33
+#: templates/dashboard/portfolio/project/list.html:23
+#: templates/dashboard/portfolio/project_image/form.html:32
+#: templates/dashboard/portfolio/project_image/list.html:20
+#: templates/dashboard/portfolio/project_translate/form.html:33
+#: templates/dashboard/service/form.html:31
+#: templates/dashboard/service/list.html:21
+#: templates/dashboard/sitesetting/general/form.html:18
+#: templates/dashboard/sitesetting/index.html:17
+#: templates/dashboard/sitesetting/social_network/form.html:30
+#: templates/dashboard/sitesetting/social_network/list.html:20
+msgctxt "Breadcrumb item"
+msgid "Dashboard"
+msgstr "Quản trị"
+
+#: templates/dashboard/account/customer/form.html:35
+#: templates/dashboard/account/customer/list.html:26
+#: templates/dashboard/account/staff/form.html:35
+#: templates/dashboard/account/staff/list.html:26
+msgctxt "Breadcrumb item"
+msgid "Users"
+msgstr "Người dùng"
+
+#: templates/dashboard/account/customer/form.html:38
+#: templates/dashboard/account/customer/list.html:28
+msgctxt "Breadcrumb item"
+msgid "Customers"
+msgstr "Khách hàng"
+
+#: templates/dashboard/account/customer/form.html:44
+msgctxt "Breadcrumb item"
+msgid "Add customer"
+msgstr "Thêm khách hàng"
+
+#: templates/dashboard/account/customer/form.html:63
+#: templates/dashboard/account/password_change.html:36
+#: templates/dashboard/account/profile.html:38
+#: templates/dashboard/account/staff/form.html:64
+#: templates/dashboard/blog/category/form.html:60
+#: templates/dashboard/blog/post/form.html:65
+#: templates/dashboard/blog/tag/form.html:60
+#: templates/dashboard/portfolio/category/form.html:61
+#: templates/dashboard/portfolio/category_translate/form.html:67
+#: templates/dashboard/portfolio/project/form.html:64
+#: templates/dashboard/portfolio/project_image/form.html:70
+#: templates/dashboard/portfolio/project_translate/form.html:68
+#: templates/dashboard/service/form.html:60
+#: templates/dashboard/sitesetting/general/form.html:42
+#: templates/dashboard/sitesetting/social_network/form.html:60
+msgctxt "Button text"
+msgid "Update"
+msgstr "Cập nhật"
+
+#: templates/dashboard/account/customer/form.html:65
+#: templates/dashboard/account/staff/form.html:66
+#: templates/dashboard/blog/category/form.html:62
+#: templates/dashboard/blog/post/form.html:67
+#: templates/dashboard/blog/tag/form.html:62
+#: templates/dashboard/portfolio/category/form.html:63
+#: templates/dashboard/portfolio/category_translate/form.html:69
+#: templates/dashboard/portfolio/project/form.html:66
+#: templates/dashboard/portfolio/project_image/form.html:72
+#: templates/dashboard/portfolio/project_translate/form.html:70
+#: templates/dashboard/service/form.html:62
+#: templates/dashboard/sitesetting/social_network/form.html:62
+msgctxt "Button text"
+msgid "Add"
+msgstr "Thêm"
+
+#: templates/dashboard/account/customer/list.html:8
+#: templates/dashboard/account/customer/list.html:19
+msgctxt "Page title"
+msgid "Customers"
+msgstr "Khách hàng"
+
+#: templates/dashboard/account/customer/list.html:44
+#: templates/dashboard/account/staff/list.html:44
+#: templates/dashboard/blog/post/list.html:43
+#: templates/dashboard/portfolio/project/list.html:44
+msgctxt "Button text"
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: templates/dashboard/account/customer/list.html:49
+msgctxt "Button text"
+msgid "Add customer"
+msgstr "Thêm khách hàng"
+
+#: templates/dashboard/account/customer/list.html:57
+#: templates/dashboard/account/staff/list.html:57
+#: templates/dashboard/blog/category/list.html:48
+#: templates/dashboard/blog/post/list.html:56
+#: templates/dashboard/blog/tag/list.html:48
+#: templates/dashboard/portfolio/category/list.html:48
+#: templates/dashboard/portfolio/project/list.html:57
+#: templates/dashboard/service/list.html:44
+#: templates/dashboard/sitesetting/social_network/list.html:46
+msgctxt "Table header text"
+msgid "ID"
+msgstr "ID"
+
+#: templates/dashboard/account/customer/list.html:58
+#: templates/dashboard/account/staff/list.html:58
+#: templates/dashboard/blog/category/list.html:49
+#: templates/dashboard/blog/tag/list.html:49
+#: templates/dashboard/portfolio/category/form.html:90
+#: templates/dashboard/portfolio/category/list.html:49
+#: templates/dashboard/portfolio/project/form.html:118
+#: templates/dashboard/portfolio/project/list.html:58
+#: templates/dashboard/service/list.html:45
+#: templates/dashboard/sitesetting/social_network/list.html:47
+msgctxt "Table header text"
+msgid "Name"
+msgstr "Tên"
+
+#: templates/dashboard/account/customer/list.html:59
+#: templates/dashboard/account/staff/list.html:59
+msgctxt "Table header text"
+msgid "Email"
+msgstr ""
+
+#: templates/dashboard/account/customer/list.html:60
+#: templates/dashboard/account/staff/list.html:60
+#: templates/dashboard/blog/category/list.html:50
+#: templates/dashboard/blog/post/list.html:58
+#: templates/dashboard/blog/tag/list.html:50
+#: templates/dashboard/portfolio/category/form.html:91
+#: templates/dashboard/portfolio/category/list.html:50
+#: templates/dashboard/portfolio/project/form.html:119
+#: templates/dashboard/portfolio/project/list.html:60
+#: templates/dashboard/service/list.html:48
+#: templates/dashboard/sitesetting/social_network/list.html:50
+msgctxt "Table header text"
+msgid "Action"
+msgstr "Hành động"
+
+#: templates/dashboard/account/customer/list.html:81
+#: templates/dashboard/account/staff/list.html:81
+#: templates/dashboard/blog/category/list.html:70
+#: templates/dashboard/blog/post/list.html:78
+#: templates/dashboard/blog/tag/list.html:70
+#: templates/dashboard/portfolio/category/form.html:113
+#: templates/dashboard/portfolio/category/list.html:70
+#: templates/dashboard/portfolio/project/form.html:141
+#: templates/dashboard/portfolio/project/list.html:81
+#: templates/dashboard/service/list.html:70
+#: templates/dashboard/sitesetting/social_network/list.html:72
+msgctxt "Table no data"
+msgid "No data."
+msgstr "Không có dữ liệu."
+
+#: templates/dashboard/account/customer/modal/confirm_delete.html:9
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Delete customer <strong>%(customer)s</strong>"
+msgstr "Xoá khách hàng <strong>%(customer)s</strong>"
+
+#: templates/dashboard/account/customer/modal/confirm_delete.html:16
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Are you sure you want to delete customer <strong>%(customer)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xoá khách hàng <strong>%(customer)s</strong>?"
+
+#: templates/dashboard/account/customer/modal/confirm_delete.html:23
+#: templates/dashboard/account/staff/modal/confirm_delete.html:23
+#: templates/dashboard/blog/category/modal/confirm_delete.html:23
+#: templates/dashboard/blog/post/modal/confirm_delete.html:23
+#: templates/dashboard/blog/tag/modal/confirm_delete.html:23
+#: templates/dashboard/portfolio/category/modal/confirm_delete.html:23
+#: templates/dashboard/portfolio/category_translate/modal/confirm_delete.html:23
+#: templates/dashboard/portfolio/project/modal/confirm_delete.html:23
+#: templates/dashboard/portfolio/project_image/list.html:59
+#: templates/dashboard/portfolio/project_image/modal/confirm_delete.html:25
+#: templates/dashboard/portfolio/project_translate/modal/confirm_delete.html:23
+#: templates/dashboard/service/modal/confirm_delete.html:23
+#: templates/dashboard/sitesetting/social_network/modal/confirm_delete.html:23
+msgctxt "Button text"
+msgid "Delete"
+msgstr "Xoá"
+
+#: templates/dashboard/account/password_change.html:6
+#: templates/dashboard/account/password_change.html:15
+msgctxt "Page title"
+msgid "Change password"
+msgstr "Đổi mật khẩu"
+
+#: templates/dashboard/account/password_change.html:21
+msgctxt "Breadcrumb item"
+msgid "Change password"
+msgstr "Đổi mật khẩu"
+
+#: templates/dashboard/account/profile.html:7
+#: templates/dashboard/account/profile.html:16 templates/dashboard/exam.html:7
+msgctxt "Page title"
+msgid "Profile"
+msgstr "Thông tin cá nhân"
+
+#: templates/dashboard/account/profile.html:22
+msgctxt "Breadcrumb item"
+msgid "Profile"
+msgstr "Thông tin cá nhân"
+
+#: templates/dashboard/account/staff/form.html:10
+#: templates/dashboard/account/staff/form.html:26
+msgctxt "Page title"
+msgid "Add staff"
+msgstr "Thêm nhân viên"
+
+#: templates/dashboard/account/staff/form.html:38
+#: templates/dashboard/account/staff/list.html:28
+msgctxt "Breadcrumb item"
+msgid "Staffs"
+msgstr "Nhân viên"
+
+#: templates/dashboard/account/staff/form.html:44
+msgctxt "Breadcrumb item"
+msgid "Add staff"
+msgstr "Thêm nhân viên"
+
+#: templates/dashboard/account/staff/list.html:8
+#: templates/dashboard/account/staff/list.html:19
+msgctxt "Page title"
+msgid "Staffs"
+msgstr "Nhân viên"
+
+#: templates/dashboard/account/staff/list.html:49
+msgctxt "Button text"
+msgid "Add staff"
+msgstr "Thêm nhân viên"
+
+#: templates/dashboard/account/staff/modal/confirm_delete.html:9
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Delete staff <strong>%(staff)s</strong>"
+msgstr "Xoá nhân viên <strong>%(staff)s</strong>"
+
+#: templates/dashboard/account/staff/modal/confirm_delete.html:16
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Are you sure you want to delete staff <strong>%(staff)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xoá nhân viên <strong>%(staff)s</strong>?"
+
+#: templates/dashboard/base.html:12 templates/dashboard/index.html:5
+#: templates/dashboard/index.html:15
+msgctxt "Page title"
+msgid "Dashboard"
+msgstr "Quản trị"
+
+#: templates/dashboard/base.html:122
+msgctxt "User menu item"
+msgid "Profile"
+msgstr "Thông tin"
+
+#: templates/dashboard/base.html:125
+msgctxt "User menu item"
+msgid "Change password"
+msgstr "Đổi mật khẩu"
+
+#: templates/dashboard/base.html:129
+msgctxt "User menu item"
+msgid "Logout"
+msgstr "Đăng xuất"
+
+#: templates/dashboard/base.html:205
+msgctxt "Sidebar menu item"
+msgid "Dashboard"
+msgstr "Quản trị"
+
+#: templates/dashboard/base.html:214
+msgctxt "Sidebar menu item"
+msgid "Users"
+msgstr "Người dùng"
+
+#: templates/dashboard/base.html:221
+msgctxt "Sidebar menu item"
+msgid "Customers"
+msgstr "Khách hàng"
+
+#: templates/dashboard/base.html:228
+msgctxt "Sidebar menu item"
+msgid "Staffs"
+msgstr "Nhân viên"
+
+#: templates/dashboard/base.html:242
+msgctxt "Sidebar menu item"
+msgid "Blogs"
+msgstr "Tin tức"
+
+#: templates/dashboard/base.html:249 templates/dashboard/base.html:284
+msgctxt "Sidebar menu item"
+msgid "Categories"
+msgstr "Danh mục"
+
+#: templates/dashboard/base.html:256
+msgctxt "Sidebar menu item"
+msgid "Tags"
+msgstr "Thẻ"
+
+#: templates/dashboard/base.html:263
+msgctxt "Sidebar menu item"
+msgid "Posts"
+msgstr "Bài viết"
+
+#: templates/dashboard/base.html:277
+msgctxt "Sidebar menu item"
+msgid "Portfolio"
+msgstr ""
+
+#: templates/dashboard/base.html:291
+msgctxt "Sidebar menu item"
+msgid "Projects"
+msgstr "Dự án"
+
+#: templates/dashboard/base.html:305
+msgctxt "Sidebar menu item"
+msgid "Services"
+msgstr "Dịch vụ"
+
+#: templates/dashboard/base.html:317
+msgctxt "Sidebar menu item"
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: templates/dashboard/base_modal.html:19
+msgctxt "Button text"
+msgid "Cancel"
+msgstr "Huỷ bỏ"
+
+#: templates/dashboard/blog/category/form.html:10
+#: templates/dashboard/blog/category/form.html:26
+#: templates/dashboard/portfolio/category/form.html:11
+#: templates/dashboard/portfolio/category/form.html:27
+msgctxt "Page title"
+msgid "Add category"
+msgstr "Thêm danh mục"
+
+#: templates/dashboard/blog/category/form.html:38
+#: templates/dashboard/blog/category/list.html:27
+#: templates/dashboard/portfolio/category/form.html:39
+#: templates/dashboard/portfolio/category/list.html:27
+#: templates/dashboard/portfolio/category_translate/form.html:39
+msgctxt "Breadcrumb item"
+msgid "Categories"
+msgstr "Danh mục"
+
+#: templates/dashboard/blog/category/form.html:44
+#: templates/dashboard/portfolio/category/form.html:45
+msgctxt "Breadcrumb item"
+msgid "Add category"
+msgstr "Thêm danh mục"
+
+#: templates/dashboard/blog/category/list.html:7
+#: templates/dashboard/blog/category/list.html:18
+#: templates/dashboard/portfolio/category/list.html:7
+#: templates/dashboard/portfolio/category/list.html:18
+msgctxt "Page title"
+msgid "Categories"
+msgstr "Danh mục"
+
+#: templates/dashboard/blog/category/list.html:40
+#: templates/dashboard/portfolio/category/list.html:40
+msgctxt "Button text"
+msgid "Add category"
+msgstr "Thêm danh mục"
+
+#: templates/dashboard/blog/category/modal/confirm_delete.html:9
+#: templates/dashboard/portfolio/category/modal/confirm_delete.html:9
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Delete category <strong>%(category)s</strong>"
+msgstr "Xoá danh mục <strong>%(category)s</strong>"
+
+#: templates/dashboard/blog/category/modal/confirm_delete.html:16
+#: templates/dashboard/portfolio/category/modal/confirm_delete.html:16
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Are you sure you want to delete category <strong>%(category)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xoá danh mục <strong>%(category)s</strong>?"
+
+#: templates/dashboard/blog/post/form.html:10
+#: templates/dashboard/blog/post/form.html:26
+msgctxt "Page title"
+msgid "Add post"
+msgstr "Thêm bài viết"
+
+#: templates/dashboard/blog/post/form.html:38
+#: templates/dashboard/blog/post/list.html:28
+msgctxt "Breadcrumb item"
+msgid "Posts"
+msgstr "Bài viết"
+
+#: templates/dashboard/blog/post/form.html:44
+msgctxt "Breadcrumb item"
+msgid "Add post"
+msgstr "Thêm bài viết"
+
+#: templates/dashboard/blog/post/list.html:8
+#: templates/dashboard/blog/post/list.html:19
+msgctxt "Page title"
+msgid "Posts"
+msgstr "Bài viết"
+
+#: templates/dashboard/blog/post/list.html:48
+msgctxt "Button text"
+msgid "Add post"
+msgstr "Thêm bài viết"
+
+#: templates/dashboard/blog/post/list.html:57
+msgctxt "Table header text"
+msgid "Title"
+msgstr "Tiêu đề"
+
+#: templates/dashboard/blog/post/modal/confirm_delete.html:9
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Delete post <strong>%(post)s</strong>"
+msgstr "Xoá bài viết <strong>%(post)s</strong>"
+
+#: templates/dashboard/blog/post/modal/confirm_delete.html:16
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Are you sure you want to delete post <strong>%(post)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xoá bài viết <strong>%(post)s</strong>?"
+
+#: templates/dashboard/blog/tag/form.html:10
+#: templates/dashboard/blog/tag/form.html:26
+msgctxt "Page title"
+msgid "Add tag"
+msgstr "Thêm thẻ"
+
+#: templates/dashboard/blog/tag/form.html:38
+#: templates/dashboard/blog/tag/list.html:27
+msgctxt "Breadcrumb item"
+msgid "Tags"
+msgstr "Thẻ"
+
+#: templates/dashboard/blog/tag/form.html:44
+msgctxt "Breadcrumb item"
+msgid "Add tag"
+msgstr "Thêm thẻ"
+
+#: templates/dashboard/blog/tag/list.html:7
+#: templates/dashboard/blog/tag/list.html:18
+msgctxt "Page title"
+msgid "Tags"
+msgstr "Thẻ"
+
+#: templates/dashboard/blog/tag/list.html:40
+msgctxt "Button text"
+msgid "Add tag"
+msgstr "Thêm thẻ"
+
+#: templates/dashboard/blog/tag/modal/confirm_delete.html:9
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Delete tag <strong>%(tag)s</strong>"
+msgstr "Xoá thẻ <strong>%(tag)s</strong>"
+
+#: templates/dashboard/blog/tag/modal/confirm_delete.html:16
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Are you sure you want to delete tag <strong>%(tag)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xoá thẻ <strong>%(tag)s</strong>?"
+
+#: templates/dashboard/login.html:6 templates/dashboard/login.html:29
+msgctxt "Page title"
+msgid "Sign In"
+msgstr "Đăng nhập"
+
+#: templates/dashboard/login.html:30
+msgid "Enter your email and password to sign in."
+msgstr "Nhập email và mật khẩu của bạn để đăng nhập."
+
+#: templates/dashboard/login.html:42
+msgctxt "Button text"
+msgid "Forgot password?"
+msgstr "Quên mật khẩu?"
+
+#: templates/dashboard/login.html:46
+msgctxt "Button text"
+msgid "Sign in"
+msgstr "Đăng nhập"
+
+#: templates/dashboard/password_reset.html:6
+#: templates/dashboard/password_reset.html:29
+#: templates/dashboard/password_reset_done.html:6
+#: templates/dashboard/password_reset_done.html:29
+msgctxt "Page title"
+msgid "Forgot Password"
+msgstr "Quên mật khẩu"
+
+#: templates/dashboard/password_reset.html:30
+msgid "Enter your email address to retrieve your password."
+msgstr "Nhập email của bạn để lấy lại mật khẩu."
+
+#: templates/dashboard/password_reset.html:37
+msgctxt "Button text"
+msgid "Retreive Password"
+msgstr "Lấy mật khẩu"
+
+#: templates/dashboard/password_reset_done.html:35
+#, python-format
+msgctxt "Already logged in warning message"
+msgid "You are already logged in as %(user)s."
+msgstr "Bạn đang đăng nhập với %(user)s."
+
+#: templates/dashboard/password_reset_done.html:43
+msgctxt "Already logged in warning message"
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+"Chúng tôi đã gửi cho bạn một e-mail. Vui lòng liên hệ với chúng tôi nếu bạn "
+"không nhận được nó trong vài phút."
+
+#: templates/dashboard/password_reset_from_key.html:6
+#: templates/dashboard/password_reset_from_key.html:29
+msgctxt "Page title"
+msgid "Change Password"
+msgstr "Đổi mật khẩu"
+
+#: templates/dashboard/password_reset_from_key.html:34
+msgid "Bad Token"
+msgstr "Token không hợp lệ"
+
+#: templates/dashboard/password_reset_from_key.html:37
+#, python-format
+msgctxt "Password reset text if key is invalid"
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. <br> Please request a <a href=\"%(passwd_reset_url)s\" style=\"margin-"
+"left: 0;\">new password reset</a>."
+msgstr ""
+"Liên kết đặt lại mật khẩu không hợp lệ, có thể vì nó đã được sử dụng. <br> "
+"Vui lòng yêu cầu <a href=\"%(passwd_reset_url)s\" style=\"margin-left: 0;"
+"\">đặt lại mật khẩu mới</a>."
+
+#: templates/dashboard/password_reset_from_key.html:47
+msgctxt "Password reset from key form title"
+msgid "Now you can set new password for you account."
+msgstr "Bây giờ bạn có thể thiết lập mật khẩu mới cho tài khoản của bạn."
+
+#: templates/dashboard/password_reset_from_key.html:51
+msgctxt "Button text"
+msgid "Confirm"
+msgstr "Xác nhận"
+
+#: templates/dashboard/password_reset_from_key.html:55
+msgctxt "Password reset link expired from key form title"
+msgid "Password reset link expired"
+msgstr "Liên kết đặt lại mật khẩu đã hết hạn"
+
+#: templates/dashboard/password_reset_from_key.html:58
+#, python-format
+msgctxt "Password reset text if link expired"
+msgid ""
+"Sorry but this link is no longer valid. If you forget your password, please "
+"use link below. <br> <a href=\"%(passwd_reset_url)s\" style=\"margin-left: 0;"
+"\">Reset my password</a>."
+msgstr ""
+"Xin lỗi nhưng liên kết này không còn hiệu lực. Nếu bạn quên mật khẩu, vui "
+"lòng sử dụng liên kết dưới đây. <br> <a href=\"%(passwd_reset_url)s\" style="
+"\"margin-left: 0;\">Đặt lại mật khẩu của tôi</a>."
+
+#: templates/dashboard/password_reset_from_key_done.html:6
+#: templates/dashboard/password_reset_from_key_done.html:29
+msgctxt "Page title"
+msgid "Password Changed"
+msgstr "Mật khẩu đã được thay đổi"
+
+#: templates/dashboard/password_reset_from_key_done.html:33
+msgid "Your password is now changed."
+msgstr "Mật khẩu của bạn hiện đã được thay đổi."
+
+#: templates/dashboard/password_reset_from_key_done.html:36
+#, python-format
+msgctxt "Password reset from key done text"
+msgid ""
+"You can now <a href=\"%(login_url)s\" style=\"margin-left: 0px;\">sign in</"
+"a> using your new password."
+msgstr ""
+"Bây giờ bạn có thể <a href=\"%(login_url)s\" style=\"margin-left: 0px;"
+"\">đăng nhập</a> bằng mật khẩu mới của mình."
+
+#: templates/dashboard/portfolio/category/form.html:36
+#: templates/dashboard/portfolio/category/list.html:25
+#: templates/dashboard/portfolio/category_translate/form.html:36
+#: templates/dashboard/portfolio/project/form.html:36
+#: templates/dashboard/portfolio/project/list.html:26
+#: templates/dashboard/portfolio/project_image/form.html:35
+#: templates/dashboard/portfolio/project_image/list.html:23
+#: templates/dashboard/portfolio/project_translate/form.html:36
+#: templates/portfolio/detail.html:29
+msgctxt "Breadcrumb item"
+msgid "Portfolio"
+msgstr ""
+
+#: templates/dashboard/portfolio/category/form.html:74
+#: templates/dashboard/portfolio/project/form.html:102
+msgid "Translations"
+msgstr "Bản dịch"
+
+#: templates/dashboard/portfolio/category/form.html:78
+#: templates/dashboard/portfolio/project/form.html:106
+msgctxt "Button text"
+msgid "Add translation"
+msgstr "Thêm bản dịch"
+
+#: templates/dashboard/portfolio/category/form.html:88
+#: templates/dashboard/portfolio/project/form.html:116
+msgctxt "Table header text"
+msgid "#"
+msgstr ""
+
+#: templates/dashboard/portfolio/category/form.html:89
+#: templates/dashboard/portfolio/project/form.html:117
+msgctxt "Table header text"
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+#: templates/dashboard/portfolio/category_translate/form.html:11
+#: templates/dashboard/portfolio/category_translate/form.html:27
+#: templates/dashboard/portfolio/project_translate/form.html:11
+#: templates/dashboard/portfolio/project_translate/form.html:27
+msgctxt "Page title"
+msgid "Add translation"
+msgstr "Thêm bản dịch"
+
+#: templates/dashboard/portfolio/category_translate/form.html:48
+#: templates/dashboard/portfolio/project_translate/form.html:48
+msgctxt "Breadcrumb item"
+msgid "Add translation"
+msgstr "Thêm bản dịch"
+
+#: templates/dashboard/portfolio/category_translate/modal/confirm_delete.html:9
+#: templates/dashboard/portfolio/project_translate/modal/confirm_delete.html:9
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Delete translate <strong>%(translate)s</strong>"
+msgstr "Xoá bản dịch <strong>%(translate)s</strong>"
+
+#: templates/dashboard/portfolio/category_translate/modal/confirm_delete.html:16
+#: templates/dashboard/portfolio/project_translate/modal/confirm_delete.html:16
+#, python-format
+msgctxt "Modal remove group text"
+msgid ""
+"Are you sure you want to delete translate <strong>%(translate)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xoá bản dịch <strong>%(translate)s</strong>?"
+
+#: templates/dashboard/portfolio/project/form.html:11
+#: templates/dashboard/portfolio/project/form.html:27
+msgctxt "Page title"
+msgid "Add project"
+msgstr "Thêm dự án"
+
+#: templates/dashboard/portfolio/project/form.html:39
+#: templates/dashboard/portfolio/project/list.html:28
+#: templates/dashboard/portfolio/project_image/form.html:38
+#: templates/dashboard/portfolio/project_image/list.html:26
+#: templates/dashboard/portfolio/project_translate/form.html:39
+msgctxt "Breadcrumb item"
+msgid "Projects"
+msgstr "Dự án"
+
+#: templates/dashboard/portfolio/project/form.html:45
+msgctxt "Breadcrumb item"
+msgid "Add project"
+msgstr "Thêm dự án"
+
+#: templates/dashboard/portfolio/project/form.html:89
+msgctxt "Button tooltip title"
+msgid "Click to add or remove image"
+msgstr "Click để thêm hoặc xoá hình ảnh"
+
+#: templates/dashboard/portfolio/project/form.html:90
+msgid "Edit images"
+msgstr "Sửa hình ảnh"
+
+#: templates/dashboard/portfolio/project/list.html:8
+#: templates/dashboard/portfolio/project/list.html:19
+msgctxt "Page title"
+msgid "Projects"
+msgstr "Dự án"
+
+#: templates/dashboard/portfolio/project/list.html:49
+msgctxt "Button text"
+msgid "Add project"
+msgstr "Thêm dự án"
+
+#: templates/dashboard/portfolio/project/list.html:59
+msgctxt "Table header text"
+msgid "Category"
+msgstr "Danh mục"
+
+#: templates/dashboard/portfolio/project/modal/confirm_delete.html:9
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Delete project <strong>%(project)s</strong>"
+msgstr "Xoá dự án <strong>%(project)s</strong>"
+
+#: templates/dashboard/portfolio/project/modal/confirm_delete.html:16
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Are you sure you want to delete project <strong>%(project)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xoá dự án <strong>%(project)s</strong>?"
+
+#: templates/dashboard/portfolio/project_image/form.html:10
+#: templates/dashboard/portfolio/project_image/form.html:26
+msgctxt "Page title"
+msgid "Add image"
+msgstr "Thêm ảnh"
+
+#: templates/dashboard/portfolio/project_image/form.html:45
+#: templates/dashboard/portfolio/project_image/list.html:31
+msgctxt "Breadcrumb item"
+msgid "Images"
+msgstr "Hình ảnh"
+
+#: templates/dashboard/portfolio/project_image/form.html:52
+msgctxt "Breadcrumb item"
+msgid "Add image"
+msgstr "Thêm ảnh"
+
+#: templates/dashboard/portfolio/project_image/list.html:6
+#: templates/dashboard/portfolio/project_image/list.html:16
+msgctxt "Page title"
+msgid "Images"
+msgstr "Hình ảnh"
+
+#: templates/dashboard/portfolio/project_image/list.html:53
+#: templates/dashboard/sitesetting/index.html:31
+#: templates/dashboard/sitesetting/index.html:42
+msgctxt "Button text"
+msgid "Edit"
+msgstr "Sửa"
+
+#: templates/dashboard/portfolio/project_image/list.html:73
+#: templates/dashboard/portfolio/project_image/list.html:74
+msgctxt "Button tooltip title"
+msgid "Click to add image"
+msgstr "Click để thêm hình ảnh"
+
+#: templates/dashboard/portfolio/project_image/modal/confirm_delete.html:11
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Delete image <strong>%(project_image)s</strong>"
+msgstr "Xoá ảnh <strong>%(project_image)s</strong>"
+
+#: templates/dashboard/portfolio/project_image/modal/confirm_delete.html:18
+#, python-format
+msgctxt "Modal remove group text"
+msgid ""
+"Are you sure you want to delete image <strong>%(project_image)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xoá ảnh <strong>%(project_image)s</strong>?"
+
+#: templates/dashboard/service/form.html:10
+#: templates/dashboard/service/form.html:25
+msgctxt "Page title"
+msgid "Add service"
+msgstr "Thêm dịch vụ"
+
+#: templates/dashboard/service/form.html:34
+#: templates/dashboard/service/list.html:23 templates/service/index.html:29
+msgctxt "Breadcrumb item"
+msgid "Services"
+msgstr "Dịch vụ"
+
+#: templates/dashboard/service/form.html:40
+msgctxt "Breadcrumb item"
+msgid "Add service"
+msgstr "Thêm dịch vụ"
+
+#: templates/dashboard/service/list.html:7
+#: templates/dashboard/service/list.html:17 templates/service/index.html:5
+#: templates/service/index.html:10 templates/service/index.html:24
+msgctxt "Page title"
+msgid "Services"
+msgstr "Dịch vụ"
+
+#: templates/dashboard/service/list.html:36
+msgctxt "Button text"
+msgid "Add service"
+msgstr "Thêm dịch vụ"
+
+#: templates/dashboard/service/list.html:46
+msgctxt "Table header text"
+msgid "Percent"
+msgstr ""
+
+#: templates/dashboard/service/list.html:47
+msgctxt "Table header text"
+msgid "Sort order"
+msgstr ""
+
+#: templates/dashboard/service/modal/confirm_delete.html:9
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Delete service <strong>%(service)s</strong>"
+msgstr "Xoá dịch vụ <strong>%(service)s</strong>"
+
+#: templates/dashboard/service/modal/confirm_delete.html:16
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Are you sure you want to delete service <strong>%(service)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xoá dịch vụ <strong>%(service)s</strong>?"
+
+#: templates/dashboard/sitesetting/general/form.html:6
+#: templates/dashboard/sitesetting/general/form.html:14
+msgctxt "Page title"
+msgid "General information"
+msgstr "Thông tin chung"
+
+#: templates/dashboard/sitesetting/general/form.html:21
+#: templates/dashboard/sitesetting/index.html:19
+#: templates/dashboard/sitesetting/social_network/form.html:33
+#: templates/dashboard/sitesetting/social_network/list.html:23
+msgctxt "Breadcrumb item"
+msgid "Site settings"
+msgstr "Cài đặt"
+
+#: templates/dashboard/sitesetting/general/form.html:23
+msgctxt "Breadcrumb item"
+msgid "General information"
+msgstr "Thông tin chung"
+
+#: templates/dashboard/sitesetting/index.html:5
+#: templates/dashboard/sitesetting/index.html:13
+msgctxt "Page title"
+msgid "Site settings"
+msgstr "Cài đặt"
+
+#: templates/dashboard/sitesetting/index.html:28
+msgctxt "Card title"
+msgid "General Information"
+msgstr "Thông tin chung"
+
+#: templates/dashboard/sitesetting/index.html:29
+msgctxt "Card text"
+msgid "View and update your site settings."
+msgstr "Xem và cập nhật cài đặt website của bạn."
+
+#: templates/dashboard/sitesetting/index.html:39
+msgctxt "Card title"
+msgid "Social Network"
+msgstr "Mạng xã hội"
+
+#: templates/dashboard/sitesetting/index.html:40
+msgctxt "Card text"
+msgid "View and update social network information."
+msgstr "Xem và cập nhật thông tin mạng xã hội."
+
+#: templates/dashboard/sitesetting/social_network/form.html:10
+#: templates/dashboard/sitesetting/social_network/form.html:24
+msgctxt "Page title"
+msgid "Add social network"
+msgstr "Thêm mạng xã hội"
+
+#: templates/dashboard/sitesetting/social_network/form.html:36
+#: templates/dashboard/sitesetting/social_network/list.html:25
+msgctxt "Breadcrumb item"
+msgid "Social network"
+msgstr "Mạng xã hội"
+
+#: templates/dashboard/sitesetting/social_network/form.html:42
+msgctxt "Breadcrumb item"
+msgid "Add social network"
+msgstr "Thêm mạng xã hội"
+
+#: templates/dashboard/sitesetting/social_network/list.html:7
+#: templates/dashboard/sitesetting/social_network/list.html:16
+msgctxt "Page title"
+msgid "Social network"
+msgstr "Mạng xã hội"
+
+#: templates/dashboard/sitesetting/social_network/list.html:38
+msgctxt "Button text"
+msgid "Add social network"
+msgstr "Thêm mạng xã hội"
+
+#: templates/dashboard/sitesetting/social_network/list.html:48
+msgctxt "Table header text"
+msgid "Icon"
+msgstr ""
+
+#: templates/dashboard/sitesetting/social_network/list.html:49
+msgctxt "Table header text"
+msgid "Link"
+msgstr "Đường dẫn"
+
+#: templates/dashboard/sitesetting/social_network/modal/confirm_delete.html:9
+#, python-format
+msgctxt "Modal remove group text"
+msgid "Delete social network <strong>%(social)s</strong>"
+msgstr "Xoá mạng xã hội <strong>%(social)s</strong>"
+
+#: templates/dashboard/sitesetting/social_network/modal/confirm_delete.html:16
+#, python-format
+msgctxt "Modal remove group text"
+msgid ""
+"Are you sure you want to delete social network <strong>%(social)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xoá mạng xã hội <strong>%(social)s</strong>?"
+
+#: templates/index.html:5 templates/index.html:11
+msgctxt "Page title"
+msgid "Home"
+msgstr "Trang chủ"
+
+#: templates/index.html:41 templates/index.html:48 templates/index.html:55
+msgid "A PLUS"
+msgstr ""
+
+#: templates/index.html:42 templates/index.html:49 templates/index.html:56
+msgid "ARCHITECTS"
+msgstr ""
+
+#: templates/index.html:114
+msgid "Welcome we are <strong>A PLUS</strong>"
+msgstr "Welcome we are <strong>A PLUS</strong>"
+
+#: templates/index.html:116
+msgid ""
+"\n"
+"                    <p>A + architects was establised with the goal bringing A"
+"+ scores of designs to the community and the world. With creative thinking "
+"constantly, we always find the best solution to solve the limitations and "
+"problems of each project. Therefore, we bring the great value to our clients "
+"not only the financially, operations, but also a successful brand through "
+"the identification of architecture.</p>\n"
+"                    <p>We are pursuing sustainable design mindset, "
+"localized, harmony with nature, blowing the soul for local material, "
+"friendly environment. Especially the spirit of “up_cycle”, giving old space "
+"materials a second life. And the responsibility of correcting the past from "
+"giving new life to old buildings has always been considered the mission of "
+"“A + architects”.</p>\n"
+"                    "
+msgstr ""
+"\n"
+"                    <p>A+ architects ra đời với mục tiêu đem những thiết kế "
+"đạt điểm A+ ra với cộng đồng và thế giới. Với tư duy sáng tạo không ngừng, "
+"chúng tôi luôn tìm được giải pháp tốt nhất để giải quyết những giới hạn và "
+"vấn đề của mỗi dự án. Từ đó đem lại những giá trị to lớn cho chủ đầu tư "
+"không chỉ về mặt tài chính đầu tư, vận hành,.. mà còn là một thương hiệu "
+"thành công qua việc nhận diện kiến trúc.</p>\n"
+"                    <p>Theo đuổi tư tuy thiết kế bền vững, mạnh mẽ tính địa "
+"phương, hòa mình vào thiên nhiên, thổi hồn cho vật liệu bản địa, thân thiện "
+"môi trường. Đặc biệt tinh thần “up_cycle”, cho vật liệu không gian cũ một "
+"cuộc sống thứ hai. Và trách nhiệm sửa sai quá khư từ việc đem lại cuộc sống "
+"mới cho các công trình cũ luôn được xem là sứ mệnh của “A+ architects”.</p>\n"
+"                    "
+
+#: templates/index.html:121
+msgid "View portfolio"
+msgstr "Xem portfolio"
+
+#: templates/index.html:142
+msgid "Our featured <strong>Works</strong>"
+msgstr "Dự án nổi bậc của <strong>A Plus</strong>"
+
+#: templates/index.html:166 templates/index.html:187
+msgid "View Project"
+msgstr "Xem dự án"
+
+#: templates/portfolio/detail.html:66
+msgid "Project details"
+msgstr "Chi tiết dự án"
+
+#: templates/portfolio/index.html:5 templates/portfolio/index.html:10
+msgctxt "Page title"
+msgid "Portfolio"
+msgstr ""
+
+#: templates/portfolio/index.html:18
+msgctxt "Portfolio filter"
+msgid "All"
+msgstr "Tất cả"
+
+#: templates/portfolio/index.html:24
+msgctxt "Portfolio filter"
+msgid "Filter"
+msgstr "Bộ lọc"
+
+#: templates/service/index.html:46
+msgctxt "Section title"
+msgid "What we do"
+msgstr "Chúng tôi làm gì"
+
+#: templates/service/index.html:83
+msgctxt "No data"
+msgid "No services found."
+msgstr "Không tìm thấy dịch vụ nào."
+
+#~ msgid "Architecture"
+#~ msgstr "Kiến trúc"
+
+#~ msgid "Urban Planning"
+#~ msgstr "Quy hoạch"
+
+#~ msgid "Interior"
+#~ msgstr "Nội thất"
+
+#~ msgid "Landscape"
+#~ msgstr "Cảnh quan"
+
+#~ msgid ""
+#~ "\n"
+#~ "                    <p>A+ architects is an architectural company. It has "
+#~ "been established since 2012 and has gone through many successes and "
+#~ "challenges in the developing process. We realized that people are the "
+#~ "most important factor to create a sustainable group.</p>\n"
+#~ "                    <p>“Devoted - mind - speed - delicate” is slogan and "
+#~ "morale that A+ wants to work toward. A + builds a team of employees who "
+#~ "are not only creative and enthusiastic with the profession but also "
+#~ "follow the schedule and gain the delicacy in work.</p>\n"
+#~ "                    <p>Protecting the environment is the thing that the "
+#~ "whole world is concerning about. So we want to bring the Recycle spirit "
+#~ "in our project for clients.</p>\n"
+#~ "                    <p>We want to be the top company in Viet Nam about "
+#~ "architecture and construction with the recycling spirit. It not only "
+#~ "protects the environment, reduces the pressure on construction costs for "
+#~ "investors but also revives things that seem to be abandoned and we want "
+#~ "to spread this spirit everywhere in our country.</p>\n"
+#~ "                    "
+#~ msgstr ""
+#~ "\n"
+#~ "                    <p>A+ là một công ty kiến trúc được thành lập từ năm "
+#~ "2012 và đã trải qua nhiều chặng đường phát triển với những thành công và "
+#~ "thử thách. Trong đó con người là yếu tố quan trọng nhất để xây dựng nên "
+#~ "một tập thể bền vững.</p>\n"
+#~ "                    <p>“Tâm - Trí - Tốc - Tinh” vừa là khẩu hiệu vừa là "
+#~ "tinh thần mà A+ muốn hướng đến. A+ xây dựng đội ngũ nhân viên không chỉ "
+#~ "sáng tạo và nhiệt huyết với nghề mà còn luôn bám sát tiến độ và đạt đến "
+#~ "sự tinh tế trong công việc.</p>\n"
+#~ "                    <p>Bảo vệ môi trường là điều mà cả thế giới đang quan "
+#~ "tâm. A+ cũng không nằm ngoài số đó, đội ngũ thiết kế mong muốn đem đến "
+#~ "những công trình mang tinh thần “Re-cycle” cho khách hàng.</p>\n"
+#~ "                    <p>Mục tiêu của A+ sẽ trở thành công ty tư vấn thiết "
+#~ "kế và xây dựng hàng đầu Việt Nam về tinh thần “Re-cycle”. Điều đó không "
+#~ "chỉ bảo vệ môi trường, làm giảm áp lực về chi phí xây dựng cho chủ đầu tư "
+#~ "mà còn làm sống lại cho những thứ tưởng chừng như bị bỏ đi và chúng tôi "
+#~ "muốn lan tỏa tinh thần này đến skhắp nơi trên cả nước.</p>\n"
+#~ "                    "
+
+#~ msgctxt "Section title"
+#~ msgid "Where to find us"
+#~ msgstr "Nơi để tìm chúng tôi"
+
+#~ msgctxt "Footer item"
+#~ msgid "Call"
+#~ msgstr "Gọi"
+
+#~ msgctxt "Footer item"
+#~ msgid "Write"
+#~ msgstr "Nhắn"
+
+#~ msgctxt "Footer item"
+#~ msgid "Visit"
+#~ msgstr "Ghé thăm"

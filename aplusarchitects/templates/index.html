@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Home' context 'Page title' %} - {{ block.super }}{% endblock %}
+
+{% block nav_home_class %}act-link{% endblock %}
+
+{% block page %}
+<!-- Page title -->
+<div class="dynamic-title">{% trans 'Home' context 'Page title' %}</div>
+<!-- Page title  end--> 
+<!-- content  -->
+<div class="content full-height no-bg-con">
+    <!-- Hero section   -->
+    <div class="hero-wrap">
+        <!-- hero-wrap-image-slider-holder  end -->
+        <div class="hero-wrap-image-slider-holder">
+            <div class="overlay"></div>
+            <!-- hero-wrap-image-slider  -->
+            <div class="hero-wrap-image-slider">
+                <div class="item">
+                    <div class="bg"  data-bg="{% static 'storefront/images/pages/home/sliders/slider-2.png' %}" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+                </div>
+                <div class="item">
+                    <div class="bg"  data-bg="{% static 'storefront/images/pages/home/sliders/slider-3.png' %}" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+                </div>
+                <div class="item">
+                    <div class="bg"  data-bg="{% static 'storefront/images/pages/home/sliders/slider-5.png' %}" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+                </div>
+            </div>
+            <!-- hero-wrap-image-slider  end -->
+        </div>
+        <!-- hero-wrap-image-slider-holder  end -->
+        <!-- hero-wrap-image-slider-holder  end -->
+        <div class="hero-wrap-text-slider-holder">
+            <!-- hero-wrap-image-slider  -->
+            <div class="hero-wrap-text-slider">
+                <div class="item">
+                    <div class="hero-wrap-item center-item">
+                        <h2>{% trans 'A PLUS' %}</h2>
+                        <h3>{% trans 'ARCHITECTS' %}</h3>
+                        <!-- <a href="#" class="hero-link custom-scroll-link">Start exploer</a> -->
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="hero-wrap-item center-item">
+                        <h2>{% trans 'A PLUS' %}</h2>
+                        <h3>{% trans 'ARCHITECTS' %}</h3>
+                        <!-- <a href="#" class="hero-link ajax">View project</a> -->
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="hero-wrap-item center-item">
+                        <h2>{% trans 'A PLUS' %}</h2>
+                        <h3>{% trans 'ARCHITECTS' %}</h3>
+                        <!-- <a href="#" class="hero-link ajax">View Services</a> -->
+                    </div>
+                </div>
+            </div>
+            <!-- hero-wrap-text-slider  end -->
+            <!--  navigation -->
+            <div class="customNavigation fhsln">
+                <a class="prev-slide transition"><i class="fa fa-angle-left"></i></a>
+                <a class="next-slide transition"><i class="fa fa-angle-right"></i></a>
+            </div>
+            <!--  navigation end-->
+        </div>
+        <!-- hero-wrap-image-text-holder  end -->                          
+    </div>
+    <!-- Hero section   end -->
+</div>
+<!-- content end -->
+<!-- content  -->
+<div class="content">
+    <section id="sec1">
+        <!-- section number   -->
+        <div class="sect-subtitle right-align-dec" data-top-bottom="transform: translateY(200px);" data-bottom-top="transform: translateY(-200px);"><span>01</span></div>
+        <!-- section number  end  -->
+        <!--  container  --> 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- single slider  -->
+                    <div class="parallax-box slider-box ">
+                        <div class="single-slider-holder">
+                            <div class="single-slider">
+                                <!-- 1 -->
+                                <div class="item">
+                                    <img src="{% static 'storefront/images/folio/slider/1.png' %}" alt="">
+                                </div>
+                                <!-- 1 end-->
+                                <!-- 2 -->
+                                <div class="item">
+                                    <img src="{% static 'storefront/images/folio/slider/1.png' %}" alt="">
+                                </div>
+                                <!-- 2 end-->
+                                <!-- 3 -->
+                                <div class="item">
+                                    <img src="{% static 'storefront/images/folio/slider/1.png' %}" alt="">
+                                </div>
+                                <!-- 3 end  -->
+                            </div>
+                            <div class="customNavigation ssn">
+                                <a class="prev-slide transition"><i class="fa fa-angle-left"></i></a>
+                                <a class="next-slide transition"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- single slider  end -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- section title  -->
+                    <h2 class="section-title">{% blocktrans %}Welcome we are <strong>A PLUS</strong>{% endblocktrans %}</h2>
+                    <!-- section title  end -->
+                    {% blocktrans %}
+                    <p>A + architects was establised with the goal bringing A+ scores of designs to the community and the world. With creative thinking constantly, we always find the best solution to solve the limitations and problems of each project. Therefore, we bring the great value to our clients not only the financially, operations, but also a successful brand through the identification of architecture.</p>
+                    <p>We are pursuing sustainable design mindset, localized, harmony with nature, blowing the soul for local material, friendly environment. Especially the spirit of “up_cycle”, giving old space materials a second life. And the responsibility of correcting the past from giving new life to old buildings has always been considered the mission of “A + architects”.</p>
+                    {% endblocktrans %}
+                    <div class="process-box">
+                        <a href="{% url 'portfolio:index' %}" class="btn anim-button fl-l"><span>{% trans 'View portfolio' %}</span><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  container end  -->  
+    </section>
+</div>
+<!-- content  end  -->        
+
+<!-- content   -->         
+<div class="content">
+    <section>
+        <!-- section number     -->
+        <div class="sect-subtitle right-align-dec" data-top-bottom="transform: translateY(200px);" data-bottom-top="transform: translateY(-200px);"><span>02</span></div>
+        <!-- section number   end -->
+        <!--  container  --> 
+        <div class="container">
+            <!--  section title -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title dec-title"><span>{% blocktrans %}Our featured <strong>Works</strong>{% endblocktrans %}</span></h2>
+                </div>
+            </div>
+            <!--  section title end  -->
+            <!--  Parallax items  -->
+            {% for item in list_featured %}
+            <div class="row">
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-md-5"></div>
+                <div class="col-md-7">
+                    <div class="parallax-item right-direction">
+                        <div class="paralax-media">
+                            <ul class="creat-list">
+                                {% for cat in item.category.all %}
+                                <li><a href="#">{{ cat }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            <div class="paralax-wrap">
+                                <img src="{{ item.get_avatar }}" class="respimg" alt="">
+                            </div>
+                        </div>
+                        <div class="parallax-deck" data-top-bottom="transform: translateY(-200px);" data-bottom-top="transform: translateY(200px);">
+                            <div class="parallax-deck-item">
+                                <h3>{{ item }}</h3>
+                                <a href="{{ item.get_absolute_url }}" class="btn anim-button fl-l"><span>{% trans 'View Project' %}</span><i class="fa fa-long-arrow-right"></i></a>																
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-md-7">
+                    <div class="parallax-item left-direction">
+                        <div class="paralax-media">
+                            <ul class="creat-list">
+                                {% for cat in item.category.all %}
+                                <li><a href="#">{{ cat }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            <div class="paralax-wrap">
+                                <img src="{{ item.get_avatar }}" class="respimg" alt="">
+                            </div>
+                        </div>
+                        <div class="parallax-deck" data-top-bottom="transform: translateY(-200px);" data-bottom-top="transform: translateY(200px);">
+                            <div class="parallax-deck-item">
+                                <h3>{{ item }}</h3>
+                                <a href="{{ item.get_absolute_url }}" class="btn anim-button fl-l"><span>{% trans 'View Project' %}</span><i class="fa fa-long-arrow-right"></i></a>																
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                {% endif %}
+            </div>
+            {% endfor %}                                  
+            <!-- custom-link-holder  --> 
+            <!-- <div class="custom-link-holder">
+                <a href="portfolio.html" class="btn anim-button"  data-top-bottom="transform: translateY(-50px);" data-bottom-top="transform: translateY(50px);"><span>View All Projects</span><i class="fa fa-long-arrow-right"></i></a>	
+            </div> -->
+            <!-- custom-link-holder  end --> 
+        </div>
+        <!--  container  end --> 
+    </section>
+</div>
+<!-- content end -->
+{% endblock %}

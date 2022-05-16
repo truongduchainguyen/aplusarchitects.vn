@@ -1,0 +1,63 @@
+{% load paginate %}
+
+{% if page_obj.paginator.num_pages > 1 %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1">
+          <span class="icon wb-chevron-left-mini"></span>
+        </a>
+      </li>
+      {% if page_obj.number|add:previous_section >= 1 %}
+        <li class="page-item">
+          <a class="page-link" href="{% construct_get_query page=page_obj.number|add:previous_section %}">&hellip;</a>
+        </li>
+      {% elif page_obj.number|add:previous_section < 1 and page_obj.number|add:n_backward >= 1 %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1">&hellip;</a>
+        </li>
+      {% endif %}
+    {% else %}
+      <li class="disabled page-item">
+        <a class="page-link" href="javascript:void(0)" aria-label="Previous">
+          <span class="icon wb-chevron-left-mini"></span>
+        </a>
+      </li>
+    {% endif %}
+
+    {% for page in page_obj.paginator.page_range %}
+      {% if page_obj.number == page %}
+        <li class="active page-item">
+          <a class="page-link" href="{% construct_get_query page=page %}">{{ page }} <span class="sr-only">(current)</span></a>
+        </li>
+      {% elif page > page_obj.number|add:n_backward and page < page_obj.number|add:n_forward %}
+        <li class="page-item">
+          <a class="page-link" href="{% construct_get_query page=page %}">{{ page }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      {% if page_obj.number|add:next_section <= page_obj.paginator.num_pages %}
+        <li class="page-item">
+          <a class="page-link" href="{% construct_get_query page=page_obj.number|add:next_section %}">&hellip;</a>
+        </li>
+      {% elif page_obj.number|add:next_section > page_obj.paginator.num_pages and page_obj.number|add:n_forward <= page_obj.paginator.num_pages %}
+        <li class="page-item">
+          <a class="page-link" href="{% construct_get_query page=page_obj.paginator.num_pages %}">&hellip;</a>
+        </li>
+      {% endif %}
+      <li class="page-item">
+        <a class="page-link" href="{% construct_get_query page=page_obj.paginator.num_pages %}">
+          <span class="icon wb-chevron-right-mini"></span>
+        </a>
+      </li>
+    {% else %}
+      <li class="disabled page-item">
+        <a class="page-link" href="javascript:void(0)" aria-label="Next">
+          <span class="icon wb-chevron-right-mini"></span>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+{% endif %}

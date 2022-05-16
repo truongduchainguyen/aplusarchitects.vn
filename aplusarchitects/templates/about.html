@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'About us' context 'Page title' %} - {{ block.super }}{% endblock %}
+
+{% block nav_about_class %}act-link{% endblock %}
+
+{% block page %}
+<!-- Page title -->
+<div class="dynamic-title">{% trans 'About us' context 'Page title' %}</div>
+<!-- Page title  end-->
+
+<!-- content  -->
+<div class="content">
+    <section class="parallax-section">
+        <div class="parallax-inner">
+            <div class="bg" data-bg="{% static 'storefront/images/pages/about/bg.jpg' %}" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><strong>{% trans 'About us' context 'Page title' %}</strong></h2>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="creat-list">
+                            <li><a href="{% url 'core:index' %}">{% trans 'Home' context 'Breadcrumb item' %}</a></li>
+                            <li><a href="{% url 'core:about' %}">{% trans 'About us' context 'Breadcrumb item' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content end -->
+
+<!-- content  -->
+<div class="content">
+    <section id="sec1">
+        <!-- <div class="sect-subtitle right-align-dec" data-top-bottom="transform: translateY(200px);" data-bottom-top="transform: translateY(-200px);"><span>01</span></div> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="section-title">{% trans 'Introduce' context 'Section title' %}</h2>
+                    {% blocktrans %}
+                    <p>A+ architects was establised with the goal bringing A+ scores of designs to the community and the world. With creative thinking constantly, we always find the best solution to solve the limitations and problems of each project. Therefore, we bring the great value to our clients not only the financially, operations, but also a successful brand through the identification of architecture.</p>
+                    <p>We are pursuing sustainable design mindset, localized, harmony with nature, blowing the soul for local material, friendly environment. Especially the spirit of “up_cycle”, giving old space materials a second life. And the responsibility of correcting the past from giving new life to old buildings has always been considered the mission of “A + architects”.</p>
+                    {% endblocktrans %}
+                    <div class="process-box">
+                        <h3>{% trans 'What we do' %}</h3>
+                        <ul class="creat-list custom-creat-list">
+                            {% for service in services %}
+                            <li><a href="#">{{ service }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="parallax-box">
+                        <img src="{% static 'storefront/images/pages/about/introduce.png' %}" class="respimg" alt="" style="opacity: 1;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content end -->
+
+<!-- content  -->
+<div class="content dark-bg">
+    <!-- <div class="sect-subtitle left-align-dec" data-top-bottom="transform: translateY(-200px);" data-bottom-top="transform: translateY(200px);"><span>02</span></div> -->
+    <!-- parallax image  -->
+    <div class="parallax-inner">
+        <div class="bg" data-bg="{% static 'storefront/images/pages/about/skill.jpg' %}" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+        <div class="overlay"></div>
+    </div>
+    <!-- parallax image  end -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2 class="section-title">{% trans 'Our Skills' %}</h2>
+                </div>
+                <div class="col-md-8">
+                    {% blocktrans %}
+                    <p>Our strength is in architectural design solutions. However, landscape planning is the founder's passion project, especially the resort and resort projects. Therefore,we design the interior based on logical spirit, most consistent with performance, with innovative solutions on materials has always been a part of our successful projects.</p>
+                    {% endblocktrans %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                    <!-- skills  -->
+                    <div class="piechart-holder animaper" data-skcolor="rgba(255,255,255,0.31)">
+                        <div class="row">
+                            {% for service in services %}
+                            <div class="piechart col-md-3" >
+                                <span class="chart" data-percent="{{ service.percent }}">
+                                <span class="percent"></span>
+                                </span>
+                                <div class="clearfix"></div>
+                                <div class="skills-description">
+                                    <h4>{{ service }}</h4>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- skills  end-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content  end-->
+
+<!-- content  -->
+<div class="content">
+    <section>
+        <!-- <div class="sect-subtitle right-align-dec" data-top-bottom="transform: translateY(200px);" data-bottom-top="transform: translateY(-200px);"><span>02</span></div> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title  dec-title"><span>{% trans 'Team members' context 'Section title' %}</span></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- team -->
+                    <ul class="team-holder">
+                        {% for member in teams %}
+                        <li>
+                            <div class="team-box">
+                                <div class="team-photo">
+                                    <div class="overlay"></div>
+                                    <ul class="team-social">
+                                        <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fa fa-tumblr"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fa fa-behance"></i></a></li>
+                                    </ul>
+                                    <img src="{{ member.filename }}" alt="{{ member.name }}" class="respimg">
+                                </div>
+                                <div class="team-info">
+                                    <h3><a href="#">{{ member.name }}</a></h3>
+                                    <h4>{{ member.title }}</h4>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <!-- team end  -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content  end-->
+{% endblock %}

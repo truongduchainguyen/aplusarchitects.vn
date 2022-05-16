@@ -1,0 +1,133 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% load get_flag %}
+
+{% block title %}
+    {% if category %}
+        {{ category }} - {{ block.super }}
+    {% else %}
+        {% trans 'Add category' context 'Page title' %} - {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block portfolio_class %}active open{% endblock %}
+{% block portfolio_category_class %}active{% endblock %}
+
+{% block page %}
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">
+            {% if category %}
+                {{ category }}
+            {% else %}
+                {% trans 'Add category' context 'Page title' %}
+            {% endif %}
+        </h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">{% trans 'Portfolio' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:portfolio:category-list' %}">{% trans 'Categories' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {% if category %}
+                        {{ category }}
+                    {% else %}
+                        {% trans 'Add category' context 'Breadcrumb item' %}
+                    {% endif %}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-body">
+                        <form action="" method="POST" novalidate>{% csrf_token %}
+                            {% bootstrap_field form.name %}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary float-right">
+                                    {% if category %}
+                                        {% trans 'Update' context 'Button text' %}
+                                    {% else %}
+                                        {% trans 'Add' context 'Button text' %}
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% if category %}
+                <!-- Translations -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{% trans 'Translations' %}</h3>
+                        <div class="panel-actions">
+                            <div class="panel-action">
+                                <a href="{% url 'dashboard:portfolio:category-translate-add' category_pk=category.pk %}" class="btn btn-success">
+                                    {% trans 'Add translation' context 'Button text' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-vertical-align">
+                                <thead class="bg-blue-grey-100">
+                                    <tr>
+                                        <th style="width: 100px;">{% trans '#' context 'Table header text' %}</th>
+                                        <th>{% trans 'Language' context 'Table header text' %}</th>
+                                        <th>{% trans 'Name' context 'Table header text' %}</th>
+                                        <th style="width: 100px;">{% trans 'Action' context 'Table header text' %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if category.get_translations %}
+                                    {% for trans in category.get_translations %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td><span class="flag-icon {% get_flag lang_code=trans.language_code %}"></span></td>
+                                        <td>{{ trans }}</td>
+                                        <td>
+                                            <a href="{% url 'dashboard:portfolio:category-translate-change' category_pk=category.pk pk=trans.pk %}" class="btn btn-sm btn-icon btn-info">
+                                                <i class="icon wb-edit" aria-hidden="true"></i>
+                                            </a>
+                                            <a href="#base-modal" data-href="{% url 'dashboard:portfolio:category-translate-delete' category_pk=category.pk pk=trans.pk %}" class="btn btn-sm btn-icon btn-danger modal-trigger-custom">
+                                                <i class="icon wb-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% else %}
+                                    <tr>
+                                        <td colspan="4" class="text-center">{% trans 'No data.' context 'Table no data' %}</td>
+                                    </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Translations -->
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block plugin_css %}{% endblock %}
+{% block page_css %}{% endblock %}
+{% block plugin_js %}{% endblock %}
+{% block page_js %}{% endblock %}

@@ -1,0 +1,173 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% load get_flag %}
+
+{% block title %}
+    {% if project %}
+        {{ project }} - {{ block.super }}
+    {% else %}
+        {% trans 'Add project' context 'Page title' %} - {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block portfolio_class %}active open{% endblock %}
+{% block portfolio_project_class %}active{% endblock %}
+
+{% block page %}
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">
+            {% if project %}
+                {{ project }}
+            {% else %}
+                {% trans 'Add project' context 'Page title' %}
+            {% endif %}
+        </h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">{% trans 'Portfolio' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:portfolio:project-list' %}">{% trans 'Projects' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {% if project %}
+                        {{ project }}
+                    {% else %}
+                        {% trans 'Add project' context 'Breadcrumb item' %}
+                    {% endif %}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-{% if project %}9{% else %}12{% endif %}">
+                <div class="panel">
+                    <div class="panel-body">
+                        <form action="" method="POST" novalidate>{% csrf_token %}
+                            {% bootstrap_field form.name %}
+                            {% bootstrap_field form.category %}
+                            {% bootstrap_field form.description %}
+                            {% bootstrap_field form.is_featured %}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary float-right">
+                                    {% if project %}
+                                        {% trans 'Update' context 'Button text' %}
+                                    {% else %}
+                                        {% trans 'Add' context 'Button text' %}
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% if project %}
+            <!-- Images -->
+            <div class="col-lg-3">
+                <div class="panel">
+                    <div class="panel-body" style="padding: 0 0 15px 0;">
+                        {% if project.get_first_image %}
+                        <img src="{{ project.get_first_image.image.url }}" alt="" class="img-fluid">
+                        {% endif %}
+                    </div>
+                    <div class="panel-footer">
+                        <a
+                            href="{% url 'dashboard:portfolio:project-images-list' project_pk=project.pk %}"
+                            class="btn btn-primary btn-block btn-outline"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="{% trans 'Click to add or remove image' context 'Button tooltip title' %}">
+                            {% trans 'Edit images' %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Images -->
+            {% endif %}
+            {% if project %}
+            <!-- Translations -->
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{% trans 'Translations' %}</h3>
+                        <div class="panel-actions">
+                            <div class="panel-action">
+                                <a href="{% url 'dashboard:portfolio:project-translate-add' project_pk=project.pk %}" class="btn btn-success">
+                                    {% trans 'Add translation' context 'Button text' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-vertical-align">
+                                <thead class="bg-blue-grey-100">
+                                    <tr>
+                                        <th style="width: 100px;">{% trans '#' context 'Table header text' %}</th>
+                                        <th>{% trans 'Language' context 'Table header text' %}</th>
+                                        <th>{% trans 'Name' context 'Table header text' %}</th>
+                                        <th style="width: 100px;">{% trans 'Action' context 'Table header text' %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if project.get_translations %}
+                                    {% for trans in project.get_translations %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td><span class="flag-icon {% get_flag lang_code=trans.language_code %}"></span></td>
+                                        <td>{{ trans }}</td>
+                                        <td>
+                                            <a href="{% url 'dashboard:portfolio:project-translate-change' project_pk=project.pk pk=trans.pk %}" class="btn btn-sm btn-icon btn-info">
+                                                <i class="icon wb-edit" aria-hidden="true"></i>
+                                            </a>
+                                            <a href="#base-modal" data-href="{% url 'dashboard:portfolio:project-translate-delete' project_pk=project.pk pk=trans.pk %}" class="btn btn-sm btn-icon btn-danger modal-trigger-custom">
+                                                <i class="icon wb-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% else %}
+                                    <tr>
+                                        <td colspan="4" class="text-center">{% trans 'No data.' context 'Table no data' %}</td>
+                                    </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Translations -->
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block plugin_css %}
+    <link rel="stylesheet" href="{% static 'dashboard/global/vendor/select2/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/global/vendor/summernote/summernote.css' %}">
+{% endblock %}
+{% block plugin_js %}
+    <script src="{% static 'dashboard/global/vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'dashboard/global/vendor/summernote/summernote.js' %}"></script>
+{% endblock %}
+{% block page_css %}{% endblock %}
+{% block page_js %}
+    <script>
+        $(document).ready(function() {
+            $('textarea').summernote();
+        });
+    </script>
+{% endblock %}

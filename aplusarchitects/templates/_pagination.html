@@ -1,0 +1,26 @@
+{% load construct_get_query from paginator %}
+
+
+{% if page_obj.paginator.num_pages > 1 %}
+  <div class="pagination-blog">
+    {% if page_obj.has_previous %}
+      <a class="prevposts-link transition" href="?page={{ page_obj.previous_page_number }}"></a>
+    {% else %}
+      <a class="prevposts-link transition disabled" href="javascript:void(0)"></a>
+    {% endif %}
+
+    {% for page in page_obj.paginator.page_range %}
+      {% if page_obj.number == page %}
+        <a class="blog-page transition current-page" href="{% construct_get_query page=page %}">{{ page }}</a>
+      {% elif page > page_obj.number|add:n_backward and page < page_obj.number|add:n_forward %}
+        <a class="blog-page transition" href="{% construct_get_query page=page %}">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a class="nextposts-link transition" href="?page={{ page_obj.next_page_number }}"></a>
+    {% else %}
+      <a class="nextposts-link transition disabled" href="javascript:void(0)"></a>
+    {% endif %}
+  </div>
+{% endif %}

@@ -1,0 +1,26 @@
+{% extends "dashboard/base_modal.html" %}
+{% load i18n %}
+
+{% block form_class %}{% endblock %}
+
+{% block action_url %}
+  {% url 'dashboard:portfolio:project-images-delete' project_pk=project.pk pk=project_image.pk %}
+{% endblock %}
+
+{% block modal_title %}
+  {% blocktrans trimmed context "Modal remove group text" %}
+    Delete image <strong>{{ project_image }}</strong>
+  {% endblocktrans %}
+{% endblock %}
+
+{% block modal_body %}
+  <p>
+    {% blocktrans trimmed context "Modal remove group text" %}
+      Are you sure you want to delete image <strong>{{ project_image }}</strong>?
+    {% endblocktrans %}
+  </p>
+{% endblock %}
+
+{% block primary_action %}
+  {% trans "Delete" context "Button text" %}
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% load paginator from paginator %}
+
+{% block title %}{{ category }} - {{ block.super }}{% endblock %}
+{% block nav_blog_class %}act-link{% endblock %}
+
+{% block page %}
+<!-- Page title -->
+<div class="dynamic-title">{{ category }}</div>
+<!-- Page title  end--> 
+
+<!-- content  -->
+<div class="content">
+    <section class="parallax-section">
+        <div class="parallax-inner">
+            <div class="bg" data-bg="{% static 'storefront/images/pages/blog/bg.jpg' %}" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><strong>{{ category }}</strong></h2>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="creat-list">
+                            <li><a href="{% url 'core:index' %}">{% trans 'Home' context 'Breadcrumb item' %}</a></li>
+                            <li><a href="{% url 'blog:index' %}">{% trans 'Blog' context 'Breadcrumb item' %}</a></li>
+                            <li>
+                                <a href="{{ category.get_absolute_url }}">
+                                    {% blocktrans %}Category: {{ category }}{% endblocktrans %}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content end -->
+
+<!-- content  -->
+<div class="content">
+    <section>
+        <div class="container">
+            {% if posts %}
+
+            {% for post in posts %}
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-7">
+                        <div class="parallax-item right-direction">
+                            <div class="paralax-media">
+                                <ul class="creat-list">
+                                    <li><a href="#">{{ post.created_at }}</a></li>
+                                    <li><a href="#">{{ post.author }}</a></li>
+                                </ul>
+                                <div class="paralax-wrap">
+                                    <img src="{{ post.get_display_image }}" class="respimg" alt="">
+                                </div>
+                            </div>
+                            <div class="parallax-deck" data-top-bottom="transform: translateY(-200px);" data-bottom-top="transform: translateY(200px);">
+                                <div class="parallax-deck-item">
+                                    <h3>{{ post }}</h3>
+                                    <a href="{{ post.get_absolute_url }}" class="btn anim-button fl-l">
+                                        <span>{% trans 'Read more' context 'Button text' %}</span><i class="fa fa-long-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="parallax-item left-direction">
+                            <div class="paralax-media">
+                                <ul class="creat-list">
+                                    <li><a href="#">{{ post.created_at }}</a></li>
+                                    <li><a href="#">{{ post.author }}</a></li>
+                                </ul>
+                                <div class="paralax-wrap">
+                                    <img src="{{ post.get_display_image }}" class="respimg" alt="">
+                                </div>
+                            </div>
+                            <div class="parallax-deck" data-top-bottom="transform: translateY(-200px);" data-bottom-top="transform: translateY(200px);">
+                                <div class="parallax-deck-item">
+                                    <h3>{{ post }}</h3>
+                                    <a href="{{ post.get_absolute_url }}" class="btn anim-button fl-l">
+                                        <span>{% trans 'Read more' context 'Button text' %}</span><i class="fa fa-long-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+                {% endif %}
+            {% endfor %}
+
+            {% paginator posts %}
+
+            {% else %}
+            <div class="row">
+                <div class="alert alert-info">
+                    {% trans 'No posts found.' context 'No data' %}
+                </div>
+            </div>
+            {% endif %}
+        </div>	
+    </section>
+</div>
+<!-- content end-->
+{% endblock %}
+
+{% block page_js %}{% endblock %}

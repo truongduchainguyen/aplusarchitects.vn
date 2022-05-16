@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ project }} - {{ block.super }}{% endblock %}
+{% block nav_portfolio_class %}act-link{% endblock %}
+
+{% block page %}
+<!-- Page title -->
+<div class="dynamic-title">{{ project }}</div>
+<!-- Page title  end--> 
+
+<!-- content  -->
+<div class="content">
+    <section class="parallax-section">
+        <div class="parallax-inner">
+            <div class="bg" data-bg="{% static 'storefront/images/pages/portfolio/bg.jpg' %}" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><strong>{{ project }}</strong></h2>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="creat-list">
+                            <li><a href="{% url 'core:index' %}">{% trans 'Home' context 'Breadcrumb item' %}</a></li>
+                            <li><a href="{% url 'portfolio:index' %}">{% trans 'Portfolio' context 'Breadcrumb item' %}</a></li>
+                            <li><a href="{{ project.get_absolute_url }}">{{ project }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content end -->
+
+<!-- content  -->
+<div class="content">
+    <section>
+        <div class="container">
+            <!-- gallery -->
+            <div class="gallery-items three-columns grid-small-pad lightgallery">
+                {% for image in project.get_images %}
+                <div class="gallery-item">
+                    <div class="grid-item-holder">
+                        <div class="box-item">
+                            <a data-src="{{ image.image.url }}" class="popup-image" data-sub-html="{{ image.alt }}">
+                                <span class="overlay"></span> 
+                                <img src="{{ image.image.url }}" alt="{{ image.alt }}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- gallery end -->
+
+            <!-- project info -->
+            <div class="custom-inner-holder">
+                <div class="custom-inner">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>{% trans 'Project details' %}</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>{{ project }}</h4>
+                            <p>{{ project.translated.description|safe }}</p>
+                            <div class="content-nav">
+                                <ul>
+                                    <li><a href="javascript:void(0)" class="text-link">{{ project.get_display_categories }}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- project info end -->
+        </div>
+    </section>
+</div>
+<!-- content end-->
+{% endblock %}
+
+{% block page_js %}{% endblock %}

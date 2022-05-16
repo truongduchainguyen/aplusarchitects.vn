@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ post }} - {{ block.super }}{% endblock %}
+{% block nav_blog_class %}act-link{% endblock %}
+
+{% block page %}
+<!-- Page title -->
+<div class="dynamic-title">{{ post }}</div>
+<!-- Page title  end--> 
+
+<!-- content  -->
+<div class="content hor-content pad-con no-bg-con">
+    <section id="sec1">
+        <div class="container">
+            <div class="row">
+                <!-- Articels -->
+                <div class="col-md-8">
+                    <article>
+                        <h2 class="section-title dec-title" style="padding-bottom: 0px;">{{ post }}</h2>
+                        <ul class="creat-list">
+                            <li><a href="#">{{ post.created_at }}</a></li>
+                            <li><a href="#">{{ post.author }}</a></li>
+                        </ul>
+                        <div class="blog-media">
+                            <div class="box-item">
+                                <a  href="{{ post.get_absolute_url }}">
+                                    <span class="overlay"></span>
+                                    <img src="{{ post.get_display_image }}"  alt="" class="respimg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="blog-text">
+                            <p style="font-weight: 600;">{{ post.description }}</p>
+                            <p>{{ post.content|safe }}</p>
+                        </div>
+                    </article>
+                </div>
+                <!-- Articels end-->
+                <!-- sidebar -->
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        {% if related_posts %}
+                        <div class="widget">
+                            <h3>{% trans 'Related posts' context 'Widget title' %}</h3>
+                            <ul class="widget-posts">
+                                {% for post in related_posts %}
+                                <li class="clearfix">
+                                    <a href="{{ post.get_absolute_url }}" class="widget-posts-img">
+                                        <img src="{{ post.get_display_image }}" class="respimg" alt="">
+                                    </a>
+                                    <div class="widget-posts-descr">
+                                        <a href="{{ post.get_absolute_url }}" title="{{ post }}" style="letter-spacing: normal;">{{ post }}</a>
+                                        <span class="widget-posts-date">{{ post.created_at }}</span> 
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        
+                        {% if categories %}
+                        <div class="widget">
+                            <h3>{% trans 'Categories' context 'Widget title' %}</h3>
+                            <div class="clearfix"></div>
+                            <ul>
+                                {% for cat in categories %}
+                                <li class="cat-item">
+                                    <a href="{{ cat.get_absolute_url }}">{{ cat }}</a> ({{ cat.get_num_post }})
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- sidebar end-->
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content end-->
+{% endblock %}
+
+{% block page_js %}{% endblock %}

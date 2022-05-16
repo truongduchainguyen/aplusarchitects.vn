@@ -1,0 +1,17 @@
+{% load i18n %}
+
+{% block subject %}
+  {% trans "Thông tin đăng nhập" context "Password staff email subject" %}
+{% endblock %}
+
+{% block plain %}
+Xin chào,
+Dưới đây là thông tin đăng nhập của bạn tại {{ domain }}.
+Link: {{ login_url }}
+Email: {{ email }}
+Password: {{ password }}
+{% endblock %}
+
+{% block html %}
+  {% include 'templated_email/html/account/info_signin.html' %}
+{% endblock %}

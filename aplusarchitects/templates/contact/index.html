@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Contacts' context 'Page title' %} - {{ block.super }}{% endblock %}
+{% block nav_contact_class %}act-link{% endblock %}
+
+{% block page %}
+<!-- Page title -->
+<div class="dynamic-title">{% trans 'Contacts' context 'Page title' %}</div>
+<!-- Page title  end--> 
+
+<!-- content  -->
+<div class="content">
+    <section class="parallax-section">
+        <div class="parallax-inner">
+            <div class="bg" data-bg="{% static 'storefront/images/pages/contact/bg.jpg' %}" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><strong>{% trans 'Contacts' context 'Page title' %}</strong></h2>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="creat-list">
+                            <li><a href="{% url 'core:index' %}">{% trans 'Home' context 'Breadcrumb item' %}</a></li>
+                            <li><a href="{% url 'contact:index' %}">{% trans 'Contact' context 'Breadcrumb item' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content end -->
+
+<!-- content  -->
+<div class="content">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contact-details">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h3 class="bold-title">{% trans 'Contact  details:' %}</h3>
+                            </div>
+                            <div class="col-md-5">
+                                <h4>{% trans 'Office' %}</h4>
+                                <ul>
+                                    <li><a href="javascript:void(0)">{{ site.settings.address }}</a></li>
+                                    <li><a href="javascript:void(0)">{{ site.settings.phone }}</a></li>
+                                    <li><a href="javascript:void(0)">{{ site.settings.email }}</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>{% trans 'Find Us On:' %}</h4>
+                                <ul>
+                                    {% for social_network in social_network_list %}
+                                    <li><a href="{{ social_network.link }}">{{ social_network.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% comment %}
+                <div class="col-md-8">
+                    <!-- contact form -->
+                    <div class="contact-form-holder">
+                        <div id="contact-form">
+                            <div id="message"></div>
+                            <form method="post" action="php/contact.php" name="contactform" id="contactform">
+                                <input name="name" type="text" id="name"  onClick="this.select()" value="Name *" >
+                                <input name="email" type="text" id="email" onClick="this.select()" value="E-mail *" >
+                                <input type="text"  name="phone" id="phone" placeholder="Phone *" value=""/>            
+                                <textarea name="comments"  id="comments" onClick="this.select()" >Message</textarea> 
+                                <div class="verify-wrap">
+                                    <span class="verify-text"> How many gnomes were in the story about the "Snow-white" ?</span> 
+                                    <input name="verify" type="text" id="verify" onClick="this.select()" value="0" >
+                                </div>                                                     
+                                <button type="submit"  id="submit"  data-top-bottom="transform: translateY(-50px);" data-bottom-top="transform: translateY(50px);"><span>Send Message </span></button>          										           											
+                            </form>
+                        </div>
+                    </div>
+                    <!-- contact form  end-->
+                </div>
+                {% endcomment %}
+            </div>
+            <div class="map-box">
+                <div  id="map-canvas"></div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content end-->
+{% endblock %}
+
+{% block page_js %}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzauu1QsKoHayYq1zfv9yJNj-92ybR_cA"></script>
+    <script type="text/javascript" src="{% static 'storefront/js/map.js' %}"></script>
+{% endblock %}

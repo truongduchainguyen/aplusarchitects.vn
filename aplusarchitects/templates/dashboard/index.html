@@ -1,0 +1,30 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Dashboard' context 'Page title' %} - {{ block.super }}{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block dashboard_class %}active{% endblock %}
+
+{% block page %}
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title font-size-26 font-weight-100">
+            {% trans 'Dashboard' context 'Page title' %}
+        </h1>
+    </div>
+
+    <div class="page-content container-fluid">
+        <div class="row">
+            
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block page_css %}{% endblock %}
+
+{% block page_js %}{% endblock %}

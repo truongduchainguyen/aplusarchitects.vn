@@ -1,0 +1,68 @@
+.checkbox input[type="checkbox"] {
+    position: relative;
+    border: none;
+    margin-bottom: -4px;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+.checkbox input[type="checkbox"]:focus{
+    outline: none;
+}
+.checkbox input[type="checkbox"]:after {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin-top: -2px;
+    margin-right: 5px;
+    border: 2px solid #666666;
+    border-radius: 2px;
+    -webkit-transition: 240ms;
+    -o-transition: 240ms;
+    transition: 240ms;
+}
+.checkbox input[type="checkbox"]:checked:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 6px;
+    display: table;
+    width: 6px;
+    height: 12px;
+    border: 2px solid #fff;
+    border-top-width: 0;
+    border-left-width: 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.checkbox input[type="checkbox"]:checked:after{
+    background-color: #2196f3;
+    border-color: #2196f3;
+}
+.checkbox input[type="checkbox"]:disabled:after {
+    border-color: #bbbbbb;
+}
+.checkbox input[type="checkbox"]:disabled:checked:after {
+    background-color: #bbbbbb;
+    border-color: transparent;
+}
+
+.table-vertical-align tbody tr td { vertical-align: middle; }
+
+/* Select2 */
+.select2-results__option{ padding: .429rem 1.858rem .429rem 1rem; }
+.form-group.is-invalid .select2-container--default .select2-selection--single,
+.form-group.is-invalid .select2-container--default .select2-selection--multiple { border-color: #ff4c52; }
+.form-group.is-valid .select2-container--default .select2-selection--single,
+.form-group.is-valid .select2-container--default .select2-selection--multiple { border-color: #11c26d }
+.modal-open .select2-container { z-index: auto !important; }
+/* Select2 */
+
+/* Summernote */
+.note-editor.note-frame.panel { margin-bottom: 0 }
+.form-group.is-invalid .note-editor.note-frame { border: 1px solid #ff4c52; }
+.form-group.is-valid .note-editor.note-frame { border-color: #11c26d; }
+/* Summernote */

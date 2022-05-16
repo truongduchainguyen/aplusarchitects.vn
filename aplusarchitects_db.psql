@@ -1,0 +1,2906 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.15 (Ubuntu 10.15-0ubuntu0.18.04.1)
+-- Dumped by pg_dump version 10.15 (Ubuntu 10.15-0ubuntu0.18.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: account_user; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.account_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    email character varying(255) NOT NULL,
+    first_name character varying(255) NOT NULL,
+    last_name character varying(255) NOT NULL,
+    date_of_birth date NOT NULL,
+    is_active boolean NOT NULL,
+    is_staff boolean NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.account_user OWNER TO aplusarch;
+
+--
+-- Name: account_user_groups; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.account_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.account_user_groups OWNER TO aplusarch;
+
+--
+-- Name: account_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.account_user_groups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.account_user_groups_id_seq OWNER TO aplusarch;
+
+--
+-- Name: account_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.account_user_groups_id_seq OWNED BY public.account_user_groups.id;
+
+
+--
+-- Name: account_user_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.account_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.account_user_id_seq OWNER TO aplusarch;
+
+--
+-- Name: account_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.account_user_id_seq OWNED BY public.account_user.id;
+
+
+--
+-- Name: account_user_user_permissions; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.account_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.account_user_user_permissions OWNER TO aplusarch;
+
+--
+-- Name: account_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.account_user_user_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.account_user_user_permissions_id_seq OWNER TO aplusarch;
+
+--
+-- Name: account_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.account_user_user_permissions_id_seq OWNED BY public.account_user_user_permissions.id;
+
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO aplusarch;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO aplusarch;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO aplusarch;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO aplusarch;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO aplusarch;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO aplusarch;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: blog_category; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.blog_category (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.blog_category OWNER TO aplusarch;
+
+--
+-- Name: blog_category_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.blog_category_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_category_id_seq OWNER TO aplusarch;
+
+--
+-- Name: blog_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.blog_category_id_seq OWNED BY public.blog_category.id;
+
+
+--
+-- Name: blog_categorytranslation; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.blog_categorytranslation (
+    id integer NOT NULL,
+    language_code character varying(10) NOT NULL,
+    name character varying(255) NOT NULL,
+    category_id integer NOT NULL
+);
+
+
+ALTER TABLE public.blog_categorytranslation OWNER TO aplusarch;
+
+--
+-- Name: blog_categorytranslation_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.blog_categorytranslation_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_categorytranslation_id_seq OWNER TO aplusarch;
+
+--
+-- Name: blog_categorytranslation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.blog_categorytranslation_id_seq OWNED BY public.blog_categorytranslation.id;
+
+
+--
+-- Name: blog_post; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.blog_post (
+    id integer NOT NULL,
+    title character varying(255) NOT NULL,
+    description character varying(150) NOT NULL,
+    content text NOT NULL,
+    image character varying(100) NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
+    author_id integer NOT NULL,
+    category_id integer NOT NULL
+);
+
+
+ALTER TABLE public.blog_post OWNER TO aplusarch;
+
+--
+-- Name: blog_post_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.blog_post_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_post_id_seq OWNER TO aplusarch;
+
+--
+-- Name: blog_post_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.blog_post_id_seq OWNED BY public.blog_post.id;
+
+
+--
+-- Name: blog_post_tag; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.blog_post_tag (
+    id integer NOT NULL,
+    post_id integer NOT NULL,
+    tag_id integer NOT NULL
+);
+
+
+ALTER TABLE public.blog_post_tag OWNER TO aplusarch;
+
+--
+-- Name: blog_post_tag_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.blog_post_tag_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_post_tag_id_seq OWNER TO aplusarch;
+
+--
+-- Name: blog_post_tag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.blog_post_tag_id_seq OWNED BY public.blog_post_tag.id;
+
+
+--
+-- Name: blog_posttranslation; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.blog_posttranslation (
+    id integer NOT NULL,
+    language_code character varying(10) NOT NULL,
+    title character varying(255) NOT NULL,
+    content text NOT NULL,
+    post_id integer NOT NULL
+);
+
+
+ALTER TABLE public.blog_posttranslation OWNER TO aplusarch;
+
+--
+-- Name: blog_posttranslation_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.blog_posttranslation_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_posttranslation_id_seq OWNER TO aplusarch;
+
+--
+-- Name: blog_posttranslation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.blog_posttranslation_id_seq OWNED BY public.blog_posttranslation.id;
+
+
+--
+-- Name: blog_tag; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.blog_tag (
+    id integer NOT NULL,
+    name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.blog_tag OWNER TO aplusarch;
+
+--
+-- Name: blog_tag_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.blog_tag_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_tag_id_seq OWNER TO aplusarch;
+
+--
+-- Name: blog_tag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.blog_tag_id_seq OWNED BY public.blog_tag.id;
+
+
+--
+-- Name: blog_tagtranslation; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.blog_tagtranslation (
+    id integer NOT NULL,
+    language_code character varying(10) NOT NULL,
+    name character varying(50) NOT NULL,
+    tag_id integer NOT NULL
+);
+
+
+ALTER TABLE public.blog_tagtranslation OWNER TO aplusarch;
+
+--
+-- Name: blog_tagtranslation_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.blog_tagtranslation_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_tagtranslation_id_seq OWNER TO aplusarch;
+
+--
+-- Name: blog_tagtranslation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.blog_tagtranslation_id_seq OWNED BY public.blog_tagtranslation.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO aplusarch;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO aplusarch;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_celery_results_taskresult; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.django_celery_results_taskresult (
+    id integer NOT NULL,
+    task_id character varying(255) NOT NULL,
+    status character varying(50) NOT NULL,
+    content_type character varying(128) NOT NULL,
+    content_encoding character varying(64) NOT NULL,
+    result text,
+    date_done timestamp with time zone NOT NULL,
+    traceback text,
+    hidden boolean NOT NULL,
+    meta text,
+    task_args text,
+    task_kwargs text,
+    task_name character varying(255)
+);
+
+
+ALTER TABLE public.django_celery_results_taskresult OWNER TO aplusarch;
+
+--
+-- Name: django_celery_results_taskresult_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.django_celery_results_taskresult_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_celery_results_taskresult_id_seq OWNER TO aplusarch;
+
+--
+-- Name: django_celery_results_taskresult_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.django_celery_results_taskresult_id_seq OWNED BY public.django_celery_results_taskresult.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO aplusarch;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO aplusarch;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO aplusarch;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO aplusarch;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO aplusarch;
+
+--
+-- Name: django_site; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.django_site (
+    id integer NOT NULL,
+    domain character varying(100) NOT NULL,
+    name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.django_site OWNER TO aplusarch;
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.django_site_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_site_id_seq OWNER TO aplusarch;
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.django_site_id_seq OWNED BY public.django_site.id;
+
+
+--
+-- Name: portfolio_category; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.portfolio_category (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.portfolio_category OWNER TO aplusarch;
+
+--
+-- Name: portfolio_category_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.portfolio_category_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.portfolio_category_id_seq OWNER TO aplusarch;
+
+--
+-- Name: portfolio_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.portfolio_category_id_seq OWNED BY public.portfolio_category.id;
+
+
+--
+-- Name: portfolio_categorytranslation; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.portfolio_categorytranslation (
+    id integer NOT NULL,
+    language_code character varying(10) NOT NULL,
+    name character varying(255) NOT NULL,
+    category_id integer NOT NULL
+);
+
+
+ALTER TABLE public.portfolio_categorytranslation OWNER TO aplusarch;
+
+--
+-- Name: portfolio_categorytranslation_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.portfolio_categorytranslation_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.portfolio_categorytranslation_id_seq OWNER TO aplusarch;
+
+--
+-- Name: portfolio_categorytranslation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.portfolio_categorytranslation_id_seq OWNED BY public.portfolio_categorytranslation.id;
+
+
+--
+-- Name: portfolio_project; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.portfolio_project (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description text NOT NULL,
+    is_featured boolean NOT NULL
+);
+
+
+ALTER TABLE public.portfolio_project OWNER TO aplusarch;
+
+--
+-- Name: portfolio_project_category; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.portfolio_project_category (
+    id integer NOT NULL,
+    project_id integer NOT NULL,
+    category_id integer NOT NULL
+);
+
+
+ALTER TABLE public.portfolio_project_category OWNER TO aplusarch;
+
+--
+-- Name: portfolio_project_category_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.portfolio_project_category_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.portfolio_project_category_id_seq OWNER TO aplusarch;
+
+--
+-- Name: portfolio_project_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.portfolio_project_category_id_seq OWNED BY public.portfolio_project_category.id;
+
+
+--
+-- Name: portfolio_project_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.portfolio_project_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.portfolio_project_id_seq OWNER TO aplusarch;
+
+--
+-- Name: portfolio_project_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.portfolio_project_id_seq OWNED BY public.portfolio_project.id;
+
+
+--
+-- Name: portfolio_projectimage; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.portfolio_projectimage (
+    id integer NOT NULL,
+    image character varying(100) NOT NULL,
+    sort_order integer NOT NULL,
+    alt character varying(128) NOT NULL,
+    project_id integer NOT NULL
+);
+
+
+ALTER TABLE public.portfolio_projectimage OWNER TO aplusarch;
+
+--
+-- Name: portfolio_projectimage_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.portfolio_projectimage_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.portfolio_projectimage_id_seq OWNER TO aplusarch;
+
+--
+-- Name: portfolio_projectimage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.portfolio_projectimage_id_seq OWNED BY public.portfolio_projectimage.id;
+
+
+--
+-- Name: portfolio_projecttranslation; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.portfolio_projecttranslation (
+    id integer NOT NULL,
+    language_code character varying(10) NOT NULL,
+    name character varying(255) NOT NULL,
+    description text NOT NULL,
+    project_id integer NOT NULL
+);
+
+
+ALTER TABLE public.portfolio_projecttranslation OWNER TO aplusarch;
+
+--
+-- Name: portfolio_projecttranslation_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.portfolio_projecttranslation_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.portfolio_projecttranslation_id_seq OWNER TO aplusarch;
+
+--
+-- Name: portfolio_projecttranslation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.portfolio_projecttranslation_id_seq OWNED BY public.portfolio_projecttranslation.id;
+
+
+--
+-- Name: service_service; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.service_service (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description text NOT NULL,
+    background character varying(100) NOT NULL,
+    percent integer NOT NULL,
+    sort_order integer NOT NULL
+);
+
+
+ALTER TABLE public.service_service OWNER TO aplusarch;
+
+--
+-- Name: service_service_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.service_service_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.service_service_id_seq OWNER TO aplusarch;
+
+--
+-- Name: service_service_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.service_service_id_seq OWNED BY public.service_service.id;
+
+
+--
+-- Name: service_servicetranslation; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.service_servicetranslation (
+    id integer NOT NULL,
+    language_code character varying(10) NOT NULL,
+    name character varying(255) NOT NULL,
+    description text NOT NULL,
+    service_id integer NOT NULL
+);
+
+
+ALTER TABLE public.service_servicetranslation OWNER TO aplusarch;
+
+--
+-- Name: service_servicetranslation_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.service_servicetranslation_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.service_servicetranslation_id_seq OWNER TO aplusarch;
+
+--
+-- Name: service_servicetranslation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.service_servicetranslation_id_seq OWNED BY public.service_servicetranslation.id;
+
+
+--
+-- Name: sitesetting_sitesettings; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.sitesetting_sitesettings (
+    id integer NOT NULL,
+    description character varying(500) NOT NULL,
+    keywords character varying(255) NOT NULL,
+    email character varying(100) NOT NULL,
+    address character varying(255) NOT NULL,
+    site_id integer NOT NULL,
+    phone character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.sitesetting_sitesettings OWNER TO aplusarch;
+
+--
+-- Name: sitesetting_sitesettings_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.sitesetting_sitesettings_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.sitesetting_sitesettings_id_seq OWNER TO aplusarch;
+
+--
+-- Name: sitesetting_sitesettings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.sitesetting_sitesettings_id_seq OWNED BY public.sitesetting_sitesettings.id;
+
+
+--
+-- Name: sitesetting_socialnetwork; Type: TABLE; Schema: public; Owner: aplusarch
+--
+
+CREATE TABLE public.sitesetting_socialnetwork (
+    id integer NOT NULL,
+    name character varying(50) NOT NULL,
+    icon character varying(100) NOT NULL,
+    link character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.sitesetting_socialnetwork OWNER TO aplusarch;
+
+--
+-- Name: sitesetting_socialnetwork_id_seq; Type: SEQUENCE; Schema: public; Owner: aplusarch
+--
+
+CREATE SEQUENCE public.sitesetting_socialnetwork_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.sitesetting_socialnetwork_id_seq OWNER TO aplusarch;
+
+--
+-- Name: sitesetting_socialnetwork_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aplusarch
+--
+
+ALTER SEQUENCE public.sitesetting_socialnetwork_id_seq OWNED BY public.sitesetting_socialnetwork.id;
+
+
+--
+-- Name: account_user id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user ALTER COLUMN id SET DEFAULT nextval('public.account_user_id_seq'::regclass);
+
+
+--
+-- Name: account_user_groups id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user_groups ALTER COLUMN id SET DEFAULT nextval('public.account_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: account_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.account_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: blog_category id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_category ALTER COLUMN id SET DEFAULT nextval('public.blog_category_id_seq'::regclass);
+
+
+--
+-- Name: blog_categorytranslation id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_categorytranslation ALTER COLUMN id SET DEFAULT nextval('public.blog_categorytranslation_id_seq'::regclass);
+
+
+--
+-- Name: blog_post id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_post ALTER COLUMN id SET DEFAULT nextval('public.blog_post_id_seq'::regclass);
+
+
+--
+-- Name: blog_post_tag id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_post_tag ALTER COLUMN id SET DEFAULT nextval('public.blog_post_tag_id_seq'::regclass);
+
+
+--
+-- Name: blog_posttranslation id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_posttranslation ALTER COLUMN id SET DEFAULT nextval('public.blog_posttranslation_id_seq'::regclass);
+
+
+--
+-- Name: blog_tag id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_tag ALTER COLUMN id SET DEFAULT nextval('public.blog_tag_id_seq'::regclass);
+
+
+--
+-- Name: blog_tagtranslation id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_tagtranslation ALTER COLUMN id SET DEFAULT nextval('public.blog_tagtranslation_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_celery_results_taskresult id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_celery_results_taskresult ALTER COLUMN id SET DEFAULT nextval('public.django_celery_results_taskresult_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: django_site id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_site ALTER COLUMN id SET DEFAULT nextval('public.django_site_id_seq'::regclass);
+
+
+--
+-- Name: portfolio_category id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_category ALTER COLUMN id SET DEFAULT nextval('public.portfolio_category_id_seq'::regclass);
+
+
+--
+-- Name: portfolio_categorytranslation id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_categorytranslation ALTER COLUMN id SET DEFAULT nextval('public.portfolio_categorytranslation_id_seq'::regclass);
+
+
+--
+-- Name: portfolio_project id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_project ALTER COLUMN id SET DEFAULT nextval('public.portfolio_project_id_seq'::regclass);
+
+
+--
+-- Name: portfolio_project_category id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_project_category ALTER COLUMN id SET DEFAULT nextval('public.portfolio_project_category_id_seq'::regclass);
+
+
+--
+-- Name: portfolio_projectimage id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_projectimage ALTER COLUMN id SET DEFAULT nextval('public.portfolio_projectimage_id_seq'::regclass);
+
+
+--
+-- Name: portfolio_projecttranslation id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_projecttranslation ALTER COLUMN id SET DEFAULT nextval('public.portfolio_projecttranslation_id_seq'::regclass);
+
+
+--
+-- Name: service_service id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.service_service ALTER COLUMN id SET DEFAULT nextval('public.service_service_id_seq'::regclass);
+
+
+--
+-- Name: service_servicetranslation id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.service_servicetranslation ALTER COLUMN id SET DEFAULT nextval('public.service_servicetranslation_id_seq'::regclass);
+
+
+--
+-- Name: sitesetting_sitesettings id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.sitesetting_sitesettings ALTER COLUMN id SET DEFAULT nextval('public.sitesetting_sitesettings_id_seq'::regclass);
+
+
+--
+-- Name: sitesetting_socialnetwork id; Type: DEFAULT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.sitesetting_socialnetwork ALTER COLUMN id SET DEFAULT nextval('public.sitesetting_socialnetwork_id_seq'::regclass);
+
+
+--
+-- Data for Name: account_user; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.account_user (id, password, last_login, is_superuser, email, first_name, last_name, date_of_birth, is_active, is_staff, created_at, updated_at) FROM stdin;
+8	pbkdf2_sha256$150000$k6M5qcnhRCcJ$kPBzeYfH+zjkm+QKz0TEPK4vdt5ASzvtYeGJ0vLDeP0=	2020-12-22 11:22:29.400307+07	f	admin@aplusarchitects.vn	VU HOANG	KHA	1984-01-06	t	t	2020-12-09 10:27:04.703396+07	2020-12-10 08:43:02.969693+07
+\.
+
+
+--
+-- Data for Name: account_user_groups; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.account_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: account_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.account_user_user_permissions (id, user_id, permission_id) FROM stdin;
+10	8	35
+11	8	79
+12	8	48
+13	8	84
+14	8	53
+15	8	89
+16	8	58
+17	8	29
+18	8	30
+\.
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add content type	4	add_contenttype
+14	Can change content type	4	change_contenttype
+15	Can delete content type	4	delete_contenttype
+16	Can view content type	4	view_contenttype
+17	Can add session	5	add_session
+18	Can change session	5	change_session
+19	Can delete session	5	delete_session
+20	Can view session	5	view_session
+21	Can add site	6	add_site
+22	Can change site	6	change_site
+23	Can delete site	6	delete_site
+24	Can view site	6	view_site
+25	Can add user	7	add_user
+26	Can change user	7	change_user
+27	Can delete user	7	delete_user
+28	Can view user	7	view_user
+29	Manage customers.	7	manage_customer
+30	Manage staffs.	7	manage_staff
+31	Can add site settings	8	add_sitesettings
+32	Can change site settings	8	change_sitesettings
+33	Can delete site settings	8	delete_sitesettings
+34	Can view site settings	8	view_sitesettings
+35	Manage site settings.	8	manage_sitesettings
+36	Can add task result	9	add_taskresult
+37	Can change task result	9	change_taskresult
+38	Can delete task result	9	delete_taskresult
+39	Can view task result	9	view_taskresult
+40	Can add social network	10	add_socialnetwork
+41	Can change social network	10	change_socialnetwork
+42	Can delete social network	10	delete_socialnetwork
+43	Can view social network	10	view_socialnetwork
+44	Can add category	11	add_category
+45	Can change category	11	change_category
+46	Can delete category	11	delete_category
+47	Can view category	11	view_category
+48	Manage blog categories.	11	manage_category
+49	Can add tag	12	add_tag
+50	Can change tag	12	change_tag
+51	Can delete tag	12	delete_tag
+52	Can view tag	12	view_tag
+53	Manage blog tags.	12	manage_tag
+54	Can add post	13	add_post
+55	Can change post	13	change_post
+56	Can delete post	13	delete_post
+57	Can view post	13	view_post
+58	Manage blog posts.	13	manage_post
+59	Can add tag translation	14	add_tagtranslation
+60	Can change tag translation	14	change_tagtranslation
+61	Can delete tag translation	14	delete_tagtranslation
+62	Can view tag translation	14	view_tagtranslation
+63	Can add post translation	15	add_posttranslation
+64	Can change post translation	15	change_posttranslation
+65	Can delete post translation	15	delete_posttranslation
+66	Can view post translation	15	view_posttranslation
+67	Can add category translation	16	add_categorytranslation
+68	Can change category translation	16	change_categorytranslation
+69	Can delete category translation	16	delete_categorytranslation
+70	Can view category translation	16	view_categorytranslation
+71	Can add service translation	17	add_servicetranslation
+72	Can change service translation	17	change_servicetranslation
+73	Can delete service translation	17	delete_servicetranslation
+74	Can view service translation	17	view_servicetranslation
+75	Can add service	18	add_service
+76	Can change service	18	change_service
+77	Can delete service	18	delete_service
+78	Can view service	18	view_service
+79	Manage services.	18	manage_service
+80	Can add category	19	add_category
+81	Can change category	19	change_category
+82	Can delete category	19	delete_category
+83	Can view category	19	view_category
+84	Manage portfolio categories.	19	manage_category
+85	Can add project	20	add_project
+86	Can change project	20	change_project
+87	Can delete project	20	delete_project
+88	Can view project	20	view_project
+89	Manage portfolio projects.	20	manage_project
+90	Can add project image	21	add_projectimage
+91	Can change project image	21	change_projectimage
+92	Can delete project image	21	delete_projectimage
+93	Can view project image	21	view_projectimage
+94	Can add project translation	22	add_projecttranslation
+95	Can change project translation	22	change_projecttranslation
+96	Can delete project translation	22	delete_projecttranslation
+97	Can view project translation	22	view_projecttranslation
+98	Can add category translation	23	add_categorytranslation
+99	Can change category translation	23	change_categorytranslation
+100	Can delete category translation	23	delete_categorytranslation
+101	Can view category translation	23	view_categorytranslation
+\.
+
+
+--
+-- Data for Name: blog_category; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.blog_category (id, name) FROM stdin;
+1	Nhà phố
+2	Nội thất
+3	Biệt thự
+\.
+
+
+--
+-- Data for Name: blog_categorytranslation; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.blog_categorytranslation (id, language_code, name, category_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: blog_post; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.blog_post (id, title, description, content, image, created_at, updated_at, author_id, category_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: blog_post_tag; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.blog_post_tag (id, post_id, tag_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: blog_posttranslation; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.blog_posttranslation (id, language_code, title, content, post_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: blog_tag; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.blog_tag (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: blog_tagtranslation; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.blog_tagtranslation (id, language_code, name, tag_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_celery_results_taskresult; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.django_celery_results_taskresult (id, task_id, status, content_type, content_encoding, result, date_done, traceback, hidden, meta, task_args, task_kwargs, task_name) FROM stdin;
+1	9d151697-8fae-4efe-b82b-d2f232ebcf44	SUCCESS	application/json	utf-8	null	2019-07-18 19:16:59.5987+07	\N	f	{"children": []}	('it.acongco@gmail.com', 'MP8yEBy82X')	{}	app.account.emails.send_info_signin_email
+2	994d3b84-2b7b-4098-85d6-c35fa6d79210	SUCCESS	application/json	utf-8	null	2019-07-18 19:42:34.657887+07	\N	f	{"children": []}	('it.acongco@gmail.com', '4s2RBbBurx')	{}	app.account.emails.send_info_signin_email
+3	226c780b-b60d-41d7-bf6e-ebc179d13e7a	SUCCESS	application/json	utf-8	null	2019-07-18 19:43:05.039839+07	\N	f	{"children": []}	('it.acongco@gmail.com', 'YZr5DQShny')	{}	app.account.emails.send_info_signin_email
+4	70adc44b-d4a0-4a01-86d0-bae7c97ecefb	SUCCESS	application/json	utf-8	null	2019-07-18 19:43:43.929329+07	\N	f	{"children": []}	({'email': 'it.acongco@gmail.com', 'domain': 'aplusarch.vn', 'site_name': 'aplusarch.vn', 'uid': 'Nw', 'token': '584-766492a0be0eb3e8802d', 'protocol': 'http'}, 'it.acongco@gmail.com')	{}	app.account.emails.send_password_reset_email
+5	2c21cca3-5b97-47d9-a4f1-b291dcba062b	SUCCESS	application/json	utf-8	null	2019-07-18 19:45:12.876413+07	\N	f	{"children": []}	({'email': 'it.acongco@gmail.com', 'domain': 'aplusarch.vn', 'site_name': 'aplusarch.vn', 'uid': 'Nw', 'token': '584-766492a0be0eb3e8802d', 'protocol': 'http'}, 'it.acongco@gmail.com')	{}	app.account.emails.send_password_reset_email
+6	95c328da-d4bd-4dce-a3ea-0326fc55a7f8	SUCCESS	application/json	utf-8	null	2019-07-18 20:03:21.329613+07	\N	f	{"children": []}	({'email': 'it.acongco@gmail.com', 'domain': 'aplusarch.vn', 'site_name': 'aplusarch.vn', 'uid': 'Nw', 'token': '584-766492a0be0eb3e8802d', 'protocol': 'http'}, 'it.acongco@gmail.com')	{}	app.account.emails.send_password_reset_email
+7	25632d31-480d-475e-ae95-8b7dfd7fc708	SUCCESS	application/json	utf-8	null	2019-07-19 02:20:34.738739+07	\N	f	{"children": []}	({'email': 'dinhnghia.it@gmail.com', 'domain': 'aplusarch.vn', 'site_name': 'A PLUS ARCHITECTS', 'uid': 'MQ', 'token': '585-e7bb1dffdb4049279e94', 'protocol': 'http'}, 'dinhnghia.it@gmail.com')	{}	app.account.emails.send_password_reset_email
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	contenttypes	contenttype
+5	sessions	session
+6	sites	site
+7	account	user
+8	sitesetting	sitesettings
+9	django_celery_results	taskresult
+10	sitesetting	socialnetwork
+11	blog	category
+12	blog	tag
+13	blog	post
+14	blog	tagtranslation
+15	blog	posttranslation
+16	blog	categorytranslation
+17	service	servicetranslation
+18	service	service
+19	portfolio	category
+20	portfolio	project
+21	portfolio	projectimage
+22	portfolio	projecttranslation
+23	portfolio	categorytranslation
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2019-07-18 18:24:52.255529+07
+2	contenttypes	0002_remove_content_type_name	2019-07-18 18:24:52.269344+07
+3	auth	0001_initial	2019-07-18 18:24:52.298019+07
+4	auth	0002_alter_permission_name_max_length	2019-07-18 18:24:52.324052+07
+5	auth	0003_alter_user_email_max_length	2019-07-18 18:24:52.332682+07
+6	auth	0004_alter_user_username_opts	2019-07-18 18:24:52.342172+07
+7	auth	0005_alter_user_last_login_null	2019-07-18 18:24:52.351098+07
+8	auth	0006_require_contenttypes_0002	2019-07-18 18:24:52.353802+07
+9	auth	0007_alter_validators_add_error_messages	2019-07-18 18:24:52.363099+07
+10	auth	0008_alter_user_username_max_length	2019-07-18 18:24:52.372321+07
+11	auth	0009_alter_user_last_name_max_length	2019-07-18 18:24:52.380996+07
+12	auth	0010_alter_group_name_max_length	2019-07-18 18:24:52.405846+07
+13	auth	0011_update_proxy_permissions	2019-07-18 18:24:52.422584+07
+14	account	0001_initial	2019-07-18 18:24:52.488978+07
+15	account	0002_auto_20190710_1450	2019-07-18 18:24:52.548095+07
+16	admin	0001_initial	2019-07-18 18:24:52.566642+07
+17	admin	0002_logentry_remove_auto_add	2019-07-18 18:24:52.584265+07
+18	admin	0003_logentry_add_action_flag_choices	2019-07-18 18:24:52.595614+07
+19	django_celery_results	0001_initial	2019-07-18 18:24:52.607752+07
+20	django_celery_results	0002_add_task_name_args_kwargs	2019-07-18 18:24:52.624723+07
+21	django_celery_results	0003_auto_20181106_1101	2019-07-18 18:24:52.629363+07
+22	django_celery_results	0004_auto_20190516_0412	2019-07-18 18:24:52.67464+07
+23	sessions	0001_initial	2019-07-18 18:24:52.68305+07
+24	sites	0001_initial	2019-07-18 18:24:52.693985+07
+25	sites	0002_alter_domain_unique	2019-07-18 18:24:52.704882+07
+26	sitesetting	0001_initial	2019-07-18 18:24:52.719057+07
+27	sitesetting	0002_auto_20190710_1427	2019-07-18 18:24:52.72736+07
+28	sitesetting	0003_sitesettings_phone	2019-07-19 01:41:08.765934+07
+29	sitesetting	0004_socialnetwork	2019-07-19 01:41:08.785967+07
+30	sitesetting	0005_remove_socialnetwork_site_settings	2019-07-19 01:41:08.825021+07
+31	sitesetting	0006_auto_20190719_0121	2019-07-19 01:41:08.858295+07
+32	blog	0001_initial	2019-07-20 19:09:37.704776+07
+33	blog	0002_auto_20190719_1639	2019-07-20 19:09:37.778902+07
+34	service	0001_initial	2019-07-28 13:30:11.325476+07
+35	portfolio	0001_initial	2019-08-03 13:29:15.451129+07
+36	portfolio	0002_auto_20190802_1131	2019-08-03 13:29:15.615936+07
+37	portfolio	0003_project_is_featured	2020-04-26 19:06:28.176276+07
+38	portfolio	0004_auto_20200426_1843	2020-04-26 19:06:28.216863+07
+39	service	0002_auto_20200429_0009	2020-04-29 00:35:21.536083+07
+40	service	0003_auto_20200429_0027	2020-04-29 00:35:21.553052+07
+41	service	0004_auto_20200429_0029	2020-04-29 00:35:21.560189+07
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+8w5pdm9gozzlp3m3m44khbu7h2ruk09d	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-05-13 05:19:34.735025+07
+pjhspa6mem91cotxs5o5y0k1rdbmm8ux	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-05-13 05:39:05.407663+07
+jl5dsj6lipy1h3t8ljbndi01dfor8pw0	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-05-13 19:19:25.842142+07
+3pgygzo3uvelz1mascak4fl4y56xcrro	NTc2YTgyYTliNDliMzU3OTQ1ZTY0NmNkZTQ3N2RkYTEyNmUyMDlkNDp7Il9sYW5ndWFnZSI6ImVuIn0=	2020-05-16 22:38:10.022945+07
+1bwi61x3vxcaw7cjkh65kvwdccyusxh7	NTc2YTgyYTliNDliMzU3OTQ1ZTY0NmNkZTQ3N2RkYTEyNmUyMDlkNDp7Il9sYW5ndWFnZSI6ImVuIn0=	2020-05-19 20:04:22.16764+07
+k56my7q28ubbazln8517mduxafs20m9u	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-05-22 12:42:30.968337+07
+m7qx8mjz1ag9ncs0hjvgpx8toh8ehd47	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-06-19 12:22:31.816886+07
+if49ns8uljofityd41cyhy31qxhqiwsd	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-06-22 12:11:24.082783+07
+efwcitxswfpu40c6ch1taydops2jk07d	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-06-26 16:47:14.442467+07
+l5doeja90rv2rcoi3zcvnod9dvlsmwbn	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-06-29 12:49:29.663376+07
+4fck1nt3hrdbpte4xly6rjlf5onexa5r	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-07-01 18:51:18.373859+07
+7zxhovfsmm3w782xrl0jz28wd1zpj54w	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-07-15 13:59:20.162836+07
+qsqzl3h5jgm4u140tdgsew1vvkdwrctj	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-07-18 17:41:41.568199+07
+38igkcm6agnjvir3o0rjdbkxgz7ui36t	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-07-23 10:22:38.584542+07
+4uf9ychwx0pa1ylm748b4v6heea8wzsp	NmI5NmRiZTczMTc1NjkxMDI5ZDkwNjkzZDZjODQxYzJlMDdhYzlmNjp7Il9sYW5ndWFnZSI6InZpIiwiX2F1dGhfdXNlcl9pZCI6IjciLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjRhYTk4ODdiMjQ0Njc4NDIwN2M1NTRmMDIwOThiM2QyZGUzOGYyODAifQ==	2019-08-17 20:59:20.2477+07
+2sfg9tqucki48ihfnaf3og7vwt6vfrxa	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2019-08-20 13:04:25.855334+07
+13y6fme5ovumyu7gjy3jfpaz8da4xa48	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2019-11-28 17:45:01.158581+07
+j0r99y4pzuudjkj5ys4wj0t13pn9fz29	ZGI2OTI5NWEyNGI0NzE3Njc0OGQ0ZTMwZmJmMTU0NGNmMTJiZGE4Mjp7Il9hdXRoX3VzZXJfaWQiOiI3IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI0YWE5ODg3YjI0NDY3ODQyMDdjNTU0ZjAyMDk4YjNkMmRlMzhmMjgwIiwiX2xhbmd1YWdlIjoidmkifQ==	2019-12-08 16:11:21.274265+07
+cqd6nbkhnmokrwqqg57ftyxo5rpq507l	NTc2YTgyYTliNDliMzU3OTQ1ZTY0NmNkZTQ3N2RkYTEyNmUyMDlkNDp7Il9sYW5ndWFnZSI6ImVuIn0=	2020-05-12 21:42:28.890374+07
+ptzd6s0q3ker25x6m8xkq7vkur2mkalu	ZmMxNThjOWE0MzYxOThhNGE2OTM0OGY3ODg1ZDBkYmZhMjFmNzNiYjp7Il9sYW5ndWFnZSI6ImVuIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6ImE3MDFmNjIwY2MxYjA5NzM1M2E4MTg1NjE4MDgyMDhmMTlmNjZjMzQifQ==	2020-03-21 15:07:15.526717+07
+80d7nulfzs9og1gsz5hdx94wpsr8nr2g	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-05-08 18:49:56.623025+07
+0bq042xgk8xtt4uwxuqsdj3aru7fi1sm	MzBlYjNhMmVlYTA0ZTgzZDQ2NzhjMGI4MWNkZjJlMDAyNDA4ZjJmYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhNzAxZjYyMGNjMWIwOTczNTNhODE4NTYxODA4MjA4ZjE5ZjY2YzM0IiwiX2xhbmd1YWdlIjoidmkifQ==	2020-05-10 14:53:21.018014+07
+xbl2lji6qla21vbkg9hx1jwpk2vygxyb	MzBlYjNhMmVlYTA0ZTgzZDQ2NzhjMGI4MWNkZjJlMDAyNDA4ZjJmYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhNzAxZjYyMGNjMWIwOTczNTNhODE4NTYxODA4MjA4ZjE5ZjY2YzM0IiwiX2xhbmd1YWdlIjoidmkifQ==	2020-05-13 01:31:07.066782+07
+ka8zfhnteyeym6dicehjv2sr7clhsmsp	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-05-12 12:06:13.714326+07
+qby7aef6tyxa65r1pbmtdzgx8br1emhv	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-08-01 12:05:40.607013+07
+do6defj171oaj971j0vuqjefyc2aszka	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-08-01 13:12:20.246865+07
+u1dxzd0yvf87plymp4zvgyu2dr40oqfw	NTc2YTgyYTliNDliMzU3OTQ1ZTY0NmNkZTQ3N2RkYTEyNmUyMDlkNDp7Il9sYW5ndWFnZSI6ImVuIn0=	2020-08-13 11:00:24.344435+07
+218mewomeuum40zf8t8s1z25cgbu7gl1	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-09-03 15:04:55.971277+07
+9umxba0ssr13d2y1vgju8worm7yr20ij	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-09-04 10:24:59.57252+07
+efu15icbmbnxffwfrlvhwum4wk0lkhgc	NTc2YTgyYTliNDliMzU3OTQ1ZTY0NmNkZTQ3N2RkYTEyNmUyMDlkNDp7Il9sYW5ndWFnZSI6ImVuIn0=	2020-09-06 17:50:53.321584+07
+oe2gl3e8h9hjp1jp0oeeidbnsazk6ycw	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-09-07 13:44:38.066283+07
+hd17kfci58rn1l7aug8276c26qycockm	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-09-25 16:26:43.527566+07
+sz287hiljr8mjk4491wkcr4yinip1rbi	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-09-25 16:44:27.346421+07
+b9u3hze2lyxde2zonhzfipdlg278owi4	NTc2YTgyYTliNDliMzU3OTQ1ZTY0NmNkZTQ3N2RkYTEyNmUyMDlkNDp7Il9sYW5ndWFnZSI6ImVuIn0=	2020-09-27 08:37:08.500739+07
+p71hb4ote9dzoqjaksxzlb0920n287wp	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-09-29 08:07:14.632668+07
+ty41upselbpbr9y9kr8rdcqn7e9nw0jg	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-10-01 07:41:57.932405+07
+lkwwwm5eo52ia2oz2uw3un8tqj4su4eh	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-10-02 15:22:14.474118+07
+n02om9you4vif52b32lsy1o5d6i40u1o	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-10-03 10:34:38.173791+07
+kpkhcxcmr86ftonuchd4a8efr1kyh8jl	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-10-04 13:22:16.458232+07
+xwkngi6lcv5my7y3rl1ddi3gavghvpd1	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-10-12 15:38:05.112605+07
+s96a5pzglgvikl1omsmeuez17ykijpav	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-10-13 10:14:17.22468+07
+kgpy72s6xwkc49vz06a1lskixy4r6qvg	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-10-30 11:53:04.400124+07
+wsxmpwfetxj1w4twv3s2hmwhpdtqa1k5	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-11-03 16:52:39.828668+07
+x4cag3awupps7sg2u9abjo7j3n8jsv49	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-11-03 16:53:43.853324+07
+imgxgfsbx2l8fi9brz466dn6vu00ztmo	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-11-30 09:15:37.019836+07
+d1g1up5t8acb3b8fh5jxclwwmtzounns	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2020-12-22 09:56:41.961478+07
+0u83zmce4ej0jv7vg216guz9sbtmc8tx	MzBlYjNhMmVlYTA0ZTgzZDQ2NzhjMGI4MWNkZjJlMDAyNDA4ZjJmYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhNzAxZjYyMGNjMWIwOTczNTNhODE4NTYxODA4MjA4ZjE5ZjY2YzM0IiwiX2xhbmd1YWdlIjoidmkifQ==	2020-12-23 10:25:13.235705+07
+ia5n7ksjytbs71sh4s2mchrsco2cvq4o	ZDFkOTU5ZTJiNDA3YzlkZTczY2YwNzk5MDE4OWQwY2RhOTA0YTQwNjp7Il9sYW5ndWFnZSI6ImVuIiwiX2F1dGhfdXNlcl9pZCI6IjgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6ImFhM2UxZDY1YmQ0ZTNlZjNlNWY0YThmNDNhYTQyYzk3NzViNjBlYmMifQ==	2020-12-23 11:04:51.832185+07
+xysyoukzgekalx80s0rcu4shff8mhdxy	NzNhMTg1OWY5Y2QwOGE5NDAyN2U3YzQwNzA5MGYxNzBjZmNiMDNlMTp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYTNlMWQ2NWJkNGUzZWYzZTVmNGE4ZjQzYWE0MmM5Nzc1YjYwZWJjIn0=	2020-12-23 13:55:17.594957+07
+vs66lb2h4177ovtfzr8xtseh2gre8m25	ZWRmMTI1YTA1ZTI4MmQ5ZDM4OWE1YzM3N2QxNjdkZGVhNGEwYTBjYjp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYTNlMWQ2NWJkNGUzZWYzZTVmNGE4ZjQzYWE0MmM5Nzc1YjYwZWJjIiwiX2xhbmd1YWdlIjoidmkifQ==	2020-12-24 09:06:39.35995+07
+iuiytxr04qgn58c48xb8r70jvvat0wdj	NzNhMTg1OWY5Y2QwOGE5NDAyN2U3YzQwNzA5MGYxNzBjZmNiMDNlMTp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYTNlMWQ2NWJkNGUzZWYzZTVmNGE4ZjQzYWE0MmM5Nzc1YjYwZWJjIn0=	2020-12-24 10:41:53.51652+07
+2jcim6ezdo0dmbf6bw04qhmmks1kqwz8	NzNhMTg1OWY5Y2QwOGE5NDAyN2U3YzQwNzA5MGYxNzBjZmNiMDNlMTp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYTNlMWQ2NWJkNGUzZWYzZTVmNGE4ZjQzYWE0MmM5Nzc1YjYwZWJjIn0=	2020-12-24 14:07:24.293863+07
+x28vsq26nxdrq03thqwbp2mwxkq9l9ia	NzNhMTg1OWY5Y2QwOGE5NDAyN2U3YzQwNzA5MGYxNzBjZmNiMDNlMTp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYTNlMWQ2NWJkNGUzZWYzZTVmNGE4ZjQzYWE0MmM5Nzc1YjYwZWJjIn0=	2020-12-31 14:42:53.494139+07
+l6ejd7n9kr5y8rfy2s8z0e274xde5ld9	NzNhMTg1OWY5Y2QwOGE5NDAyN2U3YzQwNzA5MGYxNzBjZmNiMDNlMTp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYTNlMWQ2NWJkNGUzZWYzZTVmNGE4ZjQzYWE0MmM5Nzc1YjYwZWJjIn0=	2021-01-05 09:24:53.847593+07
+g8aaku3crdt9ovz4wtpb20w6ksjgj5on	NzNhMTg1OWY5Y2QwOGE5NDAyN2U3YzQwNzA5MGYxNzBjZmNiMDNlMTp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYTNlMWQ2NWJkNGUzZWYzZTVmNGE4ZjQzYWE0MmM5Nzc1YjYwZWJjIn0=	2021-01-05 11:22:29.40336+07
+js3jsq1g9cosy6c4839j47wg8ob7b3yg	YTliM2YzZmE2NDM5NTEzZjM4ZjQ1NTIyNWNlNzc5YzcwOGM3MGE2Mzp7Il9sYW5ndWFnZSI6InZpIn0=	2021-01-05 20:37:46.262091+07
+\.
+
+
+--
+-- Data for Name: django_site; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.django_site (id, domain, name) FROM stdin;
+1	aplusarchitects.vn	A PLUS ARCHITECTS
+\.
+
+
+--
+-- Data for Name: portfolio_category; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.portfolio_category (id, name) FROM stdin;
+1	Nhà phố
+2	Thương mại - Dịch vụ
+3	Chưa xác định
+4	Villa
+5	công trình cộng đồng
+\.
+
+
+--
+-- Data for Name: portfolio_categorytranslation; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.portfolio_categorytranslation (id, language_code, name, category_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: portfolio_project; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.portfolio_project (id, name, description, is_featured) FROM stdin;
+4	Gion Building	Mục đích của công trình là tạo ra một hệ sinh thái với các không gian chức năng: Co living- Co working- Dịch vụ tiện ích. Các khối lưu trú được thiết kế dưới dạng module nhằm giảm thời gian thi công và chi phí đầu tư. Các không gian phụ, lõi được bố trí ở hướng Tây khoảng 80% để làm giảm diện tích xúc hướng Tây cho các không gian chức năng.	f
+3	Đại học Tôn Đức Thắng	Mục đích của dự án là tạo ra một mái nhà chung cho SV, lấy cảm hứng từ những ngôi nhà bên sông ở vùng đất An Giang. Đặc trưng của hình khối dự án ngoài tạo tính nhận diện cho trường, mà nó còn mang ý nghĩa đón nhận và tiếp thu tri thức.	f
+6	Bien Hoa Square	Khu bến tàu &amp; club house là công trình tiện ích cho cư dân vơi điểm bất lợi của bến tàu là nằm bên bồi của con sông và khu đất trải dài theo hướng Tây. Giải pháp của bến tàu là thiết kế thêm 1 đê chắn đất hình móc câu để làm thay đổi khu vực bồi đất, mục đích làm tăng mức độ khả thi cho vận hành bến tàu. Ý tưởng chính của khối club là những chiếc máng cỏ được gác lên mái tạo sự khác biệt về nhận diện cho khối công trình điểm nhấn tiên phong của dự án. Đó cũng là giải pháp chống nóng hiệu quả cho mái và tăng mảng xanh công năng cho cư dân.	f
+7	Van Lien Hoa Head Office	Dự án là văn phòng của một công ty môi trường nên việc tìm kiếm giải pháp truyền thông điệp và tính chất cúa công ty là rất quan trọng. May mắn của dụ án là nhóm thiết kế tìm được nguồn sắt ống cũ từ nhà máy. Từ đó đưa ra một tổ hợp kết cấu mang tính nhận diện đặc trưng cho công ty. Ngoài ra, đây cũng là tham vọng của nhóm thiết kế trong việc phát triển các dự án, công trình có nhịp vượt lớn ở khu vực có điều kiện thi công khó khăn. Thì giải pháp chia nhỏ 1 dầm thép đặc thành những ống thép rời để dễ vận chuyển và thi công địa phương sẽ là giải pháp rất khả thi.Hy vọng sự táo bạo trong giải pháp kết cấu không gian sẽ đem lại sự thành công về mặt nhận diện của chủ đầu tư góp phần vào thành công của họ cũng như lan tỏa tinh thần về môi trường cho mọi người.	f
+8	Vo Van Kiet Building	Vo Van Kiet Building là một công trình phức hợp văn phòng kết hợp căn hộ dịch vụ giữa trung tâm quận 1. Bên cạnh việc đáp ứng nhu cầu công năng của chủ đầu tư từ yêu cầu về tính nhận diện khác biệt và hợp lí được đặt lên hàng đầu dẫn đến ý tưởng chậu cây lớn giữa lòng thành phố ra đời với sự logic từ công năng đến hình thức- khối văn phòng cho chậu và khối căn hộ cho cây.\r\nDự án không những là một điểm nhấn cảnh quan cho trục đường ven sông mà còn góp phần vào cải tạo vi khí hậu cho môi trường xung quanh và giảm bớt áp lực bê tông hóa đô thị. Sự tương phản về đường nét thiết kế của khối đế và phần trên sẽ làm cho dự án càng nổi bật.	f
+18	Thuy Dinh Restaurant	<p class="MsoNormal" style="">Đồ án là một\r\ncách khác để làm mô hình nhà hàng đậm chất sân khấu truyền thống với không gian\r\nngoài trời, xen kẽ là mặt nước cạn bao phủ các khối công trình, góp phần cải tạo\r\nvi khí hậu và tạo nên bối cảnh lung linh ấn tượng. Mái đình không còn là kiến\r\ntrúc biểu hiện thông thường, mà là bản chất của không gian bên dưới mái đình mới\r\nđược mô tả lại.<o:p></o:p></p>	f
+9	Nam Cuong Shophouse	A+ tiếp cận dự án khi trong giai đoạn phần thô với sự thiết kế tự phát của chủ nhà không hợp lí cho mô hình shophouse. Về ngoại thất, giới hạn lớn nhất là công trình chính Tây vừa phải xử lí nắng Tây vừa phải xử lí nhu cầu sản phẩm nên giải pháp lam trượt được lựa chọn. Với tầng ở được xử lí theo ngôn ngữ riêng đảm bảo sự thống nhất từ hình thức đến công năng. Về nội thất, tầng ở đã được đập đi cải tạo mới hoàn toàn để đảm bảo chất lượng không gian sống tiện nghi hơn. \r\nVới tầng shop kinh doanh là một đường giao thông chéo kết nối vác nút giao thông hiện hữu là giải pháp chính để xử lí vận hành cho công trình.	f
+10	3/2 building	<p class="MsoNormal" style="text-align:justify;tab-stops:58.9pt">Giải pháp lam đứng\r\ntone màu đậm mạnh mẽ tạo sự ghi nhớ của mọi người khi di chuyển trên trục đường.\r\nCông trình đạt giải pháp tốt về nhiệt khí hậu, chúng tôi bố trí các mảng đặc\r\nnhiều hơn ở hướng Đông- Tây, các mảng rỗng được mở về phía ngược lại để tăng diện\r\ntiếp xúc view nhìn. Hình ảnh lam đứng tạo hiệu ứng thị giác hiện đại khiến cảm\r\ngiác như công trình còn phát triển nữa. 2 tầng thương mại được xử lí lam dày\r\nhơn tạo sự thống nhất từ hình thức đến công năng.<o:p></o:p></p>	f
+22	Dau Handmade	<p><span style="line-height: 107%;">Công\r\ntrình đánh dấu bước ngoặt của A+ trong mảng thiết kế và thi công nhanh. Không\r\nloại bỏ hoàn toàn hàng lam bê-tông như chủ đầu tư đề xuất lúc đầu, chúng tôi đã\r\ntìm kiếm những giải pháp khác để thổi hồn Hà Nội xưa vào công trình, nhưng vẫn\r\ngiữ được giá trị lịch sử của tòa nhà hiện trạng. Diện tích hẹp, thời gian thi\r\ncông gấp rút trong 15 ngày, sức ép về suất đầu tư và khó khăn trong kết nối với\r\nkhách hàng, tất cả những khó khăn và cách A+ giải quyết vấn đề với tác phong\r\nnhanh, hiệu quả và chuyên nghiệp đã tạo nên sự độc nhất của dự án cải tạo nhà\r\nhiện</span><br></p>	f
+2	Suối Voi	SUỐI VOI - Cách thành phố Huế 50 km và thành phố Đà Nẵng 40 km. Dự án khu nghỉ dưỡng cao cấp tọa lạc tại trung tâm tam giác vàng du lịch của cả nước: Cảng Chân Mây – Vườn Quốc Gia Bạch Mã – Vịnh Lăng Cô.	f
+11	TTC Seafood Restaurant	<p class="MsoNormal" style="">Công trình nằm\r\nchung khu nhà hàng tiệc cưới với phong cách tân cổ điển với đề bài làm nhà hàng\r\nhải sản được đặt trên khối khách sạn cũ. Vì vậy yêu cầu về sự tương đồng và\r\ntương phải là một thách thức lớn cho dự án. Với yêu cầu tiến độ gấp của dự án,\r\ngiải pháp A+ đưa ra là kết cấu thép để giải quyết bài toán tiến độ. Đồng thời\r\nphương đứng của công trình cũng được lặp lại làm hài hòa tổng thể giữa sự cũ và\r\nmới. Những mái vòm cong bằng hệ hoa văn cắt CNC và bản chất của kết cấu thép tạo\r\nsự khác biệt cho công trình. Thành công của dự án là sự gợi nhớ những đường nét\r\ntân cổ điển bằng sự nhẹ nhàng của kết cấu thép nhưng vẫn đảm bảo sự thống nhất\r\ngiữa kết cấu và hình thức của công trình.<o:p></o:p></p>	f
+12	HA Hotel	<p class="MsoNormal" style="">Khu đất hẹp và\r\ndài theo hướng Bắc Nam nên diện tích tiếp xúc nắng Tây rất nhiều với yêu cầu là\r\nkhối khách sạn. Vì vậy chúng tôi đề xuất phần công năng là đưa toàn bộ lõi giao\r\nthông và công trình phụ về hướng Tây để giảm lượng nhiệt truyền vào công trình.\r\nGiải pháp về kiến trúc là tạo ra các khối đặc rỗng xen kẽ được tạo ra từ tổ hợp\r\nmẫu bê tông thử để đem lại hiệu quả không gian vừa mở vừa riêng tư phù hợp với\r\nmô hình khách sạn.<o:p></o:p></p>	f
+13	Toan DL Homestay	<p class="MsoNormal" style="">Khó khăn lớn nhất\r\ncủa dự án là với thế đất độ dốc lớn hơn 60% thì việc tổ chức giao thông kết nối\r\nsẽ mất rất nhiều diện tích giao thông. Giải pháp là một con đường bằng gỗ trên\r\ncao kết nối vào tầng thượng của công trình sẽ làm giảm diện tích giao thông\r\nđông thời tăng diện tích cho xây xanh sân vườn. Đây cũng là điểm nổi bật và\r\nmang tính nhận diện cho mô hình thương mại homestay.<o:p></o:p></p>	f
+14	Hung Phu Resident	<p class="MsoNormal" style="">Đây là giai đoạn\r\n2 của 1 dự án sẵn mẫu nhà nhưng yêu cầu cao hơn về mặt giá bán, thẩm mỹ nên khó\r\nkhăn là việc giải quyết sự tương đồng và nhận diện của dự án cũ mà phải đẩy thiết\r\nkế lên tầm cao hơn, sang trọng hơn.<o:p></o:p></p><p>\r\n\r\n</p><p class="MsoNormal" style="">Giải pháp về\r\ncông năng là việc khai thác thông minh sân trước kết hợp với garage làm tăng diện\r\ntích sử dụng và tạo khoảng lùi, tạo sự đan xen giữa không gian bên trong và bên\r\nngoài.<o:p></o:p></p>	f
+15	Sea Sport Center	<p class="MsoNormal" style="">Trung tâm thể\r\nthao là 1 dự án xanh hóa lấy 1 phần đất công viên giáp biển ở thành phố Nha\r\nTrang để làm công trình phục vụ thể thao du lịch biển cho các sân khấu quốc tế.\r\nVới yêu cầu làm sao giữ lại mảng xanh công viên nhiều nhất cho người dân và\r\nkhông làm cản trở tầm nhìn ra biển từ trục đường Trần Phú.<o:p></o:p></p><p>\r\n\r\n<span style="line-height: 107%;">Giải pháp đưa ra chỉ là tác động 50% diện tích\r\ntheo đường chéo khu đất để giải quyết bài toán tiếp cận giao thông và tối đa diện\r\ntích cho thể thao biển. Bảo tồn 100% công viên cây xanh cho phần diện tích còn\r\nlại. Những công trình có vách ngăn đều được xây đang bán hầm và khối công trình\r\ndịch vụ được thiết kế dưới dạng chống chân để giải quyết bài toán không cản\r\nview nhìn ra bãi biển.Thành công của nhóm thiết kế là giữ lại nhiều mảng xanh\r\nnhất cho người dân mà vẫn đảm bảo được sự vận hành của mô hình thể thao du lịch\r\nbiển quốc tế.</span><br></p>	f
+16	BIDV bank	<p class="MsoNormal" style="">Không gian thông\r\ntầng lớn ở giữa là nơi mọi người kết nối với nhau, là nơi tạo nên thông thoáng\r\nvà chiếu sáng tự nhiên cho toàn bộ công trình. Hàng ngày mọi người sẽ tương tác\r\nvới nhau nhiều hơn, bằng ánh nhìn, bằng cái vẫy tay... là điều căn bản mà các\r\nngân hàng khác được thiết kế theo lối phân tầng không làm được.Hình thức kiến\r\ntrúc trở về sự đơn giản nhất với các lam ngang giải quyết hầu như phần lớn ánh\r\nnắng chiếu vào công trình. Đồng thời sự bố trí không gian phụ trợ về hướng bất\r\nlợi, giúp công trình tiết kiệm rất nhiều năng lượng khi vận hành về lâu dài.<o:p></o:p></p>	f
+17	Transit Station of Tan Son Nhat Airport	<p class="MsoNormal" style="">Dự án lấy một phần\r\nđất công viên để làm trạm trung chuyển cho sân bay thành phố. Vì vậy nhiệm vụ\r\ntrả lại phần công viên ấy cho người dân là điều làm trăn trở nhất. Chuyển toàn\r\nbộ mặt đất và cây xanh hiện hữu lên trên với các cao độ khác nhau, và chúng ta\r\nsử dụng khoảng trống vừa tạo ra ấy, đó chính là ý tưởng chỉnh của dự án. Đồng\r\nthời không quên quyền lợi của chủ đầu tư là sáng tạo ra các kiot 2-3 tầng so với\r\n1 tầng thông thường, góp phần tăng hiệu quả đầu tư, là yêu tố then chốt tạo nên\r\nthành công của dự án.<o:p></o:p></p>	f
+19	TPS Thanh Phong Head Office	<p class="MsoNormal" style="">Nhà ở kết hợp\r\nvăn phòng với phong cách cổ điển cách tân là hai yêu cầu mà chúng tôi phải giải\r\nquyết trên khu đất chữ L có nhiều hạn chế này. Vị trí xây dựng bị che khuất bởi\r\nba căn nhà xung quanh, nên công trình dễ gặp trường hợp thiếu khoảng hở, bí\r\nbách do không đủ bề ngang, rất khó để có thể tìm ra giải pháp để công trình\r\nmang dáng dấp của nét cổ điển cách tân, đồng thời lại phải nhẹ nhàng và thông\r\nthoáng. Và chúng tôi đã thể hiện phong cách cổ điển cách tân theo một cách khác\r\nnhẹ nhàng hơn, hiện đại hơn. Giải pháp giao khối thông minh giúp xử lý được thế\r\nđất hình chữ L.<o:p></o:p></p>	f
+21	Golden Link Office	<p class="MsoNormal" style="">Đường nét kiến\r\ntrúc mặt tiền phát triển từ đặc thù ngành nghề kinh doanh của của chủ đầu tư,\r\ntông màu đỏ ấn tượng cũng phát triển từ màu thương hiệu, tuy nhiên một mảng lớn\r\nấn tượng sẽ là nơi hút ánh nhìn góp phần làm tăng khả năng nhận diện trên một\r\ntrục đường xô bồ dễ bị trượt view nhìn như đường Nguyễn Trọng Tuyển Quận 3.<o:p></o:p></p>	f
+23	Resort Kawasami	<p class="MsoNormal" style="">Sau khi con người\r\nbước ra khỏi hang động, chòi lá là một trong những hình thức mái che đầu tiên của\r\ncon người. Với nguồn cảm hứng đó, resort Kawasami đưa con người quay về với bản\r\nnăng lưu trú sơ khai, nhưng được chăm chút bởi những con người và công cụ hiện\r\nđại. Vật liệu sử dụng chủ yếu là vật liệu địa phương mây tre lá. Khối khách sạn\r\nđược thiết kế đảm bảo tính tương đồng toàn khu, tạo nhịp điệu và đặc biệt. Khu\r\nresort là tổ hợp kiến trúc đồng nhất, với tính biểu tượng và nhận diện thương\r\nhiệu cao.<o:p></o:p></p>	f
+27	LAKEVIEW	<p>MƯỢN SÂN VƯỜN CHO NHÀ GIAO THÔ</p><p>Tầng trệt ngôi nhà 6m trong khu dự án , được các KTS vay mượn thêm phần sân vườn, bằng cách cải tạo lại mảng sân vườn, bằng cách cải tạo lại mảng tường gạch xây bằng hệ kính lùa, vừa mang thiên nhiên vào nhà, vừa giải phóng toàn bộ không gian tầng trệt.</p>	t
+28	SWAN HOTEL	<p>Là một công trình dịch vụ du lịch ở Đà Lạt với vị trí rất đặc biệt nằm ngày góc cong của hai con đường chênh nhau 15m. Thách thức đặt ra là làm sao khai thác hiệu quả thế đất với những quy định nghiêm khắc của thành phố Đà Lạt. Cuối cùng ý tưởng “rừng trong nhà- nhà trong rừng” được hội đồng cấp phép ủng hộ vì sự hài hòa cảnh quan không phá vỡ môi trường của phương án. Ý tưởng chính của công trình là sắp xếp các khối nhà riêng biệt, nương theo địa hình. Chất cảm vật liệu hoàn thiện được lấy cảm hứng từ vật liệu địa phương- vỏ thông cùng với loài hoa đặc trưng của vùng khí hậu Đà Lạt là hoa anh đào. Hứa hẹn sẽ là một thành phố đặc biệt đầy tính nhận diện và cũng rất thân thiện với địa phương cho thành phố ngàn hoa.<br></p>	f
+25	The Soldiers of Gac Ma Memorial Park	<p class="MsoNormal" style="">Khác với các\r\ncông trình cùng thể loại, phương án của chúng tôi đưa ra không nhấn mạnh vào\r\nhình thức mang tính biểu tượng như tượng đài hùng vĩ, quảng trường to rộng, mà\r\nchúng tôi đưa khách đến viếng thăm khu tưởng niệm qua một hành trình cảm xúc, để\r\ntìm được sự đồng cảm giữa những con người hiện đại và các chiến sĩ đã ngã xuống\r\nnăm xưa.<o:p></o:p></p>	f
+20	Cu Chi District People Commitee	<p class="MsoNormal" style="">Tuy là một tòa\r\nnhà nhưng lại là cơ quan làm việc của ba phòng ban khác nhau, nên việc tổ chức\r\nchức năng và hình khối kiến trúc giúp người dân thuận lợi trong việc định hướng\r\ntiếp cận là vô cùng quan trọng. Đây là một công trình để thay đổi định kiến về\r\ntòa nhà cơ quan nhà nước: cứng nhắc và buồn tẻ.<o:p></o:p></p><p>\r\n\r\n</p><p class="MsoNormal" style="">Với sự kết hợp\r\nhài hòa giữa kiến trúc hiện đại và hoa văn truyền thống, công trình có thể được\r\nnhận diện tốt từ bên ngoài, hay từ giao thông trên con đường phía trước. Cùng với\r\ncách tổ chức không gian xoay quanh một sảnh lớn, công trình tạo cho người dân cảm\r\ngiác được chào đón và gần gũi.<o:p></o:p></p>	f
+24	Pipe Motel	<p class="MsoNormal" style="">Một mô hình nhà\r\nnghỉ ngoài trời mới lạ và năng động, thích hợp với mọi loại địa hình. Mỗi phòng\r\ndưới hình thức là một mô-đun ống bê-tông, tiết kiệm và linh động trong việc lắp\r\nráp hay tháo dỡ, di dời.<o:p></o:p></p>	t
+26	VILLA	<p>Ngôi nhà được thiết kế bếp ăn nằm giữa ô thông tầng lớn, tạo sự liên kết các thành viên trong gia đình. Căn bếp được yêu cầu xoay theo hướng phong thủy của chủ nhà, nhưng không thể làm khó được KTS của A+ architects, mà còn tạo ra 1 không gian rất đặc biệt. Nơi này , người phụ nữ trở thành trung tâm , và người đàn ông chỉ muốn xoay quanh trung tâm đó mà không còn muốn la cà 1 nơi nào khác.</p>	t
+29	CÔNG TRÌNH HƯỚNG TÂY NAM	<div dir="auto" style="font-family: &quot;Segoe UI Historic&quot;, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; color: rgb(5, 5, 5); font-size: 15px; white-space: pre-wrap; animation-name: none !important; transition-property: none !important;">Dự án có 2 nhu cầu lớn cần được giải quyết:</div><div dir="auto" style="font-family: &quot;Segoe UI Historic&quot;, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; color: rgb(5, 5, 5); font-size: 15px; white-space: pre-wrap; animation-name: none !important; transition-property: none !important;">- 1 là mặt tiền bị nắng Tây Nam chiếu trực diện.</div><div dir="auto" style="font-family: &quot;Segoe UI Historic&quot;, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; color: rgb(5, 5, 5); font-size: 15px; white-space: pre-wrap; animation-name: none !important; transition-property: none !important;">- 2 là giải quyết nhu cầu thông thoáng mà phải riêng tư của mô hình căn hộ dịch vụ.</div><div dir="auto" style="font-family: &quot;Segoe UI Historic&quot;, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; color: rgb(5, 5, 5); font-size: 15px; white-space: pre-wrap; animation-name: none !important; transition-property: none !important;">Và các bạn hãy xem cách xử lý của các KTS của A+ Architects nhé!</div>	f
+\.
+
+
+--
+-- Data for Name: portfolio_project_category; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.portfolio_project_category (id, project_id, category_id) FROM stdin;
+2	2	3
+3	3	3
+4	4	3
+6	6	3
+7	7	3
+8	8	3
+9	9	3
+10	10	3
+11	11	3
+12	12	3
+13	13	3
+14	14	3
+15	15	3
+16	16	3
+17	17	3
+18	18	3
+19	19	3
+20	20	3
+21	21	3
+22	22	3
+23	23	3
+25	25	3
+27	26	4
+28	27	4
+29	28	2
+30	24	2
+31	29	2
+\.
+
+
+--
+-- Data for Name: portfolio_projectimage; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.portfolio_projectimage (id, image, sort_order, alt, project_id) FROM stdin;
+37	portfolio/projects/nghia-1_yXCvuEO.jpg	0		15
+38	portfolio/projects/nghia-2.jpg	0		15
+39	portfolio/projects/BIDV_bank.jpg	0		16
+42	portfolio/projects/3_ktbEfcZ.jpg	0		17
+40	portfolio/projects/1_yFqdFeF.jpg	1		17
+41	portfolio/projects/2_Az0vWxK.jpg	2		17
+43	portfolio/projects/1_lw4dzJ2.jpg	0		18
+44	portfolio/projects/2_4qKgD4o.jpg	0		18
+45	portfolio/projects/3_odACwZe.jpg	0		18
+47	portfolio/projects/2_ce2tHXk.jpg	0		19
+46	portfolio/projects/1_5pjRkLY.jpg	1		19
+13	portfolio/projects/ton_duc_thang_1.jpg	0		3
+48	portfolio/projects/1_5EkbVFS.jpg	0		20
+49	portfolio/projects/1_Pgpu7zY.jpg	0		21
+50	portfolio/projects/1_Bi2A4xo.jpg	0		22
+51	portfolio/projects/1_sFw3Z5s.jpg	0		23
+14	portfolio/projects/gion_building_2.jpg	0		4
+15	portfolio/projects/gion_building_1.png	1		4
+18	portfolio/projects/bien_hoa_2.jpg	0		6
+19	portfolio/projects/bien_hoa_3.jpg	1		6
+17	portfolio/projects/bien_hoa_1.jpg	2		6
+20	portfolio/projects/Van_Lien_Hoa_Head_Office_1.jpg	0		7
+21	portfolio/projects/Van_Lien_Hoa_Head_Office_2.jpg	1		7
+6	portfolio/projects/suoi_voi_1.jpg	0		2
+12	portfolio/projects/suoi_voi_7.jpg	1		2
+10	portfolio/projects/suoi_voi_5.jpg	2		2
+11	portfolio/projects/suoi_voi_6.jpg	3		2
+9	portfolio/projects/suoi_voi_4.jpg	4		2
+7	portfolio/projects/suoi_voi_2.jpg.png	5		2
+8	portfolio/projects/suoi_voi_3.jpg	6		2
+22	portfolio/projects/Vo_Van_Kiet_Building_1.jpg	0		8
+23	portfolio/projects/Nam_Cuong_Shophouse_1.jpg	0		9
+24	portfolio/projects/3-2_building_1.jpg	0		10
+25	portfolio/projects/3-2_building_2.jpg	0		10
+26	portfolio/projects/TTC__1.jpg	0		11
+27	portfolio/projects/TTC__2.jpg	0		11
+28	portfolio/projects/TTC__3.jpg	0		11
+30	portfolio/projects/HA_2.jpg	0		12
+29	portfolio/projects/HA_1.jpg	1		12
+31	portfolio/projects/Toan_DL_Homestay_1.jpg	0		13
+33	portfolio/projects/Hung_Phu_Resident_2.jpg	0		14
+32	portfolio/projects/Hung_Phu_Resident_1.jpg	1		14
+34	portfolio/projects/Hung_Phu_Resident_3.jpg	2		14
+52	portfolio/projects/2_Taw1yod.jpg	0		23
+53	portfolio/projects/3_mzVzKdd.jpg	0		23
+54	portfolio/projects/1_5vjxcls.jpg	0		24
+55	portfolio/projects/2_Z21JdCx.jpg	0		24
+56	portfolio/projects/3_y4BpgMe.jpg	0		24
+58	portfolio/projects/2_XUg3of5.jpg	0		25
+57	portfolio/projects/1_oEjRhjx.jpg	1		25
+63	portfolio/projects/1_p9aA6HA.jpg	0		26
+64	portfolio/projects/4_yDgYVQ6.jpg	0		26
+65	portfolio/projects/2_9qXQXDk.jpg	0		26
+66	portfolio/projects/5_gCOqvlo.jpg	0		26
+67	portfolio/projects/View1.jpg	0		27
+68	portfolio/projects/View5.jpg	0		27
+69	portfolio/projects/View4.jpg	0		27
+70	portfolio/projects/View6.jpg	0		27
+71	portfolio/projects/271_pExZEFG.jpg	0		28
+72	portfolio/projects/271.1_Nk498nA.jpg	0		28
+73	portfolio/projects/271.3_b71WC77.jpg	0		28
+74	portfolio/projects/271.5_2HJPK67.jpg	0		28
+75	portfolio/projects/111md.jpg	0		29
+76	portfolio/projects/111d.jpg	0		29
+77	portfolio/projects/111ed.jpg	0		29
+\.
+
+
+--
+-- Data for Name: portfolio_projecttranslation; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.portfolio_projecttranslation (id, language_code, name, description, project_id) FROM stdin;
+2	en	Suoi Voi	SUOI VOI - 50 km from Hue city and 40 km from Da Nang city. High-class resort project is located in the center of the golden tourism triangle of the country: Chan May Port - Bach Ma National Park - Lang Co Bay.	2
+4	en	Gion Building	The purpose of the project is to create an ecosystem with functional spaces: Co living- Co working- Services. Shelters are designed as modules to reduce construction time and investment costs. The additional space, lifts and staircase are located in the West to reduce the heat for the project.	4
+3	en	Ton Duc Thang University	The purpose of the project is to create a common home for students, inspired by the riverside houses in An Giang. The characteristic of the project geometry not only creates the identity for the school, but it also means receiving and acquiring knowledge.	3
+6	en	Bien Hoa Square	The pier &amp; club house is a utility facility for residents with the disadvantage of the pier being the river bank and the west side of the land. The solution of the pier is to design an additional hook-shaped earth dyke to change the sedimentation area, in order to increase the feasibility of operating the pier. The main idea of the club block is that the mangers are hung up on the roof to make a difference in identity for the pioneering building block of the project. It is also an effective reduce heat solution for roofs and increase functional green areas for residents.	6
+7	en	Van Lien Hoa Head Office	The project is the office of an environmental company, so it is important to find a solution for the message and the nature of the company. Fortunately for the project, the design team found an old source of iron pipe from the factory. From there, give a unique combination of structure to the company. In addition, this is also the ambition of the design team in the development of projects and constructions with large spans in areas with difficult construction conditions. The solution of dividing 1 solid steel beam into separate steel pipes for ease of transportation and local construction will be a feasible solution. Hopefully the boldness of the spatial structure solution will bring about success. The investor's identity contributes to their success as well as spreading the spirit of the environment to everyone.	7
+8	en	Vo Van Kiet Building	The project is the office of an environmental company, so it is important to find a solution for the message and the nature of the company. Fortunately for the project, the design team found an old source of iron pipe from the factory. From there, give a unique combination of structure to the company. In addition, this is also the ambition of the design team in the development of projects and constructions with large spans in areas with difficult construction conditions. The solution of dividing 1 solid steel beam into separate steel pipes for ease of transportation and local construction will be a feasible solution. Hopefully the boldness of the spatial structure solution will bring about success. The investor's identity contributes to their success as well as spreading the spirit of the environment to everyone.	8
+9	en	Nam Cuong Shophouse	A + approached the project when in the first process of construction. In terms of exterior, the biggest limitation is the solution for the West side. With floors are handled in a separate language to ensure consistency from form to function. In terms of interior, the residential floor has been completely renovated to ensure a more comfortable space. With the shop floor, a cross road connecting the existing circumlation is the main solution to handle the operation of the project.	9
+10	en	3/2 building	<p class="MsoNormal" style="">The solution of vertical louver creates the identify. This project has\r\na good solution on climate heat, we arranged more solid space in the East-West,\r\nthe void spaces were opened in the opposite direction to get the&nbsp; view.&nbsp;\r\nThe vertical louvers create a modern visual effect that makes it feel\r\nlike the building is still growing. Commercial floors are treated with thicker\r\nlouvers to create a unity from form to function.<i><o:p></o:p></i></p>	10
+11	en	TTC Seafood Restaurant	<p class="MsoNormal" style="">The current project is a hotel located in a wedding restaurant with\r\nneoclassical style. Therefore, the requirement of similarity is a big challenge\r\nfor this project. With a tight time, the proposed A + solution is a steel\r\nstructure to solve the progress problem. Additional, the vertical of the\r\nbuilding is repeated to harmonize the whole between old and new. The curved\r\narches by CNC cutting system and the nature of the steel structure make a\r\ndifference for the project.<o:p></o:p></p><p>\r\n\r\n</p><p class="MsoNormal" style="">The success of the project is reminiscent of neoclassical lines by the\r\nlightness of the steel structure, but ensuring consistency between the\r\nstructure and the form of the building.<i><o:p></o:p></i></p>	11
+12	en	HA Hotel	<p class="MsoNormal" style="">HA Hotel is located on a long and narrow site with the direction is\r\nNorth to South, so entire area of the project is affected by the heat from the\r\nWest. We propose that create the circumlation and additional function in the\r\nWest for reducing the heat absorption. The solution for architecture is create\r\nalternating hollow solid blocks created from a combination of concrete test\r\nsamples to give the effect of both open and private space suitable for the\r\nhotel model.<i><o:p></o:p></i></p>	12
+13	en	Toan DL Homestay	<p class="MsoNormal" style="">The most difficult of the project is create\r\nthe circumlation on the slope of topography. The solution is create a wooden\r\nroad connect with the terrace of the project above the ground to reduce the\r\ndensity of circumlation area.&nbsp;<i><o:p></o:p></i></p>	13
+14	en	Hung Phu Resident	<p class="MsoNormal" style="">This is the second process of a pre-existing project but requires higher\r\nprice, aesthetic so it is difficult to solve the similarities and identities of\r\nthe old project but have make them more luxury.<o:p></o:p></p><p>\r\n\r\n<span style="line-height: 107%;">The\r\nsolution of function is exploit the front yard with the garage to expand the\r\nusing area and create the patio.</span><br></p>	14
+15	en	Sea Sport Center	<p class="MsoNormal" style=""><span lang="EN">T</span>he sport center is a\r\ngreening project taking a part of the park land adjacent to the sea in Nha\r\nTrang city to build a tourism service for internation al stages. With the\r\nrequest of how to retain the most green park for the people and not prevent the\r\nview of the sea from Tran Phu street.<o:p></o:p></p><p class="MsoNormal" style="">The solution is only to impact 50% of the area diagonally across the\r\nland to solve the problem of traffic access and maximize the area for the sport\r\ncenter. Preserve 100% of green parks for the remaining area. The area has party\r\nwalls built in a semi-basement. Service buildings are lift above the ground for\r\nnot preventing the scence.<o:p></o:p></p><p>\r\n\r\n\r\n\r\n</p><p class="MsoNormal" style="">The successful of our team is protect almost greenery for people but\r\nensuring the operation of a sea sport center.<i><o:p></o:p></i></p>	15
+16	en	BIDV bank	<p class="MsoNormal" style="">The void space is located in between- a\r\nplace people can connect with each other, it also creates the natural\r\nventilation for entire the building. Form of the architecture returns to the\r\nbasic shape with horizontal louvers solving sunlight direction go inside the\r\nbuilding.We arrange the additional space in the West saving the energy while\r\noperating in a long time.&nbsp;<i><o:p></o:p></i></p>	16
+17	en	Transit Station of Tan Son Nhat Airport	<p class="MsoNormal" style="">The Transit Station of Tan Son Nhat Airport\r\nis a part of a park. The main idea of this project is return&nbsp; the park for resident. We create a green roof\r\nwith existing trees in different levels and using the void space. In the first\r\nfloor, we engage it as some kiosks for improving the benefit for the client.<i><o:p></o:p></i></p>	17
+18	en	Thuy Dinh Restaurant	<p class="MsoNormal" style="">Thuy Dinh Restaurant is another way to combine a traditional stage with\r\noutside area, alternating with shallow water covering the building blocks,\r\ncontributing to the improvement of the microclimate and bring out the context.&nbsp;<i><o:p></o:p></i></p>	18
+19	en	TPS Thanh Phong Head Office	<p class="MsoNormal" style="">A combination of an office and an innovative classical style are two\r\nrequirements that we have to deal with on this limited L-shaped property. The\r\nconstruction location is covered by three surrounding houses. Therefore, it is\r\nlack of space for ventilation. We have shown an innovative classical style in a\r\nsofter, more modern way.</p>	19
+20	en	Cu Chi District People Commitee	<p class="MsoNormal" style="">This is a work to change stereotypes about state-owned buildings: rigid\r\nand dull. With a harmonious combination of modern architecture and traditional\r\npatterns, the building has a good identification. We arrange the circumlation\r\naround a big hall, the building makes people feel welcome and close.<i><o:p></o:p></i></p>	20
+21	en	Golden Link Office	<p class="MsoNormal" style="">The façade of architecture is based on the business characteristics of\r\nthe client. The impressive red tone also develops from the brand color, it also\r\nbrings out the building on a hustle and bustle road .<i><o:p></o:p></i></p>	21
+22	en	Dau Handmade	<p><span style="line-height: 107%;">The work marked the turning point of A + in the\r\narea of ​​fast design and construction. Not completely removing the concrete slab\r\nas the investor proposed at the beginning, we were looking for other solutions\r\nto bring the soul of old Hanoi into the project, but still retain the\r\nhistorical value of the current building. condition. Narrow space, urgent\r\nconstruction time of 15 days, pressure on investment rates and difficulties in\r\nconnecting with customers, all the difficulties and how A+ solves problems with\r\nfast, effective and effective manner.&nbsp;</span><br></p>	22
+23	en	Resort Kawasami	<p class="MsoNormal" style="">After humans stepped out of the cave, the\r\nleaf huts were one of the first forms of roof for humans. With that\r\ninspiration, Kawasami resort brings people back to ancient times.Local material\r\nis used in this project. The hotel block is designed to ensure the similarity of\r\nthe whole area, creating a rhythm and special. The resort is a homogeneous\r\narchitectural complex, with symbolism and high brand identity.</p>	23
+24	en	Pipe Motel	<p class="MsoNormal" style="">This project is a new type of motel, it is\r\nalso suitable with all of topography. Each room is a module concrete pipe which\r\nis saving and flexible in assembly, moving, relocation.<i><o:p></o:p></i></p>	24
+25	en	The Soldiers of Gac Ma Memorial Park	<p><span style="line-height: 107%;">Unlike the works of the same category, our plan\r\ndoes not emphasize the symbolic form, but we take visitors to the memorial site\r\nthrough a emotional journey, to find empathy between the modern people and the\r\nfallen soldiers of old.</span><br></p>	25
+26	en	SWAN HOTEL	<p>This is a hospitality project in Da Lat with a very special position located on the curved corner of two roads 15m difference. The challenge is how to exploit area of the site effectively with other strict regulations of Dalat City. Finally, the idea of "forest in house - house in forest" is approved by the government because the landscape harmony does not disrupt the environment of the plan. The main idea of the project is to arrange the planting blocks of trees stick to the topography. The texture of the finished material is inspired by the local material - pine bark along with the typical flower of the climate of Da Lat, cherry blossoms.<br></p>	28
+\.
+
+
+--
+-- Data for Name: service_service; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.service_service (id, name, description, background, percent, sort_order) FROM stdin;
+2	Kiến trúc	<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.<br></p>	service/serv-architecture_1.jpg	95	1
+1	Quy hoạch	<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.<br></p>	service/14.jpg	85	2
+4	Cảnh quan	<p>sss</p>		80	4
+3	Nội thất	<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>	service/1.jpg	90	3
+\.
+
+
+--
+-- Data for Name: service_servicetranslation; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.service_servicetranslation (id, language_code, name, description, service_id) FROM stdin;
+1	en	Architecture	There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.	2
+2	en	Urban Planning	There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.	1
+3	en	Interior	There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.	3
+4	en	Landscape	There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.	4
+\.
+
+
+--
+-- Data for Name: sitesetting_sitesettings; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.sitesetting_sitesettings (id, description, keywords, email, address, site_id, phone) FROM stdin;
+1			cskh@aplusarchitects.vn	84D Võ Thị Sáu, Tân Định, Quận 1, Hồ Chí Minh	1	02862906105
+\.
+
+
+--
+-- Data for Name: sitesetting_socialnetwork; Type: TABLE DATA; Schema: public; Owner: aplusarch
+--
+
+COPY public.sitesetting_socialnetwork (id, name, icon, link) FROM stdin;
+3	Instagram	fa fa-instagram	https://www.instagram.com/aplus_architects/
+2	Pinterest	fa fa-pinterest	https://www.pinterest.com/Aplus2512/
+4	Facebook	fa fa-facebook	https://www.facebook.com/AplusArchitects.vn
+\.
+
+
+--
+-- Name: account_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.account_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: account_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.account_user_id_seq', 8, true);
+
+
+--
+-- Name: account_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.account_user_user_permissions_id_seq', 18, true);
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 101, true);
+
+
+--
+-- Name: blog_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.blog_category_id_seq', 3, true);
+
+
+--
+-- Name: blog_categorytranslation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.blog_categorytranslation_id_seq', 1, false);
+
+
+--
+-- Name: blog_post_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.blog_post_id_seq', 1, true);
+
+
+--
+-- Name: blog_post_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.blog_post_tag_id_seq', 1, false);
+
+
+--
+-- Name: blog_posttranslation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.blog_posttranslation_id_seq', 1, false);
+
+
+--
+-- Name: blog_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.blog_tag_id_seq', 1, false);
+
+
+--
+-- Name: blog_tagtranslation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.blog_tagtranslation_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
+
+
+--
+-- Name: django_celery_results_taskresult_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.django_celery_results_taskresult_id_seq', 7, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 23, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 41, true);
+
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.django_site_id_seq', 1, true);
+
+
+--
+-- Name: portfolio_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.portfolio_category_id_seq', 5, true);
+
+
+--
+-- Name: portfolio_categorytranslation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.portfolio_categorytranslation_id_seq', 1, false);
+
+
+--
+-- Name: portfolio_project_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.portfolio_project_category_id_seq', 31, true);
+
+
+--
+-- Name: portfolio_project_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.portfolio_project_id_seq', 29, true);
+
+
+--
+-- Name: portfolio_projectimage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.portfolio_projectimage_id_seq', 78, true);
+
+
+--
+-- Name: portfolio_projecttranslation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.portfolio_projecttranslation_id_seq', 26, true);
+
+
+--
+-- Name: service_service_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.service_service_id_seq', 4, true);
+
+
+--
+-- Name: service_servicetranslation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.service_servicetranslation_id_seq', 4, true);
+
+
+--
+-- Name: sitesetting_sitesettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.sitesetting_sitesettings_id_seq', 1, true);
+
+
+--
+-- Name: sitesetting_socialnetwork_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aplusarch
+--
+
+SELECT pg_catalog.setval('public.sitesetting_socialnetwork_id_seq', 5, true);
+
+
+--
+-- Name: account_user account_user_email_key; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user
+    ADD CONSTRAINT account_user_email_key UNIQUE (email);
+
+
+--
+-- Name: account_user_groups account_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user_groups
+    ADD CONSTRAINT account_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: account_user_groups account_user_groups_user_id_group_id_4d09af3e_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user_groups
+    ADD CONSTRAINT account_user_groups_user_id_group_id_4d09af3e_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: account_user account_user_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user
+    ADD CONSTRAINT account_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: account_user_user_permissions account_user_user_permis_user_id_permission_id_48bdd28b_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user_user_permissions
+    ADD CONSTRAINT account_user_user_permis_user_id_permission_id_48bdd28b_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: account_user_user_permissions account_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user_user_permissions
+    ADD CONSTRAINT account_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_category blog_category_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_category
+    ADD CONSTRAINT blog_category_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_categorytranslation blog_categorytranslation_language_code_category_i_3bfb20a9_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_categorytranslation
+    ADD CONSTRAINT blog_categorytranslation_language_code_category_i_3bfb20a9_uniq UNIQUE (language_code, category_id);
+
+
+--
+-- Name: blog_categorytranslation blog_categorytranslation_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_categorytranslation
+    ADD CONSTRAINT blog_categorytranslation_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_post blog_post_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_post
+    ADD CONSTRAINT blog_post_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_post_tag blog_post_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_post_tag
+    ADD CONSTRAINT blog_post_tag_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_post_tag blog_post_tag_post_id_tag_id_ba2a5f83_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_post_tag
+    ADD CONSTRAINT blog_post_tag_post_id_tag_id_ba2a5f83_uniq UNIQUE (post_id, tag_id);
+
+
+--
+-- Name: blog_posttranslation blog_posttranslation_language_code_post_id_f60552e1_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_posttranslation
+    ADD CONSTRAINT blog_posttranslation_language_code_post_id_f60552e1_uniq UNIQUE (language_code, post_id);
+
+
+--
+-- Name: blog_posttranslation blog_posttranslation_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_posttranslation
+    ADD CONSTRAINT blog_posttranslation_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_tag blog_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_tag
+    ADD CONSTRAINT blog_tag_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_tagtranslation blog_tagtranslation_language_code_tag_id_61093d29_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_tagtranslation
+    ADD CONSTRAINT blog_tagtranslation_language_code_tag_id_61093d29_uniq UNIQUE (language_code, tag_id);
+
+
+--
+-- Name: blog_tagtranslation blog_tagtranslation_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_tagtranslation
+    ADD CONSTRAINT blog_tagtranslation_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_celery_results_taskresult django_celery_results_taskresult_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_celery_results_taskresult
+    ADD CONSTRAINT django_celery_results_taskresult_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_celery_results_taskresult django_celery_results_taskresult_task_id_key; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_celery_results_taskresult
+    ADD CONSTRAINT django_celery_results_taskresult_task_id_key UNIQUE (task_id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: django_site django_site_domain_a2e37b91_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_site
+    ADD CONSTRAINT django_site_domain_a2e37b91_uniq UNIQUE (domain);
+
+
+--
+-- Name: django_site django_site_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_site
+    ADD CONSTRAINT django_site_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: portfolio_category portfolio_category_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_category
+    ADD CONSTRAINT portfolio_category_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: portfolio_categorytranslation portfolio_categorytransl_language_code_category_i_ea674fb0_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_categorytranslation
+    ADD CONSTRAINT portfolio_categorytransl_language_code_category_i_ea674fb0_uniq UNIQUE (language_code, category_id);
+
+
+--
+-- Name: portfolio_categorytranslation portfolio_categorytranslation_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_categorytranslation
+    ADD CONSTRAINT portfolio_categorytranslation_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: portfolio_project_category portfolio_project_category_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_project_category
+    ADD CONSTRAINT portfolio_project_category_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: portfolio_project_category portfolio_project_category_project_id_category_id_a59db9d3_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_project_category
+    ADD CONSTRAINT portfolio_project_category_project_id_category_id_a59db9d3_uniq UNIQUE (project_id, category_id);
+
+
+--
+-- Name: portfolio_project portfolio_project_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_project
+    ADD CONSTRAINT portfolio_project_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: portfolio_projectimage portfolio_projectimage_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_projectimage
+    ADD CONSTRAINT portfolio_projectimage_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: portfolio_projecttranslation portfolio_projecttransla_language_code_project_id_41d57b2d_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_projecttranslation
+    ADD CONSTRAINT portfolio_projecttransla_language_code_project_id_41d57b2d_uniq UNIQUE (language_code, project_id);
+
+
+--
+-- Name: portfolio_projecttranslation portfolio_projecttranslation_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_projecttranslation
+    ADD CONSTRAINT portfolio_projecttranslation_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: service_service service_service_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.service_service
+    ADD CONSTRAINT service_service_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: service_servicetranslation service_servicetranslati_language_code_service_id_d82a3f79_uniq; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.service_servicetranslation
+    ADD CONSTRAINT service_servicetranslati_language_code_service_id_d82a3f79_uniq UNIQUE (language_code, service_id);
+
+
+--
+-- Name: service_servicetranslation service_servicetranslation_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.service_servicetranslation
+    ADD CONSTRAINT service_servicetranslation_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sitesetting_sitesettings sitesetting_sitesettings_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.sitesetting_sitesettings
+    ADD CONSTRAINT sitesetting_sitesettings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sitesetting_sitesettings sitesetting_sitesettings_site_id_key; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.sitesetting_sitesettings
+    ADD CONSTRAINT sitesetting_sitesettings_site_id_key UNIQUE (site_id);
+
+
+--
+-- Name: sitesetting_socialnetwork sitesetting_socialnetwork_pkey; Type: CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.sitesetting_socialnetwork
+    ADD CONSTRAINT sitesetting_socialnetwork_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: account_user_email_0bd7c421_like; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX account_user_email_0bd7c421_like ON public.account_user USING btree (email varchar_pattern_ops);
+
+
+--
+-- Name: account_user_groups_group_id_6c71f749; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX account_user_groups_group_id_6c71f749 ON public.account_user_groups USING btree (group_id);
+
+
+--
+-- Name: account_user_groups_user_id_14345e7b; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX account_user_groups_user_id_14345e7b ON public.account_user_groups USING btree (user_id);
+
+
+--
+-- Name: account_user_user_permissions_permission_id_66c44191; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX account_user_user_permissions_permission_id_66c44191 ON public.account_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: account_user_user_permissions_user_id_cc42d270; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX account_user_user_permissions_user_id_cc42d270 ON public.account_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: blog_categorytranslation_category_id_91880fd3; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX blog_categorytranslation_category_id_91880fd3 ON public.blog_categorytranslation USING btree (category_id);
+
+
+--
+-- Name: blog_post_author_id_dd7a8485; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX blog_post_author_id_dd7a8485 ON public.blog_post USING btree (author_id);
+
+
+--
+-- Name: blog_post_category_id_c326dbf8; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX blog_post_category_id_c326dbf8 ON public.blog_post USING btree (category_id);
+
+
+--
+-- Name: blog_post_tag_post_id_a5c00319; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX blog_post_tag_post_id_a5c00319 ON public.blog_post_tag USING btree (post_id);
+
+
+--
+-- Name: blog_post_tag_tag_id_2bbd31e4; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX blog_post_tag_tag_id_2bbd31e4 ON public.blog_post_tag USING btree (tag_id);
+
+
+--
+-- Name: blog_posttranslation_post_id_4a3ee4e5; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX blog_posttranslation_post_id_4a3ee4e5 ON public.blog_posttranslation USING btree (post_id);
+
+
+--
+-- Name: blog_tagtranslation_tag_id_ffde0540; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX blog_tagtranslation_tag_id_ffde0540 ON public.blog_tagtranslation USING btree (tag_id);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_celery_results_taskresult_date_done_49edada6; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_celery_results_taskresult_date_done_49edada6 ON public.django_celery_results_taskresult USING btree (date_done);
+
+
+--
+-- Name: django_celery_results_taskresult_hidden_cd77412f; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_celery_results_taskresult_hidden_cd77412f ON public.django_celery_results_taskresult USING btree (hidden);
+
+
+--
+-- Name: django_celery_results_taskresult_status_cbbed23a; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_celery_results_taskresult_status_cbbed23a ON public.django_celery_results_taskresult USING btree (status);
+
+
+--
+-- Name: django_celery_results_taskresult_status_cbbed23a_like; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_celery_results_taskresult_status_cbbed23a_like ON public.django_celery_results_taskresult USING btree (status varchar_pattern_ops);
+
+
+--
+-- Name: django_celery_results_taskresult_task_id_de0d95bf_like; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_celery_results_taskresult_task_id_de0d95bf_like ON public.django_celery_results_taskresult USING btree (task_id varchar_pattern_ops);
+
+
+--
+-- Name: django_celery_results_taskresult_task_name_90987df3; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_celery_results_taskresult_task_name_90987df3 ON public.django_celery_results_taskresult USING btree (task_name);
+
+
+--
+-- Name: django_celery_results_taskresult_task_name_90987df3_like; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_celery_results_taskresult_task_name_90987df3_like ON public.django_celery_results_taskresult USING btree (task_name varchar_pattern_ops);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: django_site_domain_a2e37b91_like; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX django_site_domain_a2e37b91_like ON public.django_site USING btree (domain varchar_pattern_ops);
+
+
+--
+-- Name: portfolio_categorytranslation_category_id_6e656863; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX portfolio_categorytranslation_category_id_6e656863 ON public.portfolio_categorytranslation USING btree (category_id);
+
+
+--
+-- Name: portfolio_project_category_category_id_9c1b7a48; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX portfolio_project_category_category_id_9c1b7a48 ON public.portfolio_project_category USING btree (category_id);
+
+
+--
+-- Name: portfolio_project_category_project_id_3348a63f; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX portfolio_project_category_project_id_3348a63f ON public.portfolio_project_category USING btree (project_id);
+
+
+--
+-- Name: portfolio_projectimage_project_id_9276d60f; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX portfolio_projectimage_project_id_9276d60f ON public.portfolio_projectimage USING btree (project_id);
+
+
+--
+-- Name: portfolio_projecttranslation_project_id_771edd37; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX portfolio_projecttranslation_project_id_771edd37 ON public.portfolio_projecttranslation USING btree (project_id);
+
+
+--
+-- Name: service_servicetranslation_service_id_8b83d160; Type: INDEX; Schema: public; Owner: aplusarch
+--
+
+CREATE INDEX service_servicetranslation_service_id_8b83d160 ON public.service_servicetranslation USING btree (service_id);
+
+
+--
+-- Name: account_user_groups account_user_groups_group_id_6c71f749_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user_groups
+    ADD CONSTRAINT account_user_groups_group_id_6c71f749_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: account_user_groups account_user_groups_user_id_14345e7b_fk_account_user_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user_groups
+    ADD CONSTRAINT account_user_groups_user_id_14345e7b_fk_account_user_id FOREIGN KEY (user_id) REFERENCES public.account_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: account_user_user_permissions account_user_user_pe_permission_id_66c44191_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user_user_permissions
+    ADD CONSTRAINT account_user_user_pe_permission_id_66c44191_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: account_user_user_permissions account_user_user_pe_user_id_cc42d270_fk_account_u; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.account_user_user_permissions
+    ADD CONSTRAINT account_user_user_pe_user_id_cc42d270_fk_account_u FOREIGN KEY (user_id) REFERENCES public.account_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_categorytranslation blog_categorytransla_category_id_91880fd3_fk_blog_cate; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_categorytranslation
+    ADD CONSTRAINT blog_categorytransla_category_id_91880fd3_fk_blog_cate FOREIGN KEY (category_id) REFERENCES public.blog_category(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_post blog_post_author_id_dd7a8485_fk_account_user_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_post
+    ADD CONSTRAINT blog_post_author_id_dd7a8485_fk_account_user_id FOREIGN KEY (author_id) REFERENCES public.account_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_post blog_post_category_id_c326dbf8_fk_blog_category_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_post
+    ADD CONSTRAINT blog_post_category_id_c326dbf8_fk_blog_category_id FOREIGN KEY (category_id) REFERENCES public.blog_category(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_post_tag blog_post_tag_post_id_a5c00319_fk_blog_post_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_post_tag
+    ADD CONSTRAINT blog_post_tag_post_id_a5c00319_fk_blog_post_id FOREIGN KEY (post_id) REFERENCES public.blog_post(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_post_tag blog_post_tag_tag_id_2bbd31e4_fk_blog_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_post_tag
+    ADD CONSTRAINT blog_post_tag_tag_id_2bbd31e4_fk_blog_tag_id FOREIGN KEY (tag_id) REFERENCES public.blog_tag(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_posttranslation blog_posttranslation_post_id_4a3ee4e5_fk_blog_post_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_posttranslation
+    ADD CONSTRAINT blog_posttranslation_post_id_4a3ee4e5_fk_blog_post_id FOREIGN KEY (post_id) REFERENCES public.blog_post(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_tagtranslation blog_tagtranslation_tag_id_ffde0540_fk_blog_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.blog_tagtranslation
+    ADD CONSTRAINT blog_tagtranslation_tag_id_ffde0540_fk_blog_tag_id FOREIGN KEY (tag_id) REFERENCES public.blog_tag(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_account_user_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_account_user_id FOREIGN KEY (user_id) REFERENCES public.account_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: portfolio_categorytranslation portfolio_categorytr_category_id_6e656863_fk_portfolio; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_categorytranslation
+    ADD CONSTRAINT portfolio_categorytr_category_id_6e656863_fk_portfolio FOREIGN KEY (category_id) REFERENCES public.portfolio_category(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: portfolio_project_category portfolio_project_ca_category_id_9c1b7a48_fk_portfolio; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_project_category
+    ADD CONSTRAINT portfolio_project_ca_category_id_9c1b7a48_fk_portfolio FOREIGN KEY (category_id) REFERENCES public.portfolio_category(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: portfolio_project_category portfolio_project_ca_project_id_3348a63f_fk_portfolio; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_project_category
+    ADD CONSTRAINT portfolio_project_ca_project_id_3348a63f_fk_portfolio FOREIGN KEY (project_id) REFERENCES public.portfolio_project(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: portfolio_projectimage portfolio_projectima_project_id_9276d60f_fk_portfolio; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_projectimage
+    ADD CONSTRAINT portfolio_projectima_project_id_9276d60f_fk_portfolio FOREIGN KEY (project_id) REFERENCES public.portfolio_project(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: portfolio_projecttranslation portfolio_projecttra_project_id_771edd37_fk_portfolio; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.portfolio_projecttranslation
+    ADD CONSTRAINT portfolio_projecttra_project_id_771edd37_fk_portfolio FOREIGN KEY (project_id) REFERENCES public.portfolio_project(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: service_servicetranslation service_servicetrans_service_id_8b83d160_fk_service_s; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.service_servicetranslation
+    ADD CONSTRAINT service_servicetrans_service_id_8b83d160_fk_service_s FOREIGN KEY (service_id) REFERENCES public.service_service(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: sitesetting_sitesettings sitesetting_sitesettings_site_id_78a2656c_fk_django_site_id; Type: FK CONSTRAINT; Schema: public; Owner: aplusarch
+--
+
+ALTER TABLE ONLY public.sitesetting_sitesettings
+    ADD CONSTRAINT sitesetting_sitesettings_site_id_78a2656c_fk_django_site_id FOREIGN KEY (site_id) REFERENCES public.django_site(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

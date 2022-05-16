@@ -1,0 +1,96 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap4 %}
+
+{% block title %}
+    {% if post %}
+        {{ post }} - {{ block.super }}
+    {% else %}
+        {% trans 'Add post' context 'Page title' %} - {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block blog_class %}active open{% endblock %}
+{% block blog_post_class %}active{% endblock %}
+
+{% block page %}
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">
+            {% if post %}
+                {{ post }}
+            {% else %}
+                {% trans 'Add post' context 'Page title' %}
+            {% endif %}
+        </h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">{% trans 'Blog' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:blog:post-list' %}">{% trans 'Posts' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {% if post %}
+                        {{ post }}
+                    {% else %}
+                        {% trans 'Add post' context 'Breadcrumb item' %}
+                    {% endif %}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-body">
+                        <form action="" method="POST" enctype="multipart/form-data" novalidate>{% csrf_token %}
+                            {% bootstrap_field form.title %}
+                            {% bootstrap_field form.category %}
+                            {% bootstrap_field form.description %}
+                            {% bootstrap_field form.content %}
+                            {% bootstrap_field form.image %}
+                            {% bootstrap_field form.tag %}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary float-right">
+                                    {% if post %}
+                                        {% trans 'Update' context 'Button text' %}
+                                    {% else %}
+                                        {% trans 'Add' context 'Button text' %}
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block plugin_css %}
+    <link rel="stylesheet" href="{% static 'dashboard/global/vendor/select2/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/global/vendor/summernote/summernote.css' %}">
+{% endblock %}
+{% block page_css %}{% endblock %}
+{% block plugin_js %}
+    <script src="{% static 'dashboard/global/vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'dashboard/global/vendor/summernote/summernote.js' %}"></script>
+{% endblock %}
+{% block page_js %}
+    <script>
+        $(document).ready(function() {
+            $('textarea').summernote();
+        });
+    </script>
+{% endblock %}

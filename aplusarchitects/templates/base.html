@@ -1,0 +1,213 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+<!DOCTYPE HTML>
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <!--=============== basic  ===============-->
+        <meta charset="UTF-8">
+        <title>{% block title %}{{ site.name }}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="robots" content="index, follow"/>
+        <meta name="keywords" content="{{ site.settings.keywords }}"/>
+        <meta name="description" content="{{ site.settings.description }}"/>
+        <!--=============== css  ===============-->	
+        <link type="text/css" rel="stylesheet" href="{% static 'storefront/css/reset.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'storefront/css/plugins.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'storefront/css/style.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'storefront/css/custom.css' %}">
+        <!--=============== favicons ===============-->
+        <link rel="shortcut icon" href="{% static 'storefront/images/favicon.png' %}">
+    </head>
+    <body>
+        <!-- loader -->
+        <div class="loader">
+            <div id="movingBallG">
+                <div class="movingBallLineG"></div>
+                <div id="movingBallG_1" class="movingBallG"></div>
+            </div>
+        </div>
+        <!-- loader end -->
+        <!--================= main start ================-->
+        <div id="main">
+            <!--=============== header ===============-->	
+            <header class="fw-head">
+                <!-- header-inner  -->
+                <div class="header-inner">
+                    <!-- header logo -->
+                    <div class="logo-holder">
+                        <a href="{% url 'core:index' %}"><img src="{% static 'storefront/images/logo.png' %}" alt="" style="width: 60px;"></a>
+                    </div>
+                    <!-- header logo end -->
+                    <!-- mobile nav button -->
+                    <div class="nav-button-holder">
+                        <div class="nav-button vis-m"><span></span><span></span><span></span></div>
+                    </div>
+                    <!-- mobile nav button end -->
+                    <!-- navigation  -->
+                    <div class="nav-holder">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'core:index' %}" class="{% block nav_home_class %}{% endblock %}">
+                                        {% trans 'Home' context 'Header menu item' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'core:about' %}" class="{% block nav_about_class %}{% endblock %}">
+                                        {% trans 'About us' context 'Header menu item' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'service:index' %}" class="{% block nav_service_class %}{% endblock %}">
+                                        {% trans 'Services' context 'Header menu item' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'portfolio:index' %}" class="{% block nav_portfolio_class %}{% endblock %}">
+                                        {% trans 'Portfolio' context 'Header menu item' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'blog:index' %}" class="{% block nav_blog_class %}{% endblock %}">
+                                        {% trans 'Blog' context 'Header menu item' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'contact:index' %}" class="{% block nav_contact_class %}{% endblock %}">
+                                        {% trans 'Contact' context 'Header menu item' %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- navigation  end -->
+                </div>
+                <!-- header-inner  end -->
+                <!-- share button  -->
+                <div class="show-language is-show">
+                    <span>{% trans 'Language' %}</span>
+                    <i class="fa fa-language"></i>
+                </div>
+                <!-- share  end-->
+            </header>
+            <!--=============== wrapper ===============-->	
+            <div id="wrapper">
+                <div class="content-holder">
+                    <!-- Page content  -->
+                    {% block page %}{% endblock %}
+                    <!-- Page content  -->
+
+                    <!-- content footer-->
+                    <div class="height-emulator"></div>
+                    <footer class="content-footer">
+                        <!--  container  --> 
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!-- Footer logo --> 
+                                    <div class="footer-item footer-logo">
+                                        <a href="{% url 'core:index' %}"><img src="{% static 'storefront/images/logo.png' %}" alt=""></a>
+                                    </div>
+                                    <!-- Footer logo end --> 
+                                </div>
+                                <!-- Footer info --> 
+                                <div class="col-md-2">
+                                    <div class="footer-item">
+                                        <h4 class="text-link">{% trans 'Hotline' context 'Footer item' %}</h4>
+                                        <ul>
+                                            <li><span style="text-transform: none;">{{ site.settings.phone }}<span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Footer info end--> 
+                                <!-- Footer info --> 
+                                <div class="col-md-2">
+                                    <div class="footer-item">
+                                        <h4 class="text-link">{% trans 'Email Address' context 'Footer item' %}</h4>
+                                        <ul>
+                                            <li><span style="text-transform: none;">{{ site.settings.email }}<span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Footer info-->
+                                <!-- Footer info end--> 
+                                <div class="col-md-4">
+                                    <div class="footer-item">
+                                        <h4 class="text-link">{% trans 'Office Address' context 'Footer item' %}</h4>
+                                        <ul>
+                                            <li><span style="text-transform: none;">{{ site.settings.address }}</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Footer info end--> 
+                            </div>
+                            <!-- Footer copyright -->
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8">
+                                    <div class="footer-wrap">
+                                        <span class="copyright">
+                                            &#169; {{ site.name }} 2020. Developed by <a target="_blank" href="https://www.facebook.com/dinhnghia.it/" style="color: #fff; text-decoration: underline;">Nghia Vo</a>.
+                                        </span>
+                                        <span class="to-top">To Top</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Footer copyright end -->
+                        </div>
+                        <!--  container  end --> 
+                        <!-- Hover animation  -->
+                        <canvas class="particular"></canvas>
+                        <!-- Hover animation  end -->
+                    </footer>
+                    <!-- content footer end -->
+
+                    <!-- Language  -->
+                    <div class="language-inner">
+                        <div class="language-container">
+                            <form id="language-form" action="{% url 'set_language' %}" method="post">
+                                {% csrf_token %}
+                                <input name="language" type="hidden" value="">
+                                {% for language in languages %}
+                                <a href="javascript:void(0)" data-lang="{{ language.code }}" class="language-item">{{ language.name_local }}</a>
+                                {% endfor %}
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Language end -->
+                </div>
+            </div>
+            <!-- wrapper end -->
+            
+            <!-- Fixed footer -->
+            <footer class="fixed-footer">
+                <div class="footer-social">
+                    <ul>
+                        {% for social_network in social_network_list %}
+                        <li>
+                            <a href="{{ social_network.link }}" target="_blank">
+                                <i class="{{ social_network.icon }}"></i>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- Header  title --> 
+                <div class="footer-title">
+                    <h2><a href="#"></a></h2>
+                </div>
+                <!-- Header  title  end-->
+            </footer>
+            <!-- Fixed footer end-->
+        </div>
+        <!-- Main end -->
+        <!--=============== scripts  ===============-->
+        <script type="text/javascript" src="{% static 'storefront/js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'storefront/js/plugins.js' %}"></script>
+        <script type="text/javascript" src="{% static 'storefront/js/scripts.js' %}"></script>
+        {% block page_js %}{% endblock %}
+    </body>
+</html>

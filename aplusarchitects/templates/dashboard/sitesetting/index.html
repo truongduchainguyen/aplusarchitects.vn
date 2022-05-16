@@ -1,0 +1,50 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Site settings' context 'Page title' %} - {{ block.super }}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block page %}
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{% trans 'Site settings' context 'Page title' %}</h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item active">{% trans 'Site settings' context 'Breadcrumb item' %}</li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <h4 class="card-title">{% trans 'General Information' context 'Card title' %}</h4>
+                        <p class="card-text">{% trans 'View and update your site settings.' context 'Card text' %}</p>
+                        <a href="{% url 'dashboard:sitesetting:general-information' %}" class="btn btn-primary">
+                            {% trans 'Edit' context 'Button text' %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <h4 class="card-title">{% trans 'Social Network' context 'Card title' %}</h4>
+                        <p class="card-text">{% trans 'View and update social network information.' context 'Card text' %}</p>
+                        <a href="{% url 'dashboard:sitesetting:social-network-list' %}" class="btn btn-primary">
+                            {% trans 'Edit' context 'Button text' %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

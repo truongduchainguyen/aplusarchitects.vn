@@ -1,0 +1,111 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Images' context 'Page title' %} - {{ block.super }}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block portfolio_class %}active open{% endblock %}
+{% block portfolio_project_class %}active{% endblock %}
+
+{% block page %}
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{% trans 'Images' context 'Page title' %}</h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">{% trans 'Portfolio' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:portfolio:project-list' %}">{% trans 'Projects' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:portfolio:project-change' pk=project.pk %}">{{ project }}</a>
+                </li>
+                <li class="breadcrumb-item active">{% trans 'Images' context 'Breadcrumb item' %}</li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div id="sortable" class="row" data-csrf="{{ csrf_token }}" data-post-url="{% url 'dashboard:portfolio:project-images-reorder' project_pk=project.pk %}">
+            {% for image in images %}
+            <div class="col-lg-3 col-md-12 sortable-item" data-imageid="{{ image.pk }}">
+                <div class="card">
+                    <img
+                        class="card-img-top img-fluid w-full sortable-drag"
+                        src="{{ image.image.url }}"
+                        alt="{{ image.alt }}"
+                        style="cursor: move;" />
+                    <div class="card-block">
+                        <h4 class="card-title">{% trans 'Description' %}</h4>
+                        <p class="card-text">{{ image.alt }}</p>
+                    </div>
+                    <div class="card-block">
+                        <a 
+                            href="{% url 'dashboard:portfolio:project-images-change' project_pk=project.pk pk=image.pk %}"
+                            class="card-link">
+                            {% trans 'Edit' context 'Button text' %}
+                        </a>
+                        <a 
+                            href="#base-modal"
+                            data-href="{% url 'dashboard:portfolio:project-images-delete' project_pk=project.pk pk=image.pk %}"
+                            class="card-link modal-trigger-custom">
+                            {% trans 'Delete' context 'Button text' %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="site-action">
+    <button 
+        type="button"
+        data-toggle="tooltip"
+        data-placement="left"
+        title="{% trans 'Click to add image' context 'Button tooltip title' %}"
+        data-original-title="{% trans 'Click to add image' context 'Button tooltip title' %}"
+        onclick="window.location.href='{% url "dashboard:portfolio:project-images-add" project_pk=project.pk %}'"
+        class="btn btn-success btn-floating">
+        <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
+    </button>
+</div>
+{% endblock %}
+
+{% block plugin_css %}{% endblock %}
+{% block plugin_js %}
+    <script src="{% static 'dashboard/global/vendor/sortable/Sortable.min.js' %}"></script>
+{% endblock %}
+{% block page_css %}{% endblock %}
+{% block page_js %}
+    <script>
+        new Sortable(sortable, {
+            swapThreshold: 1,
+            handle: '.sortable-drag',
+            animation: 150,
+            onUpdate: (e) => {
+                var sortable = $('#sortable'),
+                sorted_items = sortable.find('.sortable-item')
+                .map((index, item) => item.dataset.imageid)
+                .toArray();
+                $.ajax({
+                    url: sortable.data('post-url'),
+                    method: 'POST',
+                    headers: { 'X-CSRFToken': sortable.data('csrf') },
+                    traditional: true,
+                    data: { ordered_images: sorted_items },
+                    error: function(error) {
+                        alertify.error(error.responseJSON.message);
+                    }
+                });
+            },
+        });
+    </script>
+{% endblock %}

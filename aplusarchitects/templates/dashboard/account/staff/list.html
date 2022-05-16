@@ -1,0 +1,108 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% load paginate %}
+
+{% block title %}
+    {% trans 'Staffs' context 'Page title' %} - {{ block.super }}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block user_class %}active open{% endblock %}
+{% block user_staff_class %}active{% endblock %}
+
+{% block page %}
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{% trans 'Staffs' context 'Page title' %}</h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard:index' %}">{% trans 'Dashboard' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">{% trans 'Users' context 'Breadcrumb item' %}</a>
+                </li>
+                <li class="breadcrumb-item active">{% trans 'Staffs' context 'Breadcrumb item' %}</li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <form action="" method="get" class="form-inline" style="margin: 20px 0px; float: right;">
+                            {% bootstrap_field filter.form.id show_label=False %}
+                            {% bootstrap_field filter.form.full_name show_label=False %}
+                            {% bootstrap_field filter.form.email show_label=False %}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-outline">
+                                    {% trans 'Search' context 'Button text' %}
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <a href="{% url 'dashboard:account:staff-add' %}" class="btn btn-primary">
+                                    {% trans 'Add staff' context 'Button text' %}
+                                </a>
+                            </div>
+                        </form>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-vertical-align">
+                                <thead class="bg-blue-grey-100">
+                                    <tr>
+                                        <th style="width: 100px;">{% trans 'ID' context 'Table header text' %}</th>
+                                        <th>{% trans 'Name' context 'Table header text' %}</th>
+                                        <th>{% trans 'Email' context 'Table header text' %}</th>
+                                        <th style="width: 100px;">{% trans 'Action' context 'Table header text' %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% if staffs %}
+                                {% for staff in staffs %}
+                                <tr>
+                                    <td>{{ staff.id }}</td>
+                                    <td>{{ staff.get_full_name }}</td>
+                                    <td>{{ staff.email }}</td>
+                                    <td>
+                                        <a href="{% url 'dashboard:account:staff-change' pk=staff.pk %}" class="btn btn-sm btn-icon btn-info">
+                                            <i class="icon wb-edit" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="#base-modal" data-href="{% url 'dashboard:account:staff-delete' pk=staff.pk %}" class="btn btn-sm btn-icon btn-danger modal-trigger-custom">
+                                            <i class="icon wb-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr><td colspan="4" class="text-center">{% trans 'No data.' context 'Table no data' %}</td></tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="float:right;">
+                            {% paginate staffs %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block plugin_css %}{% endblock %}
+{% block page_css %}
+    <style>
+        .form-control.is-valid,
+        .form-control.is-valid:focus {
+            border-color: #e4eaec;
+        }
+    </style>
+{% endblock %}
+{% block plugin_js %}{% endblock %}
+{% block page_js %}{% endblock %}

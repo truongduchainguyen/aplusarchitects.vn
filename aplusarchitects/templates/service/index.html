@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Services' context 'Page title' %} - {{ block.super }}{% endblock %}
+{% block nav_service_class %}act-link{% endblock %}
+
+{% block page %}
+<!-- Page title -->
+<div class="dynamic-title">{% trans 'Services' context 'Page title' %}</div>
+<!-- Page title  end--> 
+
+<!-- content  -->
+<div class="content">
+    <section class="parallax-section">
+        <div class="parallax-inner">
+            <div class="bg" data-bg="{% static 'storefront/images/pages/service/bg.jpg' %}" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><strong>{% trans 'Services' context 'Page title' %}</strong></h2>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="creat-list">
+                            <li><a href="{% url 'core:index' %}">{% trans 'Home' context 'Breadcrumb item' %}</a></li>
+                            <li><a href="{% url 'service:index' %}">{% trans 'Services' context 'Breadcrumb item' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content end -->
+
+<!-- content  -->
+<div class="content">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="section-title">
+                        {% trans 'What we do' context 'Section title' %}
+                    </h2>
+                    {% blocktrans %}
+                    <p>Our strength is in architectural design solutions. However, landscape planning is the founder's passion project, especially the resort and resort projects. Therefore,we design the interior based on logical spirit, most consistent with performance, with innovative solutions on materials has always been a part of our successful projects.</p>
+                    {% endblocktrans %}
+                </div>
+            </div>
+            {% if services %}
+            <div class="services-holder">
+                {% for serv in services %}
+                <a class="serv-item" href="#serv-{{ forloop.counter }}">
+                    <div class="serv-item-inner">
+                        <img  src="{{ serv.get_background }}" alt="">
+                        <div class="ser-title">
+                            <h3>{{ serv }}</h3>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- serv-post  -->     
+                    <div class="serv-post">
+                        {% for serv in services %}
+                        <div id="serv-{{ forloop.counter }}" class="serv-details">
+                            <h3>{{ serv }}</h3>
+                            <p>{{ serv.translated.description|safe }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- serv-post end-->
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                {% trans 'No services found.' context 'No data' %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</div>
+<!-- content end-->
+{% endblock %}
+
+{% block page_js %}{% endblock %}
